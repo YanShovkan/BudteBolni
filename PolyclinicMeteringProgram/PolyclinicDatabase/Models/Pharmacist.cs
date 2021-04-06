@@ -14,5 +14,7 @@ namespace PolyclinicDatabase.Models
         [Required]
         public string Password { get; set; }
         public int? PhoneNumber { get; set; }
+        [ForeignKey("PharmacistId")]
+        public virtual List<Medicine> Medicines { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace PolyclinicDatabase.Models
     public class PrescriptionTreatment
     {
         public int Id { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Prescription> PrescriptionId { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Treatment> TreatmentId { get; set; }
+        public int TreatmentId { get; set; }
+        public int PrescriptionId { get; set; }
+        public virtual Treatment Treatment { get; set; }
+        public virtual Prescription Prescription { get; set; }
     }
 }

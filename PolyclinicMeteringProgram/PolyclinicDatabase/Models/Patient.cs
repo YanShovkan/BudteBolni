@@ -18,5 +18,10 @@ namespace PolyclinicDatabase.Models
         [Required]
         public DateTime DateOfBirth { get; set; }
         public int DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
+        [ForeignKey("PatientId")]
+        public virtual List<ProcedurePatient> ProcedurePatients { get; set; }
+        [ForeignKey("PatientId")]
+        public virtual List<Procedure> Procedures { get; set; }
     }
 }

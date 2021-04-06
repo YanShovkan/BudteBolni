@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PolyclinicDatabase.Models
 {
@@ -12,5 +14,7 @@ namespace PolyclinicDatabase.Models
         public string Password { get; set; }
         [Required]
         public string Position { get; set; }
+        [ForeignKey("DoctorId")]
+        public virtual List<Patient> Patients { get; set; }
     }
 }

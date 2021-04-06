@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,9 @@ namespace PolyclinicDatabase.Models
         public string FullNameDoctor { get; set; }
         [Required]
         public string PharmacyAddress { get; set; }
+        [ForeignKey("PrescriptionId")]
+        public virtual List<MedicinePrescription> MedicinePrescriptions { get; set; }
+        [ForeignKey("PrescriptionId")]
+        public virtual List<PrescriptionTreatment> PrescriptionTreatments { get; set; }
     }
 }

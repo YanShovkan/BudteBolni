@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace PolyclinicDatabase.Models
 {
-    class ProcedureTreatment
+    public class ProcedureTreatment
     {
         public int Id { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Treatment> TreatmentId { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Procedure> ProcedureId { get; set; }
+        public int TreatmentId { get; set; }
+        public int ProcedureId { get; set; }
+        public virtual Treatment Treatment { get; set; }
+        public virtual Procedure Procedure { get; set; }
     }
 }
