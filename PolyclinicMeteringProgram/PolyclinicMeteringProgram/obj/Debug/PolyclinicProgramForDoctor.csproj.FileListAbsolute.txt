@@ -367,3 +367,5 @@ C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\ob
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\PolyclinicProgramForDoctor.csproj.CopyComplete
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\PolyclinicMeteringProgram.exe
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\PolyclinicMeteringProgram.pdb
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\WelcomeWindow.g.cs
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\WelcomeWindow.baml

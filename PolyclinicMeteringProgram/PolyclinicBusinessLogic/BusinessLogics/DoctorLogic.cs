@@ -33,10 +33,6 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             {
                 FullName = model.FullName
             });
-            if (element != null && element.Id != model.Id)
-            {
-                throw new Exception("Уже есть доктор с таким именем");
-            }
             if (model.Id.HasValue)
             {
                 _doctorStorage.Update(model);
