@@ -10,3 +10,9 @@ D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\ob
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CoreCompileInputs.cache
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.dll
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.pdb
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb

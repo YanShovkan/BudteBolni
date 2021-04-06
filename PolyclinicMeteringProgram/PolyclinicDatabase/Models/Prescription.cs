@@ -10,7 +10,6 @@ namespace PolyclinicDatabase.Models
     // Рецепт
     public class Prescription
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string FullNameDoctor { get; set; }

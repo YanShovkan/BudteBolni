@@ -11,14 +11,12 @@ namespace PolyclinicDatabase.Models
     // Пациент
     public class Patient
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string FullName { get; set; }        
         public int? PhoneNumber { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Doctor> DoctorId { get; set; }
+        public int DoctorId { get; set; }
     }
 }

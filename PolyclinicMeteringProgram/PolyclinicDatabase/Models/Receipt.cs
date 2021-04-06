@@ -10,7 +10,6 @@ namespace PolyclinicDatabase.Models
     // Поступление
     public class Receipt
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public DateTime Date { get; set; }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PolyclinicDatabase.Models
 {
@@ -11,9 +6,11 @@ namespace PolyclinicDatabase.Models
     public class MedicineReceipt
     {
         public int Id { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Medicine> MedicineId { get; set; }
-        [ForeignKey("Id")]
-        public virtual List<Receipt> ReceiptId { get; set; }
+        public int MedicineId { get; set; }
+        public int ReceiptId { get; set; }
+        [Required]
+        public int Count { get; set; }
+        public virtual Medicine Medicine { get; set; }
+        public virtual Receipt Receipt { get; set; }
     }
 }

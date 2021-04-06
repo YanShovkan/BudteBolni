@@ -11,7 +11,6 @@ namespace PolyclinicDatabase.Models
     // Лечение
     public class Treatment
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string Urgency { get; set; }

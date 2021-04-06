@@ -1,5 +1,6 @@
 ﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.ViewModels;
 using System;
 using Unity;
 using System.Windows;
@@ -14,6 +15,8 @@ namespace PolyclinicMeteringProgram
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
+        public int Id { set { id = value; } }
+        private int? id;
         private readonly DoctorLogic logic;
         public Register(DoctorLogic logic)
         {
@@ -51,6 +54,7 @@ namespace PolyclinicMeteringProgram
             {
                 logic.CreateOrUpdate(new DoctorBindingModel
                 {
+                    Id = id,
                     FullName = tbUserName.Text,
                     Password = tbPassword.Text,
                     Position = tbPosition.Text

@@ -8,7 +8,6 @@ namespace PolyclinicDatabase.Models
     // Аптекарь
     public class Pharmacist
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string FullName { get; set; }

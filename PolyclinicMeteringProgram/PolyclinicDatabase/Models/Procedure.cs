@@ -11,7 +11,6 @@ namespace PolyclinicDatabase.Models
     // Процедура
     public class Procedure
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
