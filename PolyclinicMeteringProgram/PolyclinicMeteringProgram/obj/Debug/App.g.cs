@@ -30,6 +30,12 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using Unity;
+using Unity.Lifetime;
+using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.BindingModels;
+using PolyclinicBusinessLogic.Interfaces;
+using PolyclinicDatabase.Implements;
 
 
 namespace PolyclinicMeteringProgram {
@@ -53,17 +59,28 @@ namespace PolyclinicMeteringProgram {
             #line default
             #line hidden
         }
-        
-        /// <summary>
-        /// Application Entry Point.
-        /// </summary>
-        [System.STAThreadAttribute()]
+
+        private static IUnityContainer BuildUnityContainer()
+        {
+            var currentContainer = new UnityContainer();
+            currentContainer.RegisterType<IDoctor, DoctorStorage>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<DoctorLogic>(new
+           HierarchicalLifetimeManager());
+            return currentContainer;
+        }
+
+            /// <summary>
+            /// Application Entry Point.
+            /// </summary>
+            [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            var container = BuildUnityContainer();
             PolyclinicMeteringProgram.App app = new PolyclinicMeteringProgram.App();
-            app.InitializeComponent();
-            app.Run();
+      //      app.InitializeComponent();
+            app.Run(container.Resolve<Register>());
         }
     }
 }

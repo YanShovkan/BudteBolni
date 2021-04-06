@@ -4,3 +4,9 @@ C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\ob
 C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CoreCompileInputs.cache
 C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
 C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.pdb
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CoreCompileInputs.cache
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb

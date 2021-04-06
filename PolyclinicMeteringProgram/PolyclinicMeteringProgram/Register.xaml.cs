@@ -20,10 +20,7 @@ namespace PolyclinicMeteringProgram
             InitializeComponent();
             this.logic = logic;
         }
-        public Register()
-        {
-            InitializeComponent();
-        }
+
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tbUserName.Text))
