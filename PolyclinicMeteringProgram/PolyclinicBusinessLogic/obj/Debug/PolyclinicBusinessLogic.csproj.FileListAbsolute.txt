@@ -1,0 +1,6 @@
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.dll
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\PolyclinicBusinessLogic.pdb
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
+C:\Users\shovk\source\repos\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb
