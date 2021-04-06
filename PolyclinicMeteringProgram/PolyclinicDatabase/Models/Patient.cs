@@ -21,7 +21,5 @@ namespace PolyclinicDatabase.Models
         public virtual Doctor Doctor { get; set; }
         [ForeignKey("PatientId")]
         public virtual List<ProcedurePatient> ProcedurePatients { get; set; }
-        [ForeignKey("PatientId")]
-        public virtual List<Procedure> Procedures { get; set; }
     }
 }

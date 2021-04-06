@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210406115145_InitialCreate")]
+    [Migration("20210406143611_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,9 @@ namespace PolyclinicDatabase.Migrations
             modelBuilder.Entity("PolyclinicDatabase.Models.Doctor", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -46,7 +48,9 @@ namespace PolyclinicDatabase.Migrations
             modelBuilder.Entity("PolyclinicDatabase.Models.Medicine", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ActiveSubstance")
                         .IsRequired()
@@ -60,10 +64,15 @@ namespace PolyclinicDatabase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PharmacistId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ReceiptId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PharmacistId");
 
                     b.ToTable("Medicines");
                 });
@@ -75,7 +84,25 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PrescriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReceiptId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("PrescriptionId");
+
+                    b.HasIndex("ReceiptId");
 
                     b.ToTable("MedicinePrescriptions");
                 });
@@ -87,7 +114,20 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcedureId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("ProcedureId");
 
                     b.ToTable("MedicineProcedures");
                 });
@@ -99,7 +139,20 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("ReceiptId");
 
                     b.ToTable("MedicineReceipts");
                 });
@@ -114,6 +167,9 @@ namespace PolyclinicDatabase.Migrations
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -122,6 +178,8 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Patients");
                 });
@@ -152,7 +210,9 @@ namespace PolyclinicDatabase.Migrations
             modelBuilder.Entity("PolyclinicDatabase.Models.Prescription", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FullNameDoctor")
                         .IsRequired()
@@ -174,7 +234,17 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("PrescriptionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TreatmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PrescriptionId");
+
+                    b.HasIndex("TreatmentId");
 
                     b.ToTable("PrescriptionTreatments");
                 });
@@ -182,7 +252,9 @@ namespace PolyclinicDatabase.Migrations
             modelBuilder.Entity("PolyclinicDatabase.Models.Procedure", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Cost")
                         .HasColumnType("int");
@@ -196,10 +268,59 @@ namespace PolyclinicDatabase.Migrations
                     b.ToTable("Procedures");
                 });
 
+            modelBuilder.Entity("PolyclinicDatabase.Models.ProcedurePatient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcedureId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("ProcedureId");
+
+                    b.ToTable("ProcedurePatient");
+                });
+
+            modelBuilder.Entity("PolyclinicDatabase.Models.ProcedureTreatment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProcedureId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TreatmentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProcedureId");
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("ProcedureTreatment");
+                });
+
             modelBuilder.Entity("PolyclinicDatabase.Models.Receipt", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -215,7 +336,9 @@ namespace PolyclinicDatabase.Migrations
             modelBuilder.Entity("PolyclinicDatabase.Models.Treatment", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AreaOfAction")
                         .IsRequired()
@@ -230,74 +353,114 @@ namespace PolyclinicDatabase.Migrations
                     b.ToTable("Treatments");
                 });
 
-            modelBuilder.Entity("PolyclinicDatabase.Models.Doctor", b =>
-                {
-                    b.HasOne("PolyclinicDatabase.Models.Patient", null)
-                        .WithMany("DoctorId")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("PolyclinicDatabase.Models.Medicine", b =>
                 {
-                    b.HasOne("PolyclinicDatabase.Models.MedicinePrescription", null)
-                        .WithMany("MedicineId")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PolyclinicDatabase.Models.MedicineProcedure", null)
-                        .WithMany("MedicineId")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PolyclinicDatabase.Models.MedicineReceipt", null)
-                        .WithMany("MedicineId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Pharmacist", "Pharmacist")
+                        .WithMany("Medicines")
+                        .HasForeignKey("PharmacistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PolyclinicDatabase.Models.Prescription", b =>
+            modelBuilder.Entity("PolyclinicDatabase.Models.MedicinePrescription", b =>
                 {
-                    b.HasOne("PolyclinicDatabase.Models.MedicinePrescription", null)
-                        .WithMany("PrescriptionId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Medicine", "Medicine")
+                        .WithMany("MedicinePrescriptions")
+                        .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PolyclinicDatabase.Models.PrescriptionTreatment", null)
-                        .WithMany("PrescriptionId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Prescription", "Prescription")
+                        .WithMany("MedicinePrescriptions")
+                        .HasForeignKey("PrescriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Receipt", null)
+                        .WithMany("MedicinePrescriptions")
+                        .HasForeignKey("ReceiptId");
+                });
+
+            modelBuilder.Entity("PolyclinicDatabase.Models.MedicineProcedure", b =>
+                {
+                    b.HasOne("PolyclinicDatabase.Models.Medicine", "Medicine")
+                        .WithMany("MedicineProcedures")
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Procedure", "Procedure")
+                        .WithMany("MedicineProcedures")
+                        .HasForeignKey("ProcedureId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PolyclinicDatabase.Models.Procedure", b =>
+            modelBuilder.Entity("PolyclinicDatabase.Models.MedicineReceipt", b =>
                 {
-                    b.HasOne("PolyclinicDatabase.Models.MedicineProcedure", null)
-                        .WithMany("ProcedureId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Medicine", "Medicine")
+                        .WithMany("MedicineReceipts")
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Receipt", "Receipt")
+                        .WithMany()
+                        .HasForeignKey("ReceiptId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PolyclinicDatabase.Models.Receipt", b =>
+            modelBuilder.Entity("PolyclinicDatabase.Models.Patient", b =>
                 {
-                    b.HasOne("PolyclinicDatabase.Models.MedicineReceipt", null)
-                        .WithMany("ReceiptId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Doctor", "Doctor")
+                        .WithMany("Patients")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PolyclinicDatabase.Models.Treatment", b =>
+            modelBuilder.Entity("PolyclinicDatabase.Models.PrescriptionTreatment", b =>
                 {
-                    b.HasOne("PolyclinicDatabase.Models.PrescriptionTreatment", null)
-                        .WithMany("TreatmentId")
-                        .HasForeignKey("Id")
+                    b.HasOne("PolyclinicDatabase.Models.Prescription", "Prescription")
+                        .WithMany("PrescriptionTreatments")
+                        .HasForeignKey("PrescriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Treatment", "Treatment")
+                        .WithMany("PrescriptionTreatments")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PolyclinicDatabase.Models.ProcedurePatient", b =>
+                {
+                    b.HasOne("PolyclinicDatabase.Models.Patient", "Patient")
+                        .WithMany("ProcedurePatients")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Procedure", "Procedure")
+                        .WithMany("ProcedurePatient")
+                        .HasForeignKey("ProcedureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PolyclinicDatabase.Models.ProcedureTreatment", b =>
+                {
+                    b.HasOne("PolyclinicDatabase.Models.Procedure", "Procedure")
+                        .WithMany("ProcedureTreatments")
+                        .HasForeignKey("ProcedureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PolyclinicDatabase.Models.Treatment", "Treatment")
+                        .WithMany("ProcedureTreatments")
+                        .HasForeignKey("TreatmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

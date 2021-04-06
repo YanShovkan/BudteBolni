@@ -16,8 +16,6 @@ namespace PolyclinicDatabase.Models
         public string Urgency { get; set; }
         [Required]
         public string AreaOfAction { get; set; }
-        public int ProcedureId { get; set; }
-        public virtual Procedure Procedure { get; set; }
         [ForeignKey("TreatmentId")]
         public virtual List<PrescriptionTreatment> PrescriptionTreatments { get; set; }
         [ForeignKey("TreatmentId")]
