@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210406143611_InitialCreate")]
+    [Migration("20210406192037_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,9 +65,6 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PharmacistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceiptId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -275,9 +272,6 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
 
@@ -290,7 +284,7 @@ namespace PolyclinicDatabase.Migrations
 
                     b.HasIndex("ProcedureId");
 
-                    b.ToTable("ProcedurePatient");
+                    b.ToTable("ProcedurePatients");
                 });
 
             modelBuilder.Entity("PolyclinicDatabase.Models.ProcedureTreatment", b =>
@@ -312,7 +306,7 @@ namespace PolyclinicDatabase.Migrations
 
                     b.HasIndex("TreatmentId");
 
-                    b.ToTable("ProcedureTreatment");
+                    b.ToTable("ProcedureTreatments");
                 });
 
             modelBuilder.Entity("PolyclinicDatabase.Models.Receipt", b =>

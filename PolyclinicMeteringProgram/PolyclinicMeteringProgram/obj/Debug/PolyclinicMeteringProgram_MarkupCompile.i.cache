@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\App.xaml
-12311006253
+13-552679443
 
-17-794500100
+18-1932745526
 159782355728
-AddMedicine.xaml;AddTreatment.xaml;Patient.xaml;Patients.xaml;Procedure.xaml;Procedures.xaml;Register.xaml;Enter.xaml;MainWindow.xaml;Treatment.xaml;Treatments.xaml;WelcomeWindow.xaml;
+AddMedicine.xaml;AddProcedure.xaml;AddTreatment.xaml;Patient.xaml;Patients.xaml;Procedure.xaml;Procedures.xaml;Register.xaml;Enter.xaml;MainWindow.xaml;Treatment.xaml;Treatments.xaml;WelcomeWindow.xaml;
 
 True
 

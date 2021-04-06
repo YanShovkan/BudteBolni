@@ -124,7 +124,6 @@ namespace PolyclinicDatabase.Migrations
                     Name = table.Column<string>(nullable: false),
                     ActiveSubstance = table.Column<string>(nullable: false),
                     Classification = table.Column<string>(nullable: false),
-                    ReceiptId = table.Column<int>(nullable: false),
                     PharmacistId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -165,7 +164,7 @@ namespace PolyclinicDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProcedureTreatment",
+                name: "ProcedureTreatments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -175,15 +174,15 @@ namespace PolyclinicDatabase.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcedureTreatment", x => x.Id);
+                    table.PrimaryKey("PK_ProcedureTreatments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProcedureTreatment_Procedures_ProcedureId",
+                        name: "FK_ProcedureTreatments_Procedures_ProcedureId",
                         column: x => x.ProcedureId,
                         principalTable: "Procedures",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProcedureTreatment_Treatments_TreatmentId",
+                        name: "FK_ProcedureTreatments_Treatments_TreatmentId",
                         column: x => x.TreatmentId,
                         principalTable: "Treatments",
                         principalColumn: "Id",
@@ -191,26 +190,25 @@ namespace PolyclinicDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProcedurePatient",
+                name: "ProcedurePatients",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientId = table.Column<int>(nullable: false),
-                    ProcedureId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false)
+                    ProcedureId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcedurePatient", x => x.Id);
+                    table.PrimaryKey("PK_ProcedurePatients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProcedurePatient_Patients_PatientId",
+                        name: "FK_ProcedurePatients_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProcedurePatient_Procedures_ProcedureId",
+                        name: "FK_ProcedurePatients_Procedures_ProcedureId",
                         column: x => x.ProcedureId,
                         principalTable: "Procedures",
                         principalColumn: "Id",
@@ -361,23 +359,23 @@ namespace PolyclinicDatabase.Migrations
                 column: "TreatmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcedurePatient_PatientId",
-                table: "ProcedurePatient",
+                name: "IX_ProcedurePatients_PatientId",
+                table: "ProcedurePatients",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcedurePatient_ProcedureId",
-                table: "ProcedurePatient",
+                name: "IX_ProcedurePatients_ProcedureId",
+                table: "ProcedurePatients",
                 column: "ProcedureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcedureTreatment_ProcedureId",
-                table: "ProcedureTreatment",
+                name: "IX_ProcedureTreatments_ProcedureId",
+                table: "ProcedureTreatments",
                 column: "ProcedureId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcedureTreatment_TreatmentId",
-                table: "ProcedureTreatment",
+                name: "IX_ProcedureTreatments_TreatmentId",
+                table: "ProcedureTreatments",
                 column: "TreatmentId");
         }
 
@@ -396,10 +394,10 @@ namespace PolyclinicDatabase.Migrations
                 name: "PrescriptionTreatments");
 
             migrationBuilder.DropTable(
-                name: "ProcedurePatient");
+                name: "ProcedurePatients");
 
             migrationBuilder.DropTable(
-                name: "ProcedureTreatment");
+                name: "ProcedureTreatments");
 
             migrationBuilder.DropTable(
                 name: "Medicines");

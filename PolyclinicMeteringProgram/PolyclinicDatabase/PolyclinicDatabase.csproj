@@ -157,9 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\DoctorStorage.cs" />
-    <Compile Include="Migrations\20210406143611_InitialCreate.cs" />
-    <Compile Include="Migrations\20210406143611_InitialCreate.designer.cs">
-      <DependentUpon>20210406143611_InitialCreate.cs</DependentUpon>
+    <Compile Include="Implements\PatientStorage.cs" />
+    <Compile Include="Migrations\20210406192037_InitialCreate.cs" />
+    <Compile Include="Migrations\20210406192037_InitialCreate.designer.cs">
+      <DependentUpon>20210406192037_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PolyclinicDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Doctor.cs" />

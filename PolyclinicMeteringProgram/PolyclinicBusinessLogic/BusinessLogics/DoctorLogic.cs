@@ -29,10 +29,6 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(DoctorBindingModel model)
         {
-            var element = _doctorStorage.GetElement(new DoctorBindingModel
-            {
-                FullName = model.FullName
-            });
             if (model.Id.HasValue)
             {
                 _doctorStorage.Update(model);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PolyclinicDatabase.Models
 {
-    // Лекарство лечение 
+    // Рецепт лечение 
     public class PrescriptionTreatment
     {
         public int Id { get; set; }

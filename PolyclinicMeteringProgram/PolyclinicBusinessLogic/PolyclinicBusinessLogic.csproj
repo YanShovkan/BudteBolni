@@ -46,6 +46,7 @@
     <Compile Include="BindingModels\ProcedureBindingModel.cs" />
     <Compile Include="BindingModels\TreatmentBindingModel.cs" />
     <Compile Include="BusinessLogics\DoctorLogic.cs" />
+    <Compile Include="BusinessLogics\PatientLogic.cs" />
     <Compile Include="Interfaces\IDoctor.cs" />
     <Compile Include="Interfaces\IPatient.cs" />
     <Compile Include="Interfaces\IProcedure.cs" />

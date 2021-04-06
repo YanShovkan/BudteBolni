@@ -179,6 +179,9 @@
     <Compile Include="AddMedicine.xaml.cs">
       <DependentUpon>AddMedicine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddProcedure.xaml.cs">
+      <DependentUpon>AddProcedure.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddTreatment.xaml.cs">
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddMedicine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProcedure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

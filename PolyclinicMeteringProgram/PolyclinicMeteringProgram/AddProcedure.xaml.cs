@@ -15,28 +15,13 @@ using System.Windows.Shapes;
 namespace PolyclinicMeteringProgram
 {
     /// <summary>
-    /// Логика взаимодействия для Patient.xaml
+    /// Логика взаимодействия для AddProcedure.xaml
     /// </summary>
-    public partial class Patient : Window
+    public partial class AddProcedure : Window
     {
-        public Patient()
+        public AddProcedure()
         {
             InitializeComponent();
-        }
-
-        private void btnAddProcedure_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

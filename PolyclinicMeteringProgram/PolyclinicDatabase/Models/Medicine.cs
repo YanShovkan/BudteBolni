@@ -20,7 +20,6 @@ namespace PolyclinicDatabase.Models
         public string Classification { get; set; }
         [Required]
         // Поступление id
-        public int ReceiptId { get; set; }
         public int PharmacistId { get; set; }
         public virtual Pharmacist Pharmacist { get; set; }
 

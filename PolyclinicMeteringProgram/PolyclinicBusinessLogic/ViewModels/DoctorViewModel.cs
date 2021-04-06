@@ -9,7 +9,6 @@ namespace PolyclinicBusinessLogic.ViewModels
         public string FullName { get; set; }
         [DisplayName("Должность")]
         public string Position { get; set; }
-        [DisplayName("Пароль")]
         public string Password { get; set; }
     }
 }

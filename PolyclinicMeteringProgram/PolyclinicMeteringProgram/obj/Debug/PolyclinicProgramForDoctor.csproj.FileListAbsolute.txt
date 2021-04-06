@@ -369,3 +369,5 @@ C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\ob
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\PolyclinicMeteringProgram.pdb
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\WelcomeWindow.g.cs
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\WelcomeWindow.baml
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\AddProcedure.g.cs
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\AddProcedure.baml
