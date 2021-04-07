@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.BindingModels
 {
-    class ProcedureBindingModel
+    public class ProcedureBindingModel
     {
     }
 }

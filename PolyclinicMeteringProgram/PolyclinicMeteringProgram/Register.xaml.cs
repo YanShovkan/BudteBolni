@@ -44,7 +44,7 @@ namespace PolyclinicMeteringProgram
                MessageBoxImage.Error);
                 return;
             }
-            if (cbTermsOfUse.IsChecked.Value)
+            if (!cbTermsOfUse.IsChecked.Value)
             {
                 MessageBox.Show("Примите пользовательсое соглашение", "Ошибка", MessageBoxButton.OK,
               MessageBoxImage.Error);
@@ -61,6 +61,9 @@ namespace PolyclinicMeteringProgram
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
+
+                var window = Container.Resolve<WelcomeWindow>();
+                window.Show();
                 Close();
             }
             catch (Exception ex)
@@ -72,7 +75,9 @@ namespace PolyclinicMeteringProgram
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WelcomeWindow>();
+            window.Show();
+            Close();
         }
     }
 }

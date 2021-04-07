@@ -29,6 +29,14 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(DoctorBindingModel model)
         {
+            var doctor = _doctorStorage.GetElement(new DoctorBindingModel
+            {
+                FullName = model.FullName
+            });
+            if (doctor != null && doctor.Id != model.Id)
+            {
+                throw new Exception("Уже есть такой пользователь");
+            }
             if (model.Id.HasValue)
             {
                 _doctorStorage.Update(model);
@@ -38,18 +46,36 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 _doctorStorage.Insert(model);
             }
         }
+
         public void Delete(DoctorBindingModel model)
 
         {
-            var element = _doctorStorage.GetElement(new DoctorBindingModel
+            var doctor = _doctorStorage.GetElement(new DoctorBindingModel
             {
                 Id = model.Id
             });
-            if (element == null)
+            if (doctor == null)
             {
                 throw new Exception("Доктор не найден");
             }
             _doctorStorage.Delete(model);
+        }
+
+        public int CheckPassword(string userName, string password)
+        {
+            var doctor = _doctorStorage.GetElement(new DoctorBindingModel
+            {
+                FullName = userName
+            }); 
+            if (doctor == null)
+            {
+                throw new Exception("Нет такого пользователя");
+            }
+            if (doctor.Password != password)
+            {
+                throw new Exception("Неверный пароль");
+            }
+            return doctor.Id;
         }
     }
 }

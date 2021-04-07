@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Регистрация" Height="250" Width="650">
+        Title="Регистрация" Height="300" Width="650">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

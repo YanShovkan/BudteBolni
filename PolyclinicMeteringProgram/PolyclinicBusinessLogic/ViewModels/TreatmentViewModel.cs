@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    class TreatmentViewModel
+    public class TreatmentViewModel
     {
+        public int Id { get; set; }
+        [DisplayName("Название")]
+        public string Name { get; set; }
+        [DisplayName("Срочность")]
+        public string Urgency { get; set; }
+        [DisplayName("Область действия")]
+        public string AreaOfAction { get; set; }
     }
 }

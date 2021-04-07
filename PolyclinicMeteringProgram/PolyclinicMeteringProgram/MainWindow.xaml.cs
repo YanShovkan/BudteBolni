@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PolyclinicBusinessLogic.BusinessLogics;
+using System;
+using Unity;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PolyclinicMeteringProgram
 {
@@ -19,9 +10,41 @@ namespace PolyclinicMeteringProgram
     /// </summary>
     public partial class MainWindow : Window
     {
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
+        public int _doctorId { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void miTreatments_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Treatments>();
+            window.Show();
+        }
+
+        private void miProcedures_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Procedures>();
+            window.Show();
+        }
+
+        private void miPatients_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Patients>();
+            window.Show();
+        }
+
+        private void miGetList_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void miGetReport_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

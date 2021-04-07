@@ -1,12 +1,16 @@
-﻿using System;
+﻿using PolyclinicBusinessLogic.BindingModels;
+using PolyclinicBusinessLogic.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.Interfaces
 {
-    interface ITreatment
+    public interface ITreatment
     {
+        List<TreatmentViewModel> GetFullList();
+        List<TreatmentViewModel> GetFilteredList(TreatmentBindingModel model);
+        TreatmentViewModel GetElement(TreatmentBindingModel model);
+        void Insert(TreatmentBindingModel model);
+        void Update(TreatmentBindingModel model);
+        void Delete(TreatmentBindingModel model);
     }
 }

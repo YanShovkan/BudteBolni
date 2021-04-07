@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PolyclinicBusinessLogic.ViewModels
+namespace PolyclinicBusinessLogic.BusinessLogics
 {
-    public class ProcedureViewModel
+    public class ProcedureLogic
     {
     }
 }

@@ -42,7 +42,7 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 var doctor = context.Doctors
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Id == model.Id || rec.FullName == model.FullName);
                 return doctor != null ?
                 CreateModel(doctor) : null;
             }
@@ -106,5 +106,6 @@ namespace PolyclinicDatabase.Implements
                 Password = doctor.Password
             };
         }
+
     }
 }

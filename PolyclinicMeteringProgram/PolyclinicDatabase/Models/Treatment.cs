@@ -13,6 +13,8 @@ namespace PolyclinicDatabase.Models
     {
         public int Id { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
         public string Urgency { get; set; }
         [Required]
         public string AreaOfAction { get; set; }

@@ -40,13 +40,13 @@ namespace PolyclinicBusinessLogic.BusinessLogics
         }
         public void Delete(PatientBindingModel model)
         {
-            var element = _patientStorage.GetElement(new PatientBindingModel
+            var patient = _patientStorage.GetElement(new PatientBindingModel
             {
                 Id = model.Id
             });
-            if (element == null)
+            if (patient == null)
             {
-                throw new Exception("Доктор не найден");
+                throw new Exception("Пациент не найден");
             }
             _patientStorage.Delete(model);
         }

@@ -20,12 +20,14 @@ namespace PolyclinicMeteringProgram
         {
             var window = Container.Resolve<Enter>();
             window.Show();
+            Close();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Register>();
             window.Show();
+            Close();
         }
     }
 }

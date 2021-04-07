@@ -5,20 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Список пациентов" Height="400" Width="350">
+        Title="Список пациентов" Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Margin="5" AutoGenerateColumns="True" BorderBrush="Black"/>
-        <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16"/>
-        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16"/>
-        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16"/>
-        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" />
+        <DataGrid Name="DataGridView" Grid.Row="0" Margin="5" AutoGenerateColumns="True" BorderBrush="Black"/>
+        <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Grid.ColumnSpan="2" Click="Add_Click"/>
+        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Grid.ColumnSpan="2" Click="Delete_Click"/>
+        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Grid.ColumnSpan="2" Click="Change_Click"/>
+        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Grid.ColumnSpan="2" Click="Cancel_Click" />
     </Grid>
 </Window>

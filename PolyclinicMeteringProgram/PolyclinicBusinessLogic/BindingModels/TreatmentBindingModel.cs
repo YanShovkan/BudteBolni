@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PolyclinicBusinessLogic.BindingModels
+﻿namespace PolyclinicBusinessLogic.BindingModels
 {
-    class TreatmentBindingModel
+    public class TreatmentBindingModel
     {
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public string Urgency { get; set; }
+        public string AreaOfAction { get; set; }
     }
 }

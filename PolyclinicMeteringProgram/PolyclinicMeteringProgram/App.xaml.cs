@@ -17,10 +17,27 @@ namespace PolyclinicMeteringProgram
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
+            //doctor
             currentContainer.RegisterType<IDoctor, DoctorStorage>(new
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<DoctorLogic>(new
             HierarchicalLifetimeManager());
+            //лечение
+            currentContainer.RegisterType<ITreatment, TreatmentStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<TreatmentLogic>(new
+            HierarchicalLifetimeManager());
+            //процедура
+            currentContainer.RegisterType<IProcedure, ProcedureStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ProcedureLogic>(new
+            HierarchicalLifetimeManager());
+            //пациент
+            currentContainer.RegisterType<IPatient, PatientStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<PatientLogic>(new
+            HierarchicalLifetimeManager());
+
             return currentContainer;
         }
 
