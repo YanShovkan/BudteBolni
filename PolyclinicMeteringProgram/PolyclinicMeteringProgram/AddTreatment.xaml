@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Добавление лечения" Height="80" Width="500">
+        Title="Добавление лечения" Height="120" Width="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Название лечения: " Grid.Column="0"  Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
         <ComboBox Name="TreatmentName" Grid.Column="1"  Margin="5" />
-        
+        <Button Name="Add" Grid.Row="1" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16"/>
+        <Button Name="Cancel" Grid.Row="1" Grid.Column="1" Margin="5" Content="Отменить" FontSize="16"/>
     </Grid>
 </Window>

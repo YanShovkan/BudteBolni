@@ -19,19 +19,8 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.ProcedurePatients)
-                    .ThenInclude(rec => rec.Patient)
-                    .ToList()
-                    .Select(rec => new PatientViewModel
-                    {
-                        Id = rec.Id,
-                        FullName = rec.FullName,
-                        PhoneNumber = rec.PhoneNumber,
-                        DateOfBirth = rec.DateOfBirth,
-                        DoctorName = rec.Doctor.FullName,
-                        ProcedurePatients = rec.ProcedurePatients
-                            .ToDictionary(recProcedurePatients => recProcedurePatients.ProcedureId,
-                            recProcedurePatients => recProcedurePatients.Procedure?.Name)
-                    })
+                    .Include(rec => rec.Doctor)
+                    .Select(CreateModel)
                     .ToList();
             }
         }
@@ -46,20 +35,9 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.ProcedurePatients)
-                    .ThenInclude(rec => rec.Procedure)
-                    .Where(rec => rec.FullName.Contains(model.FullName))
-                    .ToList()
-                    .Select(rec => new PatientViewModel
-                    {
-                        Id = rec.Id,
-                        FullName = rec.FullName,
-                        PhoneNumber = rec.PhoneNumber,
-                        DateOfBirth = rec.DateOfBirth,
-                        DoctorName = rec.Doctor.FullName,
-                        ProcedurePatients = rec.ProcedurePatients
-                            .ToDictionary(recProcedurePatients => recProcedurePatients.ProcedureId,
-                            recProcedurePatients => recProcedurePatients.Procedure?.Name)
-                    })
+                    .Include(rec => rec.Doctor)
+                    .Where(rec => rec.DoctorId == model.DoctorId)
+                    .Select(CreateModel)
                     .ToList();
             }
         }
@@ -74,21 +52,11 @@ namespace PolyclinicDatabase.Implements
             {
                 var patient = context.Patients
                     .Include(rec => rec.ProcedurePatients)
-                    .ThenInclude(rec => rec.Procedure)
+                    .Include(rec => rec.Doctor)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
                 return patient != null ?
-                    new PatientViewModel
-                    {
-                        Id = patient.Id,
-                        FullName = patient.FullName,
-                        PhoneNumber = patient.PhoneNumber,
-                        DateOfBirth = patient.DateOfBirth,
-                        DoctorName = patient.Doctor.FullName,
-                        ProcedurePatients = patient.ProcedurePatients
-                            .ToDictionary(recProcedurePatients => recProcedurePatients.ProcedureId,
-                            recProcedurePatients => recProcedurePatients.Procedure?.Name)
-                    } :
+                    CreateModel(patient) :
                     null;
             }
         }
@@ -102,7 +70,6 @@ namespace PolyclinicDatabase.Implements
                     {
                         CreateModel(model, new Patient(), context);
                         context.SaveChanges();
-
                         transaction.Commit();
                     }
                     catch
@@ -156,11 +123,27 @@ namespace PolyclinicDatabase.Implements
                 context.SaveChanges();
             }
         }
+        private PatientViewModel CreateModel(Patient patient)
+        {
+            return new PatientViewModel
+            {
+                Id = patient.Id,
+                DoctorId = patient.DoctorId,
+                FullName = patient.FullName,
+                PhoneNumber = patient.PhoneNumber,
+                DateOfBirth = patient.DateOfBirth,
+                DoctorName = patient.Doctor.FullName,
+                ProcedurePatients = patient.ProcedurePatients
+                            .ToDictionary(recProcedurePatient => recProcedurePatient.ProcedureId,
+                            recProcedurePatient => recProcedurePatient.Procedure?.Name)
+            };
+           
+        }
 
         private Patient CreateModel(PatientBindingModel model, Patient patient, PolyclinicDatabase context)
         {
             patient.FullName = model.FullName;
-            patient.PhoneNumber = model.PhoneNumber.Value;
+            patient.PhoneNumber = model.PhoneNumber;
             patient.DateOfBirth = model.DateOfBirth;
             patient.DoctorId = model.DoctorId;
             if (patient.Id == 0)
@@ -176,14 +159,16 @@ namespace PolyclinicDatabase.Implements
                     .ToList();
 
                 context.ProcedurePatients.RemoveRange(patientProcedures
-                    .Where(rec => !model.ProcedurePatients.ContainsKey(rec.PatientId))
+                    .Where(rec => !model.ProcedurePatients.ContainsKey(rec.ProcedureId))
                     .ToList());
+
                 context.SaveChanges();
 
                 foreach (var procedure in patientProcedures)
                 {
-                    model.ProcedurePatients.Remove(procedure.PatientId);
+                    model.ProcedurePatients.Remove(procedure.ProcedureId);
                 }
+
                 context.SaveChanges();
             }
             foreach (var patientProcedure in model.ProcedurePatients)

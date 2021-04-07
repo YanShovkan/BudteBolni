@@ -13,7 +13,7 @@ namespace PolyclinicDatabase.Models
         public string FullName { get; set; }
         [Required]
         public string Password { get; set; }
-        public int? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [ForeignKey("PharmacistId")]
         public virtual List<Medicine> Medicines { get; set; }
     }

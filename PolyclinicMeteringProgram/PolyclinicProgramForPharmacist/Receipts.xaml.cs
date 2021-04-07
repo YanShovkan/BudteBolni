@@ -17,9 +17,9 @@ namespace PolyclinicProgramForPharmacist
     /// <summary>
     /// Логика взаимодействия для Receipt.xaml
     /// </summary>
-    public partial class Receipt : Window
+    public partial class Receipts : Window
     {
-        public Receipt()
+        public Receipts()
         {
             InitializeComponent();
         }

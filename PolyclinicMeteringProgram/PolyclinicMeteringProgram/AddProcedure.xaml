@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Добавление процедуры" Height="80" Width="500">
+        Title="Добавление процедуры" Height="120" Width="500">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <Label Content="Название процедуры: " Grid.Column="0"  Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <ComboBox Name="ProcedureName" Grid.Column="1" Margin="5" />
+        <ComboBox Name="cbProcedureName" Grid.Column="1" Margin="5" />
+        <Button Name="btnAdd" Grid.Row="1" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click"/>
+        <Button Name="btnCancel" Grid.Row="1" Grid.Column="1" Margin="5" Content="Отменить" FontSize="16" Click="btnCancel_Click"/>
     </Grid>
 </Window>

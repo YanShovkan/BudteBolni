@@ -30,7 +30,7 @@ namespace PolyclinicDatabase.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<int>(nullable: true)
+                    PhoneNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,7 +101,7 @@ namespace PolyclinicDatabase.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<int>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     DoctorId = table.Column<int>(nullable: false)
                 },

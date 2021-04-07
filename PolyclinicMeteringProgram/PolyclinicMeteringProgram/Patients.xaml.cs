@@ -16,6 +16,7 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         PatientLogic _logic;
+        public int _doctorId { get; set; }
         public Patients(PatientLogic logic)
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace PolyclinicMeteringProgram
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Patient>();
+            window._doctorId = _doctorId;
             window.ShowDialog();
             if (window.DialogResult == true)
             {

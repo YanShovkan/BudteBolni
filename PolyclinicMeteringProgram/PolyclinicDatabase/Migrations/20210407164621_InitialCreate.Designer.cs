@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210407102235_InitialCreate")]
+    [Migration("20210407164621_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,8 +171,8 @@ namespace PolyclinicDatabase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -196,8 +196,8 @@ namespace PolyclinicDatabase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PhoneNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

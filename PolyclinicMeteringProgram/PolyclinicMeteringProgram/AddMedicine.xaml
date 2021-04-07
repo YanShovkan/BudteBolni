@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Добавление лекарства" Height="150" Width="500">
+        Title="Добавление лекарства" Height="180" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -14,10 +14,13 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Название лекарства: " Grid.Row="0" Grid.Column="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
         <ComboBox Name="cbMrdicineName" Grid.Row="0" Grid.Column="1" Margin="5" />
         <Label Content="Количество лекарств: " Grid.Row="1" Grid.Column="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
         <TextBox Name="tbCount" Grid.Row="1" Grid.Column="1" Margin="5" />
+        <Button Name="Add" Grid.Row="2" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16"/>
+        <Button Name="Cancel" Grid.Row="2" Grid.Column="1" Margin="5" Content="Отменить" FontSize="16"/>
     </Grid>
 </Window>

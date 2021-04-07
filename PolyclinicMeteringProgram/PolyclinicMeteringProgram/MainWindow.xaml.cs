@@ -33,7 +33,9 @@ namespace PolyclinicMeteringProgram
 
         private void miPatients_Click(object sender, RoutedEventArgs e)
         {
+
             var window = Container.Resolve<Patients>();
+            window._doctorId = _doctorId;
             window.Show();
         }
 
