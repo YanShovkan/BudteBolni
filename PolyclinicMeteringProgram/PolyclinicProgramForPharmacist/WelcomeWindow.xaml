@@ -12,7 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Name="btnRegister" Grid.Column="0" Margin="5" Content="Зарегестрироваться" FontSize="16"/>
-        <Button Name="btnEnter" Grid.Column="1" Margin="5" Content="Войти" FontSize="16" />
+        <Button Name="btnRegister" Grid.Column="0" Margin="5" Content="Зарегестрироваться" FontSize="16" Click="btnRegister_Click"/>
+        <Button Name="btnEnter" Grid.Column="1" Margin="5" Content="Войти" FontSize="16" Click="btnEnter_Click" />
     </Grid>
 </Window>
