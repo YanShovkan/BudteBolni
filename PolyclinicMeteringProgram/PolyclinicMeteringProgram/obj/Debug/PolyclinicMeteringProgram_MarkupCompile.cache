@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\obj\Debug\
 PolyclinicMeteringProgram
 none
 false
 DEBUG;TRACE
-C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\App.xaml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicMeteringProgram\App.xaml
 13-552679443
 
-17-1090386159
-159782355728
+18-1932745526
+159863699972
 AddMedicine.xaml;AddProcedure.xaml;AddTreatment.xaml;Patient.xaml;Patients.xaml;Procedure.xaml;Procedures.xaml;Register.xaml;Enter.xaml;MainWindow.xaml;Treatment.xaml;Treatments.xaml;WelcomeWindow.xaml;
 
-False
+True
 

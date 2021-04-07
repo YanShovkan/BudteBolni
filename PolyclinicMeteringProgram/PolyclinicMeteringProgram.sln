@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyclinicBusinessLogic", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyclinicDatabase", "PolyclinicDatabase\PolyclinicDatabase.csproj", "{F311460B-2F58-4CC2-AAEE-06D3A687F8BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyclinicProgramForPharmacist", "PolyclinicProgramForPharmacist\PolyclinicProgramForPharmacist.csproj", "{DC0C2CFC-AF6B-4E28-BF98-83A808BEED61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F311460B-2F58-4CC2-AAEE-06D3A687F8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F311460B-2F58-4CC2-AAEE-06D3A687F8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F311460B-2F58-4CC2-AAEE-06D3A687F8BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0C2CFC-AF6B-4E28-BF98-83A808BEED61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0C2CFC-AF6B-4E28-BF98-83A808BEED61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0C2CFC-AF6B-4E28-BF98-83A808BEED61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0C2CFC-AF6B-4E28-BF98-83A808BEED61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
