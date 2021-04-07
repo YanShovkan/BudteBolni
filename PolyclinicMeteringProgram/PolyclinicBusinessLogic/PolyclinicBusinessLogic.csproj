@@ -43,20 +43,27 @@
   <ItemGroup>
     <Compile Include="BindingModels\DoctorBindingModel.cs" />
     <Compile Include="BindingModels\PatientBindingModel.cs" />
+    <Compile Include="BindingModels\PharmacistBindingModel.cs" />
     <Compile Include="BindingModels\ProcedureBindingModel.cs" />
+    <Compile Include="BindingModels\ReceiptBindingModel.cs" />
     <Compile Include="BindingModels\TreatmentBindingModel.cs" />
     <Compile Include="BusinessLogics\DoctorLogic.cs" />
     <Compile Include="BusinessLogics\PatientLogic.cs" />
+    <Compile Include="BusinessLogics\PharmacistLogic.cs" />
     <Compile Include="BusinessLogics\ProcedureLogic.cs" />
     <Compile Include="BusinessLogics\TreatmentLogic.cs" />
     <Compile Include="Interfaces\IDoctor.cs" />
     <Compile Include="Interfaces\IPatient.cs" />
+    <Compile Include="Interfaces\IPharmacist.cs" />
     <Compile Include="Interfaces\IProcedure.cs" />
+    <Compile Include="Interfaces\IReceipt.cs" />
     <Compile Include="Interfaces\ITreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
+    <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

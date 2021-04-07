@@ -158,6 +158,7 @@
   <ItemGroup>
     <Compile Include="Implements\DoctorStorage.cs" />
     <Compile Include="Implements\PatientStorage.cs" />
+    <Compile Include="Implements\PharmacistStorage.cs" />
     <Compile Include="Implements\ProcedureStorage.cs" />
     <Compile Include="Implements\TreatmentStorage.cs" />
     <Compile Include="Migrations\20210407164621_InitialCreate.cs" />
