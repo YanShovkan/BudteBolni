@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Добавление процедуры" Height="120" Width="500">
+        Title="Добавление процедуры" Height="120" Width="500"
+        Loaded="Window_loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

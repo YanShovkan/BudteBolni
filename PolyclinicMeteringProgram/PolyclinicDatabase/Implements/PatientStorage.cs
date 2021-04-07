@@ -157,19 +157,21 @@ namespace PolyclinicDatabase.Implements
                 var patientProcedures = context.ProcedurePatients
                     .Where(rec => rec.PatientId == model.Id.Value)
                     .ToList();
-
-                context.ProcedurePatients.RemoveRange(patientProcedures
+                if (patientProcedures.Count > 0 && model.ProcedurePatients.Count != 0)
+                {
+                    context.ProcedurePatients.RemoveRange(patientProcedures
                     .Where(rec => !model.ProcedurePatients.ContainsKey(rec.ProcedureId))
                     .ToList());
 
-                context.SaveChanges();
+                    context.SaveChanges();
 
-                foreach (var procedure in patientProcedures)
-                {
-                    model.ProcedurePatients.Remove(procedure.ProcedureId);
+                    foreach (var procedure in patientProcedures)
+                    {
+                        model.ProcedurePatients.Remove(procedure.ProcedureId);
+                    }
+
+                    context.SaveChanges();
                 }
-
-                context.SaveChanges();
             }
             foreach (var patientProcedure in model.ProcedurePatients)
             {

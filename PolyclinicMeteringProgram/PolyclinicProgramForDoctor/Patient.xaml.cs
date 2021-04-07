@@ -39,7 +39,7 @@ namespace PolyclinicMeteringProgram
                     if (view != null)
                     {
                         tbFIO.Text = view.FullName;
-                        tbTelephoneNumber.Text = view.PhoneNumber.ToString();
+                        tbTelephoneNumber.Text = view.PhoneNumber;
                         tbBirthday.SelectedDate = view.DateOfBirth;
                         patientProsedures = view.ProcedurePatients;
                         LoadData();
@@ -90,12 +90,6 @@ namespace PolyclinicMeteringProgram
                MessageBoxImage.Error);
                 return;
             }
-            if (patientProsedures == null || patientProsedures.Count == 0)
-            {
-                MessageBox.Show("Заполните процедуры", "Ошибка", MessageBoxButton.OK,
-               MessageBoxImage.Error);
-                return;
-            }
             try
             {
                 _logic.CreateOrUpdate(new PatientBindingModel
@@ -140,12 +134,44 @@ namespace PolyclinicMeteringProgram
 
         private void btnDeleteProcedure_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
+                    int id = Convert.ToInt32(procedure.Id);
+                    try
+                    {
+                        patientProsedures.Remove(id);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
 
         private void btnEditProcedure_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                var window = Container.Resolve<AddProcedure>();
+                ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
+                int id = Convert.ToInt32(procedure.Id);
+                window.Id = id;
 
+                if (window.DialogResult == true)
+                {
+                    patientProsedures[id] = (window.ProcedureName);
+                    LoadData();
+                }
+            }
         }
     }
 }

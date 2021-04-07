@@ -15,13 +15,7 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 return context.Treatments
-                .Select(rec => new TreatmentViewModel
-                {
-                    Id = rec.Id,
-                    Name = rec.Name,
-                    Urgency = rec.Urgency,
-                    AreaOfAction = rec.AreaOfAction
-                })
+                .Select(CreateModel)
                .ToList();
             }
         }
@@ -35,13 +29,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Treatments
                 .Where(rec => rec.Name.Contains(model.Name))
-               .Select(rec => new TreatmentViewModel
-               {
-                   Id = rec.Id,
-                   Name = rec.Name,
-                   Urgency = rec.Urgency,
-                   AreaOfAction = rec.AreaOfAction
-               })
+               .Select(CreateModel)
                 .ToList();
             }
         }
@@ -57,13 +45,7 @@ namespace PolyclinicDatabase.Implements
                 .FirstOrDefault(rec => rec.Name == model.Name ||
                rec.Id == model.Id);
                 return treatment != null ?
-               new TreatmentViewModel
-               {
-                   Id = treatment.Id,
-                   Name = treatment.Name,
-                   Urgency = treatment.Urgency,
-                   AreaOfAction = treatment.AreaOfAction
-               } :
+                 CreateModel(treatment) :
                null;
             }
         }
@@ -105,6 +87,17 @@ namespace PolyclinicDatabase.Implements
                     throw new Exception("Лечение не найдено");
                 }
             }
+        }
+
+        private TreatmentViewModel CreateModel(Treatment treatment)
+        {
+            return new TreatmentViewModel
+            {
+                Id = treatment.Id,
+                Name = treatment.Name,
+                Urgency = treatment.Urgency,
+                AreaOfAction = treatment.AreaOfAction
+            };
         }
         private Treatment CreateModel(TreatmentBindingModel model, Treatment treatment)
         {

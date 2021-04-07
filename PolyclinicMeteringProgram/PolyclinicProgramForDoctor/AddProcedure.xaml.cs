@@ -17,16 +17,36 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         ProcedureLogic _logic;
+
         public int Id { 
-            get {
-                return _logic.Read(new ProcedureBindingModel
-                    {
-                       Name = cbProcedureName.Text
-                    })[0].Id ;
+            get 
+            {
+                return cbProcedureName.SelectedIndex;
             }
-            
+            set
+            {
+                cbProcedureName.SelectedItem = value;
+            }
         }
         public string ProcedureName { get { return cbProcedureName.Text; } }
+
+        private void Window_loaded(object sender, RoutedEventArgs e)
+        {
+            var list = _logic.Read(null);
+            if (list.Count > 0)
+            {
+                try
+                {
+
+                    cbProcedureName.ItemsSource = list;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                   MessageBoxImage.Error);
+                }
+            }
+        }
         public AddProcedure(ProcedureLogic logic)
         {
             InitializeComponent();
