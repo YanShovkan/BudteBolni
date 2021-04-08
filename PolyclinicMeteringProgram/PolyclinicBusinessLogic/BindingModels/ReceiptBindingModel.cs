@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.BindingModels
 {
-    class ReceiptBindingModel
+    public class ReceiptBindingModel
     {
         public int? Id { get; set; }
         public DateTime Date { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    class ReceiptViewModel
+    public class ReceiptViewModel
     {
         public int Id { get; set; }
         [DisplayName("Дата поступления")]
