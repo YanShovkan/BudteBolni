@@ -287,8 +287,9 @@ namespace PolyclinicDatabase.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("NumberOfPackages")
-                        .HasColumnType("int");
+                    b.Property<string>("DeliverymanName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

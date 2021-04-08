@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PolyclinicMeteringProgram"
+        xmlns:local="clr-namespace:PolyclinicMeteringProgram" xmlns:wfr="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         mc:Ignorable="d"
         Title="WindowReportPatientReceipt" Height="450" Width="800">
     <Grid>
@@ -23,8 +23,12 @@
         <DatePicker Name="dpTo" Grid.Column="1" Grid.Row="0"  Margin="35,5,5,5" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Center" />
         <Button  Name="btnMail" Grid.Column="0" Grid.Row="1" Margin="10" Content="Отправить на мейл" FontSize="16" Click="btnMail_Click" />
         <Button  Name="btnShow" Grid.Column="1" Grid.Row="1" Margin="10" Content="Показать на форме" FontSize="16" Click="btnShow_Click" />
-        
-        <WindowsFormsHost HorizontalAlignment="Left" Height="279" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" Grid.Row="2" Grid.ColumnSpan="2"/>
+
+        <WindowsFormsHost  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,10,10,10">
+            <wfr:ReportViewer x:Name="reportViewer" ProcessingMode="Local" Load="ReportViewer_Load"/>
+        </WindowsFormsHost>
 
     </Grid>
+
+
 </Window>

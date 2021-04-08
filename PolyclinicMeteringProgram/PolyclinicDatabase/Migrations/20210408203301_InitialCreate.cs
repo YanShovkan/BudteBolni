@@ -72,7 +72,7 @@ namespace PolyclinicDatabase.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(nullable: false),
-                    NumberOfPackages = table.Column<int>(nullable: false)
+                    DeliverymanName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -4,6 +4,7 @@ using PolyclinicBusinessLogic.BusinessLogics;
 using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.ViewModels;
 using Unity;
+using Microsoft.Reporting.WinForms;
 
 namespace PolyclinicMeteringProgram
 {
@@ -21,7 +22,10 @@ namespace PolyclinicMeteringProgram
             InitializeComponent();
             _logic = logic;
         }
-
+        private void ReportViewer_Load(object sender, EventArgs e)
+        {
+            reportViewer.LocalReport.ReportEmbeddedResource = "PolyclinicMeteringProgram.Report.rdlc";
+        }
         private void btnMail_Click(object sender, RoutedEventArgs e)
         {
 
@@ -29,7 +33,30 @@ namespace PolyclinicMeteringProgram
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dpFrom.SelectedDate >= dpTo.SelectedDate)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                var dataSource = _logic.GetPatientReceipt(new ReportPatientReceiptBindingModel
+                {
+                    DoctorId = _doctorId,
+                    DateFrom = dpFrom.SelectedDate,
+                    DateTo = dpTo.SelectedDate
+                });
+                ReportDataSource source = new ReportDataSource("DataSetOrders",
+               dataSource);
+                reportViewer.LocalReport.DataSources.Add(source);
+                reportViewer.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
+            }
         }
     }
 }

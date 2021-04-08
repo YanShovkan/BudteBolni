@@ -137,7 +137,7 @@ namespace PolyclinicDatabase.Implements
                             .ToDictionary(recProcedurePatient => recProcedurePatient.ProcedureId,
                             recProcedurePatient => recProcedurePatient.Procedure?.Name)
             };
-           
+
         }
 
         private Patient CreateModel(PatientBindingModel model, Patient patient, PolyclinicDatabase context)
@@ -146,6 +146,7 @@ namespace PolyclinicDatabase.Implements
             patient.PhoneNumber = model.PhoneNumber;
             patient.DateOfBirth = model.DateOfBirth;
             patient.DoctorId = model.DoctorId;
+
             if (patient.Id == 0)
             {
                 context.Patients.Add(patient);
@@ -157,22 +158,22 @@ namespace PolyclinicDatabase.Implements
                 var patientProcedures = context.ProcedurePatients
                     .Where(rec => rec.PatientId == model.Id.Value)
                     .ToList();
-                if (patientProcedures.Count > 0 && model.PatientProcedures.Count != 0)
+
+
+                context.ProcedurePatients.RemoveRange(patientProcedures
+                .Where(rec => !model.PatientProcedures.ContainsKey(rec.PatientId))
+                .ToList());
+
+                context.SaveChanges();
+
+                foreach (var procedure in patientProcedures)
                 {
-                    context.ProcedurePatients.RemoveRange(patientProcedures
-                    .Where(rec => !model.PatientProcedures.ContainsKey(rec.ProcedureId))
-                    .ToList());
-
-                    context.SaveChanges();
-
-                    foreach (var procedure in patientProcedures)
-                    {
-                        model.PatientProcedures.Remove(procedure.ProcedureId);
-                    }
-
-                    context.SaveChanges();
+                    model.PatientProcedures.Remove(procedure.ProcedureId);
                 }
+
+                context.SaveChanges();
             }
+
             foreach (var patientProcedure in model.PatientProcedures)
             {
                 context.ProcedurePatients.Add(new PatientProcedure

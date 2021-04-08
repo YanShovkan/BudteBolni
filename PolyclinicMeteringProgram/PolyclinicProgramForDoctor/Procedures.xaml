@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Список процедур" Height="400" Width="350">
+        Title="Список процедур" Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

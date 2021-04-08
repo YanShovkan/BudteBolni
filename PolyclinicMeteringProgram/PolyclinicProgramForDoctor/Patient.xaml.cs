@@ -141,11 +141,10 @@ namespace PolyclinicMeteringProgram
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
-                    int id = Convert.ToInt32(procedure.Id);
+                    KeyValuePair<int, string> procedure = (KeyValuePair<int, string>) DataGridView.SelectedCells[0].Item;
                     try
                     {
-                        patientProsedures.Remove(id);
+                       patientProsedures.Remove(procedure.Key);
                     }
                     catch (Exception ex)
                     {
@@ -162,13 +161,11 @@ namespace PolyclinicMeteringProgram
             if (DataGridView.SelectedIndex != -1)
             {
                 var window = Container.Resolve<AddProcedure>();
-                ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
-                int id = Convert.ToInt32(procedure.Id);
-                window.Id = id;
-
+                KeyValuePair<int, string> procedure = (KeyValuePair<int, string>)DataGridView.SelectedCells[0].Item;
+                window.Id = procedure.Key;
                 if (window.DialogResult == true)
                 {
-                    patientProsedures[id] = (window.ProcedureName);
+                    patientProsedures[procedure.Key] = (window.ProcedureName);
                     LoadData();
                 }
             }

@@ -17,17 +17,21 @@ namespace PolyclinicMeteringProgram
         public new IUnityContainer Container { get; set; }
         PatientLogic _logic;
         public int _doctorId { get; set; }
+        
         public Patients(PatientLogic logic)
         {
             InitializeComponent();
             _logic = logic;
-            LoadData();
         }
-        private void LoadData()
+
+        public void LoadData()
         {
             try
             {
-                var list = _logic.Read(null);
+                var list = _logic.Read(new PatientBindingModel
+                {
+                    DoctorId = _doctorId
+                });
 
                 if (list != null)
                 {
@@ -84,6 +88,7 @@ namespace PolyclinicMeteringProgram
                 var window = Container.Resolve<Patient>();
                 PatientViewModel patient = (PatientViewModel)DataGridView.SelectedCells[0].Item;
                 window.Id = Convert.ToInt32(patient.Id);
+                window._doctorId = _doctorId;
                 window.ShowDialog();
                 if (window.DialogResult == true)
                 {
