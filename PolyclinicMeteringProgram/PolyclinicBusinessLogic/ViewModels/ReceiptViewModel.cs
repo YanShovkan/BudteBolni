@@ -15,6 +15,6 @@ namespace PolyclinicBusinessLogic.ViewModels
         [DisplayName("Количество упаковок")]
         public int NumberOfPackages { get; set; }
         [DisplayName("Список лекарств")]
-        public Dictionary<int, string> MedicinePrescriptions { get; set; }
+        public Dictionary<int, string> ReceptMedecines { get; set; }
     }
 }

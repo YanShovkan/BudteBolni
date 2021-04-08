@@ -41,7 +41,7 @@ namespace PolyclinicMeteringProgram
                         tbFIO.Text = view.FullName;
                         tbTelephoneNumber.Text = view.PhoneNumber;
                         tbBirthday.SelectedDate = view.DateOfBirth;
-                        patientProsedures = view.ProcedurePatients;
+                        patientProsedures = view.PatientProcedures;
                         LoadData();
                     }
                 }
@@ -98,7 +98,7 @@ namespace PolyclinicMeteringProgram
                     FullName = tbFIO.Text,
                     DateOfBirth = tbBirthday.SelectedDate.Value,
                     PhoneNumber = tbTelephoneNumber.Text,
-                    ProcedurePatients = patientProsedures,
+                    PatientProcedures = patientProsedures,
                     DoctorId = _doctorId
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

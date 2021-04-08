@@ -17,7 +17,7 @@ namespace PolyclinicBusinessLogic.ViewModels
         [DisplayName("Имя доктора")]
         public string DoctorName { get; set; }
         public int DoctorId { get; set; }
-        public Dictionary<int, string> ProcedurePatients { get; set; }
+        public Dictionary<int, string> PatientProcedures { get; set; }
 
     }
 }

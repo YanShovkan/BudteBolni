@@ -18,7 +18,7 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 return context.Patients
-                    .Include(rec => rec.ProcedurePatients)
+                    .Include(rec => rec.PatientProcedures)
                     .Include(rec => rec.Doctor)
                     .Select(CreateModel)
                     .ToList();
@@ -34,7 +34,7 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 return context.Patients
-                    .Include(rec => rec.ProcedurePatients)
+                    .Include(rec => rec.PatientProcedures)
                     .Include(rec => rec.Doctor)
                     .Where(rec => rec.DoctorId == model.DoctorId)
                     .Select(CreateModel)
@@ -51,7 +51,7 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 var patient = context.Patients
-                    .Include(rec => rec.ProcedurePatients)
+                    .Include(rec => rec.PatientProcedures)
                     .Include(rec => rec.Doctor)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
@@ -133,7 +133,7 @@ namespace PolyclinicDatabase.Implements
                 PhoneNumber = patient.PhoneNumber,
                 DateOfBirth = patient.DateOfBirth,
                 DoctorName = patient.Doctor.FullName,
-                ProcedurePatients = patient.ProcedurePatients
+                PatientProcedures = patient.PatientProcedures
                             .ToDictionary(recProcedurePatient => recProcedurePatient.ProcedureId,
                             recProcedurePatient => recProcedurePatient.Procedure?.Name)
             };
@@ -157,25 +157,25 @@ namespace PolyclinicDatabase.Implements
                 var patientProcedures = context.ProcedurePatients
                     .Where(rec => rec.PatientId == model.Id.Value)
                     .ToList();
-                if (patientProcedures.Count > 0 && model.ProcedurePatients.Count != 0)
+                if (patientProcedures.Count > 0 && model.PatientProcedures.Count != 0)
                 {
                     context.ProcedurePatients.RemoveRange(patientProcedures
-                    .Where(rec => !model.ProcedurePatients.ContainsKey(rec.ProcedureId))
+                    .Where(rec => !model.PatientProcedures.ContainsKey(rec.ProcedureId))
                     .ToList());
 
                     context.SaveChanges();
 
                     foreach (var procedure in patientProcedures)
                     {
-                        model.ProcedurePatients.Remove(procedure.ProcedureId);
+                        model.PatientProcedures.Remove(procedure.ProcedureId);
                     }
 
                     context.SaveChanges();
                 }
             }
-            foreach (var patientProcedure in model.ProcedurePatients)
+            foreach (var patientProcedure in model.PatientProcedures)
             {
-                context.ProcedurePatients.Add(new ProcedurePatient
+                context.ProcedurePatients.Add(new PatientProcedure
                 {
                     PatientId = patient.Id,
                     ProcedureId = patientProcedure.Key

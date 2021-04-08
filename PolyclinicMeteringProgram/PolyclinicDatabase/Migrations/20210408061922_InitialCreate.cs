@@ -217,41 +217,34 @@ namespace PolyclinicDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MedicinePrescriptions",
+                name: "PrescriptionMedicines",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MedicineId = table.Column<int>(nullable: false),
                     PrescriptionId = table.Column<int>(nullable: false),
-                    Count = table.Column<int>(nullable: false),
-                    ReceiptId = table.Column<int>(nullable: true)
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MedicinePrescriptions", x => x.Id);
+                    table.PrimaryKey("PK_PrescriptionMedicines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MedicinePrescriptions_Medicines_MedicineId",
+                        name: "FK_PrescriptionMedicines_Medicines_MedicineId",
                         column: x => x.MedicineId,
                         principalTable: "Medicines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicinePrescriptions_Prescriptions_PrescriptionId",
+                        name: "FK_PrescriptionMedicines_Prescriptions_PrescriptionId",
                         column: x => x.PrescriptionId,
                         principalTable: "Prescriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MedicinePrescriptions_Receipts_ReceiptId",
-                        column: x => x.ReceiptId,
-                        principalTable: "Receipts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MedicineProcedures",
+                name: "ProcedureMedicines",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -262,15 +255,15 @@ namespace PolyclinicDatabase.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MedicineProcedures", x => x.Id);
+                    table.PrimaryKey("PK_ProcedureMedicines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MedicineProcedures_Medicines_MedicineId",
+                        name: "FK_ProcedureMedicines_Medicines_MedicineId",
                         column: x => x.MedicineId,
                         principalTable: "Medicines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicineProcedures_Procedures_ProcedureId",
+                        name: "FK_ProcedureMedicines_Procedures_ProcedureId",
                         column: x => x.ProcedureId,
                         principalTable: "Procedures",
                         principalColumn: "Id",
@@ -278,7 +271,7 @@ namespace PolyclinicDatabase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MedicineReceipts",
+                name: "ReceiptMedicines",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -289,55 +282,20 @@ namespace PolyclinicDatabase.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MedicineReceipts", x => x.Id);
+                    table.PrimaryKey("PK_ReceiptMedicines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MedicineReceipts_Medicines_MedicineId",
+                        name: "FK_ReceiptMedicines_Medicines_MedicineId",
                         column: x => x.MedicineId,
                         principalTable: "Medicines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicineReceipts_Receipts_ReceiptId",
+                        name: "FK_ReceiptMedicines_Receipts_ReceiptId",
                         column: x => x.ReceiptId,
                         principalTable: "Receipts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicinePrescriptions_MedicineId",
-                table: "MedicinePrescriptions",
-                column: "MedicineId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicinePrescriptions_PrescriptionId",
-                table: "MedicinePrescriptions",
-                column: "PrescriptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicinePrescriptions_ReceiptId",
-                table: "MedicinePrescriptions",
-                column: "ReceiptId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicineProcedures_MedicineId",
-                table: "MedicineProcedures",
-                column: "MedicineId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicineProcedures_ProcedureId",
-                table: "MedicineProcedures",
-                column: "ProcedureId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicineReceipts_MedicineId",
-                table: "MedicineReceipts",
-                column: "MedicineId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MedicineReceipts_ReceiptId",
-                table: "MedicineReceipts",
-                column: "ReceiptId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medicines_PharmacistId",
@@ -350,6 +308,16 @@ namespace PolyclinicDatabase.Migrations
                 column: "DoctorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PrescriptionMedicines_MedicineId",
+                table: "PrescriptionMedicines",
+                column: "MedicineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrescriptionMedicines_PrescriptionId",
+                table: "PrescriptionMedicines",
+                column: "PrescriptionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PrescriptionTreatments_PrescriptionId",
                 table: "PrescriptionTreatments",
                 column: "PrescriptionId");
@@ -358,6 +326,16 @@ namespace PolyclinicDatabase.Migrations
                 name: "IX_PrescriptionTreatments_TreatmentId",
                 table: "PrescriptionTreatments",
                 column: "TreatmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProcedureMedicines_MedicineId",
+                table: "ProcedureMedicines",
+                column: "MedicineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProcedureMedicines_ProcedureId",
+                table: "ProcedureMedicines",
+                column: "ProcedureId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProcedurePatients_PatientId",
@@ -378,21 +356,28 @@ namespace PolyclinicDatabase.Migrations
                 name: "IX_ProcedureTreatments_TreatmentId",
                 table: "ProcedureTreatments",
                 column: "TreatmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReceiptMedicines_MedicineId",
+                table: "ReceiptMedicines",
+                column: "MedicineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReceiptMedicines_ReceiptId",
+                table: "ReceiptMedicines",
+                column: "ReceiptId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MedicinePrescriptions");
-
-            migrationBuilder.DropTable(
-                name: "MedicineProcedures");
-
-            migrationBuilder.DropTable(
-                name: "MedicineReceipts");
+                name: "PrescriptionMedicines");
 
             migrationBuilder.DropTable(
                 name: "PrescriptionTreatments");
+
+            migrationBuilder.DropTable(
+                name: "ProcedureMedicines");
 
             migrationBuilder.DropTable(
                 name: "ProcedurePatients");
@@ -401,10 +386,7 @@ namespace PolyclinicDatabase.Migrations
                 name: "ProcedureTreatments");
 
             migrationBuilder.DropTable(
-                name: "Medicines");
-
-            migrationBuilder.DropTable(
-                name: "Receipts");
+                name: "ReceiptMedicines");
 
             migrationBuilder.DropTable(
                 name: "Prescriptions");
@@ -419,10 +401,16 @@ namespace PolyclinicDatabase.Migrations
                 name: "Treatments");
 
             migrationBuilder.DropTable(
-                name: "Pharmacists");
+                name: "Medicines");
+
+            migrationBuilder.DropTable(
+                name: "Receipts");
 
             migrationBuilder.DropTable(
                 name: "Doctors");
+
+            migrationBuilder.DropTable(
+                name: "Pharmacists");
         }
     }
 }

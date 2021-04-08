@@ -17,7 +17,7 @@ namespace PolyclinicDatabase.Models
         [Required]
         public string PharmacyAddress { get; set; }
         [ForeignKey("PrescriptionId")]
-        public virtual List<MedicinePrescription> MedicinePrescriptions { get; set; }
+        public virtual List<PrescriptionMedicine> PrescriptionMedicines { get; set; }
         [ForeignKey("PrescriptionId")]
         public virtual List<PrescriptionTreatment> PrescriptionTreatments { get; set; }
     }

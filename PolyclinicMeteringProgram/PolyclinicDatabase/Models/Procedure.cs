@@ -18,10 +18,10 @@ namespace PolyclinicDatabase.Models
         public int Cost { get; set; }
 
         [ForeignKey("ProcedureId")]
-        public virtual List<MedicineProcedure> MedicineProcedures { get; set; }
+        public virtual List<ProcedureMedicine> ProcedureMedicines { get; set; }
         [ForeignKey("ProcedureId")]
         public virtual List<ProcedureTreatment> ProcedureTreatments { get; set; }
         [ForeignKey("ProcedureId")]
-        public virtual List<ProcedurePatient> ProcedurePatient { get; set; }
+        public virtual List<PatientProcedure> PatientProcedures { get; set; }
     }
 }

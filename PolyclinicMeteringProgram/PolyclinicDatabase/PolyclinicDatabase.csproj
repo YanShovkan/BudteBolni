@@ -161,22 +161,22 @@
     <Compile Include="Implements\PharmacistStorage.cs" />
     <Compile Include="Implements\ProcedureStorage.cs" />
     <Compile Include="Implements\TreatmentStorage.cs" />
-    <Compile Include="Migrations\20210407164621_InitialCreate.cs" />
-    <Compile Include="Migrations\20210407164621_InitialCreate.designer.cs">
-      <DependentUpon>20210407164621_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20210408061922_InitialCreate.cs" />
+    <Compile Include="Migrations\20210408061922_InitialCreate.designer.cs">
+      <DependentUpon>20210408061922_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PolyclinicDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Medicine.cs" />
-    <Compile Include="Models\MedicinePrescription.cs" />
-    <Compile Include="Models\MedicineProcedure.cs" />
-    <Compile Include="Models\MedicineReceipt.cs" />
+    <Compile Include="Models\PrescriptionMedicine.cs" />
+    <Compile Include="Models\ProcedureMedicine.cs" />
+    <Compile Include="Models\ReceiptMedicine.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Pharmacist.cs" />
     <Compile Include="Models\Prescription.cs" />
     <Compile Include="Models\PrescriptionTreatment.cs" />
     <Compile Include="Models\Procedure.cs" />
-    <Compile Include="Models\ProcedurePatient.cs" />
+    <Compile Include="Models\PatientProcedure.cs" />
     <Compile Include="Models\ProcedureTreatment.cs" />
     <Compile Include="Models\Receipt.cs" />
     <Compile Include="Models\Treatment.cs" />

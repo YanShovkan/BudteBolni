@@ -3,7 +3,7 @@
 namespace PolyclinicDatabase.Models
 {
     // Лекарство поступление
-    public class MedicineReceipt
+    public class ReceiptMedicine
     {
         public int Id { get; set; }
         public int MedicineId { get; set; }

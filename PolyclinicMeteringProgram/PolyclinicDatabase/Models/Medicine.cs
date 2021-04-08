@@ -24,10 +24,10 @@ namespace PolyclinicDatabase.Models
         public virtual Pharmacist Pharmacist { get; set; }
 
         [ForeignKey("MedicineId")]
-        public virtual List<MedicinePrescription> MedicinePrescriptions { get; set; }
+        public virtual List<PrescriptionMedicine> PrescriptionMedicines { get; set; }
         [ForeignKey("MedicineId")]
-        public virtual List<MedicineProcedure> MedicineProcedures { get; set; }
+        public virtual List<ProcedureMedicine> ProcedureMedicines { get; set; }
         [ForeignKey("MedicineId")]
-        public virtual List<MedicineReceipt> MedicineReceipts { get; set; }
+        public virtual List<ReceiptMedicine> ReceiptMedicines { get; set; }
     }
 }

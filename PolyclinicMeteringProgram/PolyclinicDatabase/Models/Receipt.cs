@@ -17,6 +17,6 @@ namespace PolyclinicDatabase.Models
         [Required]
         public int NumberOfPackages { get; set; }
         [ForeignKey("ReceiptId")]
-        public virtual List<MedicinePrescription> MedicinePrescriptions { get; set; }
+        public virtual List<ReceiptMedicine> ReceiptMedicines { get; set; }
     }
 }

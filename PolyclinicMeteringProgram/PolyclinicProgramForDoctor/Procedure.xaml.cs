@@ -60,7 +60,7 @@ namespace PolyclinicMeteringProgram
                     {
                         tbName.Text = view.Name;
                         tbCost.Text = view.Cost.ToString();
-                        procedureMedicines = view.MedicineProcedures;
+                        procedureMedicines = view.ProcedureMedicines;
                         procedureTreatments = view.ProcedureTreatments;
                         LoadData();
                     }
@@ -100,7 +100,7 @@ namespace PolyclinicMeteringProgram
                     Name = tbName.Text,
                     Cost = Convert.ToInt32(tbCost.Text),
                     ProcedureTreatments = procedureTreatments,
-                    MedicineProcedures = procedureMedicines
+                    ProcedureMedicines = procedureMedicines
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace PolyclinicDatabase.Models
 { 
     // Процедура Пациент
-    public class ProcedurePatient
+    public class PatientProcedure
     {
         public int Id { get; set; }
         public int PatientId { get; set; }

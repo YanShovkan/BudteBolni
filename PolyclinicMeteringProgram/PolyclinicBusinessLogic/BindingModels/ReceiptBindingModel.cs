@@ -11,6 +11,6 @@ namespace PolyclinicBusinessLogic.BindingModels
         public int? Id { get; set; }
         public DateTime Date { get; set; }
         public int NumberOfPackages { get; set; }
-        public Dictionary<int, string> MedicinePrescriptions { get; set; }
+        public Dictionary<int, string> ReceiptMedecines { get; set; }
     }
 }
