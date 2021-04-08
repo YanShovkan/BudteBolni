@@ -15,7 +15,7 @@ namespace PolyclinicDatabase.Models
         [Required]
         public DateTime Date { get; set; }
         [Required]
-        public int NumberOfPackages { get; set; }
+        public int DeliverymanName { get; set; }
         [ForeignKey("ReceiptId")]
         public virtual List<ReceiptMedicine> ReceiptMedicines { get; set; }
     }

@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    public class ReceiptViewModel
+    class ReportReceiptViewModel
     {
-        public int Id { get; set; }
+        int Id { get; set; }
+        [DisplayName("Название процедуры")]
+        public string ProcedureName { get; set; }
         [DisplayName("Дата поступления")]
         public DateTime Date { get; set; }
         [DisplayName("Имя доставщика")]
         public int DeliverymanName { get; set; }
-        [DisplayName("Список лекарств")]
-        public Dictionary<int, string> ReceptMedecines { get; set; }
     }
 }
