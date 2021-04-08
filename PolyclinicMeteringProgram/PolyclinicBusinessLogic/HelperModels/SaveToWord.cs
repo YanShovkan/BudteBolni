@@ -40,7 +40,40 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 wordDocument.MainDocumentPart.Document.Save();
             }
         }
-       
+
+        public static void CreateDoc(ExcelWordInfoForPharmacist info)
+        {
+            using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
+            {
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+                mainPart.Document = new Document();
+                Body docBody = mainPart.Document.AppendChild(new Body());
+                docBody.AppendChild(CreateParagraph(new WordParagraph
+                {
+                    Texts = new List<(string, WordTextProperties)> { (info.Title, new WordTextProperties { Bold = true, Size = "24", }) },
+                    TextProperties = new WordTextProperties
+                    {
+                        Size = "24",
+                        JustificationValues = JustificationValues.Center
+                    }
+                }));
+                foreach (var patient in info.Patients)
+                {
+                    docBody.AppendChild(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<(string, WordTextProperties)> { ($"Пациент {patient.PatientName} дата рождения {patient.DateOfBirth} номер телефона {patient.PhoneNumber} ", new WordTextProperties { Size = "24", Bold = false }) },
+                        TextProperties = new WordTextProperties
+                        {
+                            Size = "24",
+                            JustificationValues = JustificationValues.Both
+                        }
+                    }));
+                }
+                docBody.AppendChild(CreateSectionProperties());
+                wordDocument.MainDocumentPart.Document.Save();
+            }
+        }
+
         private static SectionProperties CreateSectionProperties()
         {
             SectionProperties properties = new SectionProperties();

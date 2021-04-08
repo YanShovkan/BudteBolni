@@ -10,9 +10,9 @@ namespace PolyclinicBusinessLogic.Interfaces
 {
     public interface IMedicine
     {
-        List<MedecineViewModel> GetFullList();
-        List<MedecineViewModel> GetFilteredList(MedicineBindingModel model);
-        MedecineViewModel GetElement(MedicineBindingModel model);
+        List<MedicineViewModel> GetFullList();
+        List<MedicineViewModel> GetFilteredList(MedicineBindingModel model);
+        MedicineViewModel GetElement(MedicineBindingModel model);
         void Insert(MedicineBindingModel model);
         void Update(MedicineBindingModel model);
         void Delete(MedicineBindingModel model);

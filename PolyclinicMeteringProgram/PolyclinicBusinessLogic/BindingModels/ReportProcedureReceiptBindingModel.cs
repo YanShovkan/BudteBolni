@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.BindingModels
 {
-    public class MedicineBindingModel
+    public class ReportProcedureReceiptBindingModel
     {
-        public int? Id { get; set; }
-        public string Name { get; set; }
-        public string ActiveSubstance { get; set; }
-        public string Classification { get; set; }
+        public string FileName { get; set; }
         public int PharmacistId { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

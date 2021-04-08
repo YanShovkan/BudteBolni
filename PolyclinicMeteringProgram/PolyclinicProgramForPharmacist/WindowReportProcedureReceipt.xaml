@@ -1,0 +1,30 @@
+﻿<Window x:Class="PolyclinicProgramForPharmacist.WindowReportProcedureReceipt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
+        mc:Ignorable="d"
+        Title="WindowReportProcedureReceipt" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="С" Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Center" />
+        <DatePicker Name="dpFrom" Grid.Column="0" Grid.Row="0"  Margin="25,5,5,5" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Center" />
+        <Label Content="по" Grid.Column="1" Grid.Row="0" Margin="5" HorizontalAlignment="Left" FontSize="16" VerticalAlignment="Center" />
+        <DatePicker Name="dpTo" Grid.Column="1" Grid.Row="0"  Margin="35,5,5,5" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Center" />
+        <Button  Name="btnMail" Grid.Column="0" Grid.Row="1" Margin="10" Content="Отправить на мейл" FontSize="16" Click="btnMail_Click" />
+        <Button  Name="btnShow" Grid.Column="1" Grid.Row="1" Margin="10" Content="Показать на форме" FontSize="16" Click="btnShow_Click" />
+
+        <WindowsFormsHost HorizontalAlignment="Left" Height="279" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" Grid.Row="2" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>

@@ -68,10 +68,12 @@
     <Compile Include="BindingModels\ProcedureBindingModel.cs" />
     <Compile Include="BindingModels\ReceiptBindingModel.cs" />
     <Compile Include="BindingModels\ReportPatientReceiptBindingModel.cs" />
+    <Compile Include="BindingModels\ReportProcedureReceiptBindingModel.cs" />
     <Compile Include="BindingModels\TreatmentBindingModel.cs" />
     <Compile Include="BusinessLogics\DoctorLogic.cs" />
-    <Compile Include="BusinessLogics\MedecineLogic.cs" />
+    <Compile Include="BusinessLogics\MedicineLogic.cs" />
     <Compile Include="BusinessLogics\PatientLogic.cs" />
+    <Compile Include="BusinessLogics\PatientReportLogic.cs" />
     <Compile Include="BusinessLogics\PharmacistLogic.cs" />
     <Compile Include="BusinessLogics\ProcedureLogic.cs" />
     <Compile Include="BusinessLogics\ReceiptLogic.cs" />
@@ -81,8 +83,10 @@
     <Compile Include="HelperModels\ExcelCellParameters.cs" />
     <Compile Include="HelperModels\ExcelMergeParameters.cs" />
     <Compile Include="HelperModels\ExcelWordInfoForDoctor.cs" />
+    <Compile Include="HelperModels\ExcelWordInfoForPharmacist.cs" />
     <Compile Include="HelperModels\PdfCellParameters.cs" />
     <Compile Include="HelperModels\PdfInfoForDoctor.cs" />
+    <Compile Include="HelperModels\PdfInfoForPharmacist.cs" />
     <Compile Include="HelperModels\PdfRowParameters.cs" />
     <Compile Include="HelperModels\SaveToExcel.cs" />
     <Compile Include="HelperModels\SaveToPdf.cs" />
@@ -98,13 +102,15 @@
     <Compile Include="Interfaces\ITreatment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
-    <Compile Include="ViewModels\MedecineViewModel.cs" />
+    <Compile Include="ViewModels\MedicineViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
-    <Compile Include="BusinessLogics\ReportPatientMedicineLogic.cs" />
+    <Compile Include="BusinessLogics\ReportProcedureReceiptLogic.cs" />
     <Compile Include="ViewModels\ReportPatientReceiptViewModel.cs" />
+    <Compile Include="ViewModels\ReportPatientViewModel.cs" />
+    <Compile Include="ViewModels\ReportProcedureReceiptViewModel.cs" />
     <Compile Include="ViewModels\ReportReceiptViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
   </ItemGroup>

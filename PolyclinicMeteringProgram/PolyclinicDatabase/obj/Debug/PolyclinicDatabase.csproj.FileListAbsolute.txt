@@ -263,3 +263,17 @@ C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\MigraDoc.Rendering.resources.dll
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\PdfSharp.Charting.resources.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\MigraDoc.DocumentObjectModel.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\MigraDoc.Rendering.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\PdfSharp.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\PdfSharp.Charting.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\MigraDoc.DocumentObjectModel.xml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\MigraDoc.Rendering.xml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\PdfSharp.xml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\PdfSharp.Charting.xml
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\MigraDoc.Rendering.resources.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\PdfSharp.resources.dll
+D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\de\PdfSharp.Charting.resources.dll

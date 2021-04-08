@@ -16,17 +16,17 @@ namespace PolyclinicDatabase.Implements
             throw new NotImplementedException();
         }
 
-        public MedecineViewModel GetElement(MedicineBindingModel model)
+        public MedicineViewModel GetElement(MedicineBindingModel model)
         {
             throw new NotImplementedException();
         }
 
-        public List<MedecineViewModel> GetFilteredList(MedicineBindingModel model)
+        public List<MedicineViewModel> GetFilteredList(MedicineBindingModel model)
         {
             throw new NotImplementedException();
         }
 
-        public List<MedecineViewModel> GetFullList()
+        public List<MedicineViewModel> GetFullList()
         {
             throw new NotImplementedException();
         }

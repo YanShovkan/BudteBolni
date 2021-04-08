@@ -179,6 +179,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="Unity.Abstractions, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.11.10\lib\net47\Unity.Abstractions.dll</HintPath>
     </Reference>
@@ -188,6 +189,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -231,6 +233,12 @@
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowPatientReport.xaml.cs">
+      <DependentUpon>WindowPatientReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowReportProcedureReceipt.xaml.cs">
+      <DependentUpon>WindowReportProcedureReceipt.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enter.xaml.cs">
@@ -253,7 +261,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.DoctorViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.MedicineViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.PatientViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.PharmacistViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ProcedureViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ReceiptViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ReportPatientReceiptViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ReportPatientViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ReportProcedureReceiptViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.ReportReceiptViewModel.datasource" />
+    <None Include="Properties\DataSources\PolyclinicBusinessLogic.ViewModels.TreatmentViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -321,6 +341,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WelcomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPatientReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowReportProcedureReceipt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

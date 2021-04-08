@@ -39,7 +39,7 @@ namespace PolyclinicMeteringProgram
             //tabletki
             currentContainer.RegisterType<IMedicine, MedicineStorage>(new
             HierarchicalLifetimeManager());
-            currentContainer.RegisterType<MedecineLogic>(new
+            currentContainer.RegisterType<MedicineLogic>(new
             HierarchicalLifetimeManager());
             //receipt
             currentContainer.RegisterType<IReceipt, ReceiptStorage>(new

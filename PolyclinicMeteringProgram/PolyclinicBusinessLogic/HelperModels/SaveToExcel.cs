@@ -89,7 +89,87 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 				workbookpart.Workbook.Save();
 			}
 		}
-		
+
+		public static void CreateDoc(ExcelWordInfoForPharmacist info)
+		{
+			using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
+			{
+				// Создаем книгу (в ней хранятся листы)
+				WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+				workbookpart.Workbook = new Workbook();
+				CreateStyles(workbookpart);
+				// Получаем/создаем хранилище текстов для книги
+				SharedStringTablePart shareStringPart = spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0
+				? spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+				: spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+				// Создаем SharedStringTable, если его нет
+				if (shareStringPart.SharedStringTable == null)
+				{
+					shareStringPart.SharedStringTable = new SharedStringTable();
+				}
+				// Создаем лист в книгу
+				WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+				worksheetPart.Worksheet = new Worksheet(new SheetData());
+				// Добавляем лист в книгу
+				Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+				Sheet sheet = new Sheet()
+				{
+					Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
+					SheetId = 1,
+					Name = "Лист"
+				};
+				sheets.Append(sheet);
+				InsertCellInWorksheet(new ExcelCellParameters
+				{
+					Worksheet = worksheetPart.Worksheet,
+					ShareStringPart = shareStringPart,
+					ColumnName = "A",
+					RowIndex = 1,
+					Text = info.Title,
+					StyleIndex = 2U
+				});
+				MergeCells(new ExcelMergeParameters
+				{
+					Worksheet = worksheetPart.Worksheet,
+					CellFromName = "A1",
+					CellToName = "C1"
+				});
+				uint rowIndex = 2;
+				foreach (var patient in info.Patients)
+				{
+					InsertCellInWorksheet(new ExcelCellParameters
+					{
+						Worksheet = worksheetPart.Worksheet,
+						ShareStringPart = shareStringPart,
+						ColumnName = "A",
+						RowIndex = rowIndex,
+						Text = "Пациент " + patient.PatientName,
+						StyleIndex = 0U
+					});
+					InsertCellInWorksheet(new ExcelCellParameters
+					{
+						Worksheet = worksheetPart.Worksheet,
+						ShareStringPart = shareStringPart,
+						ColumnName = "B",
+						RowIndex = rowIndex,
+						Text = "Номер телефона " + patient.PhoneNumber,
+						StyleIndex = 0U
+					});
+					InsertCellInWorksheet(new ExcelCellParameters
+					{
+						Worksheet = worksheetPart.Worksheet,
+						ShareStringPart = shareStringPart,
+						ColumnName = "С",
+						RowIndex = rowIndex,
+						Text = "Дата рождения " + patient.DateOfBirth,
+						StyleIndex = 0U
+					});
+					rowIndex++;
+				}
+				workbookpart.Workbook.Save();
+			}
+		}
+
 		private static void CreateStyles(WorkbookPart workbookpart)
 		{
 			WorkbookStylesPart sp = workbookpart.AddNewPart<WorkbookStylesPart>();

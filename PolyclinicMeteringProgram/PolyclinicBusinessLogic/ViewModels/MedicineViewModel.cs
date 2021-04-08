@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    public class MedecineViewModel
+    public class MedicineViewModel
     {
         public int Id { get; set; }
         [DisplayName("Название лекарства")]
@@ -16,5 +16,8 @@ namespace PolyclinicBusinessLogic.ViewModels
         public string ActiveSubstance { get; set; }
         [DisplayName("Классификация")]
         public string Classification { get; set; }
+        public int PharmacistId { get; set; }
+        [DisplayName("Имя аптекаря")]
+        public string PharmacistName { get; set; }
     }
 }
