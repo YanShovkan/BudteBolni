@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Unity;
 
 namespace PolyclinicProgramForPharmacist
 {
@@ -19,6 +20,8 @@ namespace PolyclinicProgramForPharmacist
     /// </summary>
     public partial class WelcomeWindow : Window
     {
+        [Dependency]
+        public IUnityContainer Container { get; set; }
         public WelcomeWindow()
         {
             InitializeComponent();
@@ -26,12 +29,16 @@ namespace PolyclinicProgramForPharmacist
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<Register>();
+            window.Show();
+            Close();
         }
 
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<Enter>();
+            window.Show();
+            Close();
         }
     }
 }

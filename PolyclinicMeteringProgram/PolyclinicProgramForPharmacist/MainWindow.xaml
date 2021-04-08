@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" VerticalAlignment="Top" FontSize="16">
-            <MenuItem Header="Лекарства"/>
-            <MenuItem Header="Поступления"/>
-            <MenuItem Header="Рецепты"/>
-            <MenuItem Header="Получение списка"/>
-            <MenuItem Header="Отчет"/>
+            <MenuItem Name="miMedicine" Header="Лекарства" Click="miMedicine_Click"/>
+            <MenuItem Name="miReceipt" Header="Поступления" Click="miReceipt_Click"/>
+            <MenuItem Name="miPrescription" Header="Рецепты" Click="miPrescription_Click"/>
+            <MenuItem Name="miGetList" Header="Получение списка" Click="miGetList_Click"/>
+            <MenuItem Name="miGetReport" Header="Отчет" Click="miGetReport_Click"/>
             <Separator />
         </Menu>
 

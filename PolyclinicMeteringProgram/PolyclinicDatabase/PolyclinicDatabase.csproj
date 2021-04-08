@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\DoctorStorage.cs" />
+    <Compile Include="Implements\MedicineStorage.cs" />
     <Compile Include="Implements\PatientStorage.cs" />
     <Compile Include="Implements\PharmacistStorage.cs" />
     <Compile Include="Implements\ProcedureStorage.cs" />
