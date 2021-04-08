@@ -10,7 +10,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 {
 	public static class SaveToExcel
 	{
-		public static void CreateDoc(InfoForDoctor info)
+		public static void CreateDoc(ExcelWordInfoForDoctor info)
 		{
 			using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
 			{

@@ -8,7 +8,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 {
     public static class SaveToWord
     {
-        public static void CreateDoc(InfoForDoctor info)
+        public static void CreateDoc(ExcelWordInfoForDoctor info)
         {
             using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(info.FileName, WordprocessingDocumentType.Document))
             {

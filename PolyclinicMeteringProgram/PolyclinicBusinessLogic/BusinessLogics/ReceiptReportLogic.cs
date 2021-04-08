@@ -1,5 +1,4 @@
-﻿using PolyclinicBusinessLogic.BindingModels;
-using PolyclinicBusinessLogic.HelperModels;
+﻿using PolyclinicBusinessLogic.HelperModels;
 using PolyclinicBusinessLogic.Interfaces;
 using PolyclinicBusinessLogic.ViewModels;
 using System.Collections.Generic;
@@ -28,6 +27,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             var medicines = _medicineStorage.GetFullList();
             var receipts = _receiptStorage.GetFullList();
 
+
             var list = new List<ReportReceiptViewModel>();
 
             foreach (var procedure in procedures)
@@ -46,18 +46,19 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                             {
                                 record.Date = receipt.Date;
                                 record.DeliverymanName = receipt.DeliverymanName;
+                                list.Add(record);
                             }
                         }
                     }
                 }
-                list.Add(record);
+                
             }
             return list;
         }
        
         public void SaveToWordFile(string fileName, List<ProcedureViewModel> procedures)
         {
-            SaveToWord.CreateDoc(new InfoForDoctor
+            SaveToWord.CreateDoc(new ExcelWordInfoForDoctor
             {
                 FileName = fileName,
                 Title = "Список поступлений по процедурам",
@@ -67,7 +68,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
        
         public void SaveToExcelFile(string fileName, List<ProcedureViewModel> procedures)
         {
-            SaveToExcel.CreateDoc(new InfoForDoctor
+            SaveToExcel.CreateDoc(new ExcelWordInfoForDoctor
             {
                 FileName = fileName,
                 Title = "Список поступлений по процедурам",

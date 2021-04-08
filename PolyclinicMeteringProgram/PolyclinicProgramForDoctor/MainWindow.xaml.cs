@@ -47,7 +47,9 @@ namespace PolyclinicMeteringProgram
 
         private void miGetReport_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowReportPatientReceipt>();
+            window._doctorId = _doctorId;
+            window.Show();
         }
     }
 }

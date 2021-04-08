@@ -13,8 +13,8 @@ namespace PolyclinicBusinessLogic.ViewModels
         [DisplayName("Дата поступления")]
         public DateTime Date { get; set; }
         [DisplayName("Имя доставщика")]
-        public int DeliverymanName { get; set; }
+        public string DeliverymanName { get; set; }
         [DisplayName("Список лекарств")]
-        public Dictionary<int, string> ReceptMedecines { get; set; }
+        public Dictionary<int, (string, int)> ReceptMedecines { get; set; }
     }
 }

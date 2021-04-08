@@ -10,7 +10,9 @@ namespace PolyclinicBusinessLogic.BindingModels
     {
         public int? Id { get; set; }
         public DateTime Date { get; set; }
-        public int DeliverymanName { get; set; }
-        public Dictionary<int, string> ReceiptMedecines { get; set; }
+        public string DeliverymanName { get; set; }
+        public Dictionary<int, (string, int)> ReceiptMedecines { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }
