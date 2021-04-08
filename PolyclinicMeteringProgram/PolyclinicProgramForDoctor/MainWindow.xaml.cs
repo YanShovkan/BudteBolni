@@ -41,7 +41,8 @@ namespace PolyclinicMeteringProgram
 
         private void miGetList_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowReceiptReport>();
+            window.Show();   
         }
 
         private void miGetReport_Click(object sender, RoutedEventArgs e)

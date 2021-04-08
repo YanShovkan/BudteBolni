@@ -3,7 +3,6 @@ using System.Windows;
 using Unity;
 using Unity.Lifetime;
 using PolyclinicBusinessLogic.BusinessLogics;
-using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.Interfaces;
 using PolyclinicDatabase.Implements;
 
@@ -36,6 +35,19 @@ namespace PolyclinicMeteringProgram
             currentContainer.RegisterType<IPatient, PatientStorage>(new
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<PatientLogic>(new
+            HierarchicalLifetimeManager());
+            //tabletki
+            currentContainer.RegisterType<IMedicine, MedicineStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MedecineLogic>(new
+            HierarchicalLifetimeManager());
+            //receipt
+            currentContainer.RegisterType<IReceipt, ReceiptStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReceiptLogic>(new
+            HierarchicalLifetimeManager());
+            //Репорт
+            currentContainer.RegisterType<ReceiptReportLogic>(new
             HierarchicalLifetimeManager());
 
             return currentContainer;

@@ -249,3 +249,5 @@ D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Deb
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\Microsoft.IdentityModel.Tokens.xml
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicDatabase\bin\Debug\DocumentFormat.OpenXml.xml

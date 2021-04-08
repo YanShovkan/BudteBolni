@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    class ReportReceiptViewModel
+    public class ReportReceiptViewModel
     {
         int Id { get; set; }
         [DisplayName("Название процедуры")]

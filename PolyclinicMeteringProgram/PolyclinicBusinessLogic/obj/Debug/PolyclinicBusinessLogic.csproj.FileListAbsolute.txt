@@ -16,3 +16,6 @@ C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CopyComplete

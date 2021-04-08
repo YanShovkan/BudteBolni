@@ -53,9 +53,11 @@
     <Compile Include="BindingModels\ReceiptBindingModel.cs" />
     <Compile Include="BindingModels\TreatmentBindingModel.cs" />
     <Compile Include="BusinessLogics\DoctorLogic.cs" />
+    <Compile Include="BusinessLogics\MedecineLogic.cs" />
     <Compile Include="BusinessLogics\PatientLogic.cs" />
     <Compile Include="BusinessLogics\PharmacistLogic.cs" />
     <Compile Include="BusinessLogics\ProcedureLogic.cs" />
+    <Compile Include="BusinessLogics\ReceiptLogic.cs" />
     <Compile Include="BusinessLogics\ReceiptReportLogic.cs" />
     <Compile Include="BusinessLogics\ReportPatientReceiptLogic.cs" />
     <Compile Include="BusinessLogics\TreatmentLogic.cs" />

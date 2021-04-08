@@ -64,7 +64,7 @@ namespace PolyclinicMeteringProgram
             {
                 if (patientProsedures != null)
                 {          
-                    DataContext = patientProsedures;
+                    DataGridView.ItemsSource = patientProsedures;
                 }
             }
             catch (Exception ex)

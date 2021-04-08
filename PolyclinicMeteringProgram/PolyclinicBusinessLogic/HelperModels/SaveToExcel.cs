@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace PolyclinicBusinessLogic.BusinessLogics
 {
-	static class SaveToExcel
+	public static class SaveToExcel
 	{
 		public static void CreateDoc(InfoForDoctor info)
 		{

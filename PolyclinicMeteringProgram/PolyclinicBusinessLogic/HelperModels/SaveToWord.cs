@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PolyclinicBusinessLogic.BusinessLogics
 {
-    static class SaveToWord
+    public static class SaveToWord
     {
         public static void CreateDoc(InfoForDoctor info)
         {

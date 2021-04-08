@@ -9,7 +9,7 @@ using System.Linq;
 //ВЛАД НЕ ТРОЖЬ!!!!!!!
 namespace PolyclinicBusinessLogic.BusinessLogics
 {
-    class ReceiptReportLogic
+    public class ReceiptReportLogic
     {
         // Procedure => Medicine => Receipt
         private readonly IProcedure _procedureStorage;
@@ -55,7 +55,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             return list;
         }
        
-        public void SaveMaterialsToWordFile(string fileName, List<ProcedureViewModel> procedures)
+        public void SaveToWordFile(string fileName, List<ProcedureViewModel> procedures)
         {
             SaveToWord.CreateDoc(new InfoForDoctor
             {
@@ -65,7 +65,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             });
         }
        
-        public void SaveGiftsMaterialsToExcelFile(string fileName, List<ProcedureViewModel> procedures)
+        public void SaveToExcelFile(string fileName, List<ProcedureViewModel> procedures)
         {
             SaveToExcel.CreateDoc(new InfoForDoctor
             {
