@@ -51,6 +51,7 @@
     <Compile Include="BusinessLogics\PatientLogic.cs" />
     <Compile Include="BusinessLogics\PharmacistLogic.cs" />
     <Compile Include="BusinessLogics\ProcedureLogic.cs" />
+    <Compile Include="BusinessLogics\ReceiptReportLogic.cs" />
     <Compile Include="BusinessLogics\TreatmentLogic.cs" />
     <Compile Include="Interfaces\IDoctor.cs" />
     <Compile Include="Interfaces\IPatient.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
+    <Compile Include="BusinessLogics\ReportPatientMedicineLogic.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

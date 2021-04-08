@@ -17,18 +17,25 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         ProcedureLogic _logic;
-
+        private ProcedureViewModel procedureViewModel;
         public int Id { 
             get 
             {
-                return cbProcedureName.SelectedIndex;
+                return procedureViewModel.Id;
             }
             set
             {
                 cbProcedureName.SelectedItem = value;
             }
         }
+
         public string ProcedureName { get { return cbProcedureName.Text; } }
+       
+        public AddProcedure(ProcedureLogic logic)
+        {
+            InitializeComponent();
+            _logic = logic;
+        }
 
         private void Window_loaded(object sender, RoutedEventArgs e)
         {
@@ -37,8 +44,9 @@ namespace PolyclinicMeteringProgram
             {
                 try
                 {
-
+                    cbProcedureName.DisplayMemberPath = "Name";
                     cbProcedureName.ItemsSource = list;
+                    cbProcedureName.SelectedItem = null;
                 }
                 catch (Exception ex)
                 {
@@ -46,11 +54,6 @@ namespace PolyclinicMeteringProgram
                    MessageBoxImage.Error);
                 }
             }
-        }
-        public AddProcedure(ProcedureLogic logic)
-        {
-            InitializeComponent();
-            _logic = logic;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -63,6 +66,7 @@ namespace PolyclinicMeteringProgram
                    MessageBoxImage.Error);
                     return;
                 }
+                procedureViewModel = (ProcedureViewModel)cbProcedureName.SelectionBoxItem;
                 this.DialogResult = true;
                 Close();
             }

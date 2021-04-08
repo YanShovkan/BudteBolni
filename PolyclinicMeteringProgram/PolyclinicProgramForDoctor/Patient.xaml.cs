@@ -20,6 +20,7 @@ namespace PolyclinicMeteringProgram
         public int Id { set { id = value; } }
         private int? id;
         private Dictionary<int, string> patientProsedures;
+
         public Patient(PatientLogic logic)
         {
             InitializeComponent();
@@ -62,11 +63,8 @@ namespace PolyclinicMeteringProgram
             try
             {
                 if (patientProsedures != null)
-                {
-                    foreach (var proc in patientProsedures)
-                    {
-                        DataGridView.ItemsSource = patientProsedures;
-                    }
+                {          
+                    DataContext = patientProsedures;
                 }
             }
             catch (Exception ex)
@@ -125,8 +123,10 @@ namespace PolyclinicMeteringProgram
             if (window.DialogResult == true)
             {
                 if (!patientProsedures.ContainsKey(window.Id))
-
-                    patientProsedures.Add(window.Id, window.Name);
+                {
+                    patientProsedures.Add(window.Id, window.ProcedureName);
+                }
+                   
             }
             LoadData();
         }
