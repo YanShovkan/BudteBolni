@@ -23,5 +23,15 @@ namespace PolyclinicProgramForPharmacist
         {
             InitializeComponent();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

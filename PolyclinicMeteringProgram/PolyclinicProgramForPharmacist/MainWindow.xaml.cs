@@ -48,12 +48,14 @@ namespace PolyclinicProgramForPharmacist
 
         private void miGetList_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowPatientReport>();
+            window.Show();
         }
 
         private void miGetReport_Click(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowReportProcedureReceipt>();
+            window.Show();
         }
     }
 }

@@ -31,6 +31,20 @@ namespace PolyclinicProgramForPharmacist
         {
             var window = Container.Resolve<Medicine>();
             window.Show();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Change_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
     }

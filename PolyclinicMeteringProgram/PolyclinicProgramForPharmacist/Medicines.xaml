@@ -17,8 +17,8 @@
 
         <DataGrid Grid.Row="0" Margin="5" AutoGenerateColumns="True" BorderBrush="Black"/>
         <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
-        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16"/>
-        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16"/>
-        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" />
+        <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
+        <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>
+        <Button Name="Cancel"  Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Click="Cancel_Click" />
     </Grid>
 </Window>
