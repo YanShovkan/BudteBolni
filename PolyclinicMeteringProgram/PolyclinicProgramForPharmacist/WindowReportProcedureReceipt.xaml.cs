@@ -30,6 +30,10 @@ namespace PolyclinicProgramForPharmacist
             InitializeComponent();
             _logic = logic;
         }
+        private void ReportViewer_Load(object sender, EventArgs e)
+        {
+            reportViewer.LocalReport.ReportEmbeddedResource = "PolyclinicProgramForPharmacist.Report.rdlc";
+        }
 
         private void btnMail_Click(object sender, RoutedEventArgs e)
         {

@@ -50,3 +50,4 @@ D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bi
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\de\PdfSharp.resources.dll
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\bin\Debug\de\PdfSharp.Charting.resources.dll
 D:\Study\Kursach\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csproj.CopyComplete
+C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache

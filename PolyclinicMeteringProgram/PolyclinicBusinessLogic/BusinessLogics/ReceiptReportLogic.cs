@@ -26,8 +26,6 @@ namespace PolyclinicBusinessLogic.BusinessLogics
         {
             var medicines = _medicineStorage.GetFullList();
             var receipts = _receiptStorage.GetFullList();
-
-
             var list = new List<ReportReceiptViewModel>();
 
             foreach (var procedure in procedures)

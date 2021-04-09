@@ -11,6 +11,21 @@ namespace PolyclinicDatabase.Implements
 {
     public class ReceiptStorage : IReceipt
     {
+        public List<ReceiptViewModel> GetFullList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(ReceiptBindingModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(ReceiptBindingModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Delete(ReceiptBindingModel model)
         {
             throw new NotImplementedException();
@@ -26,19 +41,6 @@ namespace PolyclinicDatabase.Implements
             throw new NotImplementedException();
         }
 
-        public List<ReceiptViewModel> GetFullList()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(ReceiptBindingModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ReceiptBindingModel model)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
