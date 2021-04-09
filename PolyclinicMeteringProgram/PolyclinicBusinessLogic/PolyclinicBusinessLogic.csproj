@@ -65,6 +65,7 @@
     <Compile Include="BindingModels\MedicineBindingModel.cs" />
     <Compile Include="BindingModels\PatientBindingModel.cs" />
     <Compile Include="BindingModels\PharmacistBindingModel.cs" />
+    <Compile Include="BindingModels\PrescriptionBindingModel.cs" />
     <Compile Include="BindingModels\ProcedureBindingModel.cs" />
     <Compile Include="BindingModels\ReceiptBindingModel.cs" />
     <Compile Include="BindingModels\ReportPatientReceiptBindingModel.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="BusinessLogics\PatientLogic.cs" />
     <Compile Include="BusinessLogics\PatientReportLogic.cs" />
     <Compile Include="BusinessLogics\PharmacistLogic.cs" />
+    <Compile Include="BusinessLogics\PrescriptionLogic.cs" />
     <Compile Include="BusinessLogics\ProcedureLogic.cs" />
     <Compile Include="BusinessLogics\ReceiptLogic.cs" />
     <Compile Include="BusinessLogics\ReceiptReportLogic.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Interfaces\IMedicine.cs" />
     <Compile Include="Interfaces\IPatient.cs" />
     <Compile Include="Interfaces\IPharmacist.cs" />
+    <Compile Include="Interfaces\IPrescription.cs" />
     <Compile Include="Interfaces\IProcedure.cs" />
     <Compile Include="Interfaces\IReceipt.cs" />
     <Compile Include="Interfaces\ITreatment.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="ViewModels\MedicineViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
+    <Compile Include="ViewModels\PrescriptionViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="BusinessLogics\ReportProcedureReceiptLogic.cs" />

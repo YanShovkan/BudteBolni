@@ -160,6 +160,7 @@
     <Compile Include="Implements\MedicineStorage.cs" />
     <Compile Include="Implements\PatientStorage.cs" />
     <Compile Include="Implements\PharmacistStorage.cs" />
+    <Compile Include="Implements\PrescriptionStorage.cs" />
     <Compile Include="Implements\ProcedureStorage.cs" />
     <Compile Include="Implements\ReceiptStorage.cs" />
     <Compile Include="Implements\TreatmentStorage.cs" />
