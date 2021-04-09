@@ -14,5 +14,7 @@ namespace PolyclinicBusinessLogic.ViewModels
         public string FullNameDoctor { get; set; }
         [DisplayName("Адрес аптеки")]
         public string PharmacyAddress { get; set; }
+        public Dictionary<int, (string, int)> PrescriptionMedicines { get; set; }
+        public Dictionary<int, (string, int)> PrescriptionTreatment { get; set; }
     }
 }

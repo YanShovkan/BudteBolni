@@ -8,8 +8,10 @@ namespace PolyclinicBusinessLogic.BindingModels
 {
     public class PrescriptionBindingModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string FullNameDoctor { get; set; }
         public string PharmacyAddress { get; set; }
+        public Dictionary<int, (string, int)> PrescriptionMedicines { get; set; }
+        public Dictionary<int, (string, int)> PrescriptionTreatment { get; set; }
     }
 }
