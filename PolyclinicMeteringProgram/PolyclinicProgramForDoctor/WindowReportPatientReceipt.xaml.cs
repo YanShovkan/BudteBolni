@@ -47,8 +47,7 @@ namespace PolyclinicMeteringProgram
                     DateFrom = dpFrom.SelectedDate,
                     DateTo = dpTo.SelectedDate
                 });
-                ReportDataSource source = new ReportDataSource("DataSetOrders",
-               dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetPatientReceipt", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }

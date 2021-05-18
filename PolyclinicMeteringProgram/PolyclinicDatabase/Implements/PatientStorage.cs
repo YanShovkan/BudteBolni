@@ -19,6 +19,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .Select(CreateModel)
                     .ToList();
@@ -35,6 +36,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .Where(rec => rec.DoctorId == model.DoctorId)
                     .Select(CreateModel)
@@ -52,6 +54,7 @@ namespace PolyclinicDatabase.Implements
             {
                 var patient = context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
@@ -162,7 +165,6 @@ namespace PolyclinicDatabase.Implements
                 context.ProcedurePatients.RemoveRange(patientProcedure
                     .Where(rec => !model.PatientProcedures.ContainsKey(rec.PatientId))
                     .ToList());
-                context.SaveChanges();
 
                 context.SaveChanges();
             }

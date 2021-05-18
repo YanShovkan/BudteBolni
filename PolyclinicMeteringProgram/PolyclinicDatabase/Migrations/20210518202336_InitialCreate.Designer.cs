@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210518180823_InitialCreate")]
+    [Migration("20210518202336_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -18,7 +18,9 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Procedures
                     .Include(rec => rec.ProcedureMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Include(rec => rec.ProcedureTreatments)
+                    .ThenInclude(rec => rec.Treatment)
                     .Select(CreateModel)
                     .ToList();
             }
@@ -33,8 +35,10 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 return context.Procedures
-                     .Include(rec => rec.ProcedureMedicines)
+                    .Include(rec => rec.ProcedureMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Include(rec => rec.ProcedureTreatments)
+                    .ThenInclude(rec => rec.Treatment)
                     .Where(rec => rec.Name == model.Name)
                     .Select(CreateModel)
                     .ToList();
@@ -51,7 +55,9 @@ namespace PolyclinicDatabase.Implements
             {
                 var procedure = context.Procedures
                     .Include(rec => rec.ProcedureMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Include(rec => rec.ProcedureTreatments)
+                    .ThenInclude(rec => rec.Treatment)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
                 return procedure != null ?
@@ -129,16 +135,14 @@ namespace PolyclinicDatabase.Implements
                 Id = procedure.Id,
                 Name = procedure.Name,
                 Cost = procedure.Cost,
-               
+
                 ProcedureTreatments = procedure.ProcedureTreatments
                             .ToDictionary(recProcedureTreatments => recProcedureTreatments.TreatmentId,
                             recProcedureTreatments => (recProcedureTreatments.Treatment?.Name, recProcedureTreatments.Count)),
                 ProcedureMedicines = procedure.ProcedureMedicines
                             .ToDictionary(recMedicineProcedures => recMedicineProcedures.MedicineId,
-                            recMedicineProcedures =>( recMedicineProcedures.Medicine?.Name, recMedicineProcedures.Count))
-
+                            recMedicineProcedures => (recMedicineProcedures.Medicine?.Name, recMedicineProcedures.Count))
             };
-
         }
 
         private Procedure CreateModel(ProcedureBindingModel model, Procedure procedure, PolyclinicDatabase context)
@@ -158,31 +162,17 @@ namespace PolyclinicDatabase.Implements
                     .Where(rec => rec.ProcedureId == model.Id.Value)
                     .ToList();
 
+                context.ProcedureMedicines.RemoveRange(procedureMedicines
+                    .Where(rec => !model.ProcedureMedicines.ContainsKey(rec.ProcedureId))
+                    .ToList());
+                
                 var procedureTreatments = context.ProcedureTreatments
                    .Where(rec => rec.ProcedureId == model.Id.Value)
                    .ToList();
 
-                context.ProcedureMedicines.RemoveRange(procedureMedicines
-                    .Where(rec => !model.ProcedureMedicines.ContainsKey(rec.ProcedureId))
-                    .ToList());
-                context.SaveChanges();
-
                 context.ProcedureTreatments.RemoveRange(procedureTreatments
                    .Where(rec => !model.ProcedureTreatments.ContainsKey(rec.ProcedureId))
                    .ToList());
-                context.SaveChanges();
-
-                foreach (var updateMedicine in procedureMedicines)
-                {
-                    updateMedicine.Count = model.ProcedureMedicines[updateMedicine.MedicineId].Item2;
-                    model.ProcedureMedicines.Remove(updateMedicine.ProcedureId);
-                }
-                
-                foreach (var updateTreatment in procedureTreatments)
-                {
-                    updateTreatment.Count = model.ProcedureTreatments[updateTreatment.TreatmentId].Item2;
-                    model.ProcedureTreatments.Remove(updateTreatment.ProcedureId);
-                }
 
                 context.SaveChanges();
             }
@@ -197,7 +187,7 @@ namespace PolyclinicDatabase.Implements
                 });
                 context.SaveChanges();
             }
-
+            
             foreach (var procedureTreatments in model.ProcedureTreatments)
             {
                 context.ProcedureTreatments.Add(new ProcedureTreatment

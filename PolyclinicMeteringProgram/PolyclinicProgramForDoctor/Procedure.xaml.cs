@@ -1,10 +1,13 @@
-﻿using System;
-using System.Windows;
+﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
-using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.ViewModels;
-using Unity;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+using Unity;
 
 namespace PolyclinicMeteringProgram
 {
@@ -16,19 +19,16 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         ProcedureLogic _logic;
-        MedicineLogic medicineLogic;
-        TreatmentLogic treatmentLogic;
         public int _doctorId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
         private Dictionary<int, (string, int)> procedureMedicines;
         private Dictionary<int, (string, int)> procedureTreatments;
-        public Procedure(ProcedureLogic logic, MedicineLogic medicineLogic, TreatmentLogic treatmentLogic)
+
+        public Procedure(ProcedureLogic logic)
         {
             InitializeComponent();
             _logic = logic;
-            this.medicineLogic = medicineLogic;
-            this.treatmentLogic = treatmentLogic;
         }
 
         private void LoadData()
@@ -37,23 +37,23 @@ namespace PolyclinicMeteringProgram
             {
                 if (procedureMedicines != null)
                 {
-                    List<MedicineViewModel> list = new List<MedicineViewModel>();
+                    List<ProcedureMedicineViewModel> list = new List<ProcedureMedicineViewModel>();
                     foreach (var medicine in procedureMedicines)
                     {
-                        list.Add(medicineLogic.Read(new MedicineBindingModel { Id = medicine.Key })?[0]);
-
+                        list.Add(new ProcedureMedicineViewModel { Id = medicine.Key, MedicineName = medicine.Value.Item1, MedicineCount = medicine.Value.Item2 });
                     }
                     DataGridMedicines.ItemsSource = list;
+                    DataGridMedicines.Columns[0].Visibility = Visibility.Hidden;
                 }
                 if (procedureTreatments != null)
                 {
-                    List<TreatmentViewModel> list = new List<TreatmentViewModel>();
+                    List<ProcedureTreatmentViewModel> list = new List<ProcedureTreatmentViewModel>();
                     foreach (var treatment in procedureTreatments)
                     {
-                        list.Add(treatmentLogic.Read(new TreatmentBindingModel { Id = treatment.Key })?[0]);
-
+                        list.Add(new ProcedureTreatmentViewModel { Id = treatment.Key, TreatmentName = treatment.Value.Item1, TreatmentCount = treatment.Value.Item2 });
                     }
                     DataGridTreatments.ItemsSource = list;
+                    DataGridTreatments.Columns[0].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace PolyclinicMeteringProgram
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    MedicineViewModel medicine = (MedicineViewModel)DataGridMedicines.SelectedCells[0].Item;
+                    ProcedureMedicineViewModel medicine = (ProcedureMedicineViewModel)DataGridMedicines.SelectedCells[0].Item;
                     try
                     {
                         procedureMedicines.Remove(medicine.Id);
@@ -190,8 +190,6 @@ namespace PolyclinicMeteringProgram
             LoadData();
         }
 
-
-
         private void btnDeleteTreatment_Click(object sender, RoutedEventArgs e)
         {
             if (DataGridTreatments.SelectedIndex != -1)
@@ -201,7 +199,7 @@ namespace PolyclinicMeteringProgram
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    TreatmentViewModel treatment = (TreatmentViewModel)DataGridTreatments.SelectedCells[0].Item;
+                    ProcedureTreatmentViewModel treatment = (ProcedureTreatmentViewModel)DataGridTreatments.SelectedCells[0].Item;
                     try
                     {
                         procedureTreatments.Remove(treatment.Id);
@@ -214,6 +212,45 @@ namespace PolyclinicMeteringProgram
                     LoadData();
                 }
             }
+        }
+
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            string displayName = GetPropertyDisplayName(e.PropertyDescriptor);
+            if (!string.IsNullOrEmpty(displayName))
+            {
+                e.Column.Header = displayName;
+            }
+        }
+
+        public static string GetPropertyDisplayName(object descriptor)
+        {
+            PropertyDescriptor pd = descriptor as PropertyDescriptor;
+            if (pd != null)
+            {
+                DisplayNameAttribute displayName = pd.Attributes[typeof(DisplayNameAttribute)] as DisplayNameAttribute;
+                if (displayName != null && displayName != DisplayNameAttribute.Default)
+                {
+                    return displayName.DisplayName;
+                }
+            }
+            else
+            {
+                PropertyInfo pi = descriptor as PropertyInfo;
+                if (pi != null)
+                {
+                    Object[] attributes = pi.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                    for (int i = 0; i < attributes.Length; ++i)
+                    {
+                        DisplayNameAttribute displayName = attributes[i] as DisplayNameAttribute;
+                        if (displayName != null && displayName != DisplayNameAttribute.Default)
+                        {
+                            return displayName.DisplayName;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }
