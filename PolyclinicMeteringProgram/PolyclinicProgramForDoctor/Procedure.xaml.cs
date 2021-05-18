@@ -16,15 +16,19 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         ProcedureLogic _logic;
+        MedicineLogic medicineLogic;
+        TreatmentLogic treatmentLogic;
         public int _doctorId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
-        private Dictionary<int,(string, int)> procedureMedicines;
-        private Dictionary<int, string> procedureTreatments;
-        public Procedure(ProcedureLogic logic)
+        private Dictionary<int, (string, int)> procedureMedicines;
+        private Dictionary<int, (string, int)> procedureTreatments;
+        public Procedure(ProcedureLogic logic, MedicineLogic medicineLogic, TreatmentLogic treatmentLogic)
         {
             InitializeComponent();
             _logic = logic;
+            this.medicineLogic = medicineLogic;
+            this.treatmentLogic = treatmentLogic;
         }
 
         private void LoadData()
@@ -33,10 +37,23 @@ namespace PolyclinicMeteringProgram
             {
                 if (procedureMedicines != null)
                 {
-                    foreach (var proc in procedureMedicines)
+                    List<MedicineViewModel> list = new List<MedicineViewModel>();
+                    foreach (var medicine in procedureMedicines)
                     {
-                        DataGridMedicines.ItemsSource = procedureMedicines;
+                        list.Add(medicineLogic.Read(new MedicineBindingModel { Id = medicine.Key })?[0]);
+
                     }
+                    DataGridMedicines.ItemsSource = list;
+                }
+                if (procedureTreatments != null)
+                {
+                    List<TreatmentViewModel> list = new List<TreatmentViewModel>();
+                    foreach (var treatment in procedureTreatments)
+                    {
+                        list.Add(treatmentLogic.Read(new TreatmentBindingModel { Id = treatment.Key })?[0]);
+
+                    }
+                    DataGridTreatments.ItemsSource = list;
                 }
             }
             catch (Exception ex)
@@ -73,8 +90,8 @@ namespace PolyclinicMeteringProgram
             }
             else
             {
-                procedureMedicines =  new Dictionary<int, (string, int)>();
-                procedureTreatments = new Dictionary<int, string>();
+                procedureMedicines = new Dictionary<int, (string, int)>();
+                procedureTreatments = new Dictionary<int, (string, int)>();
             }
         }
 
@@ -117,6 +134,86 @@ namespace PolyclinicMeteringProgram
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void btnAddMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<AddMedicine>();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                if (!procedureMedicines.ContainsKey(window.Id))
+                {
+                    procedureMedicines.Add(window.Id, (window.MediceineName, window.MediceineCount));
+                }
+
+            }
+            LoadData();
+        }
+
+        private void btnDeleteMedicine_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridMedicines.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    MedicineViewModel medicine = (MedicineViewModel)DataGridMedicines.SelectedCells[0].Item;
+                    try
+                    {
+                        procedureMedicines.Remove(medicine.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
+        }
+
+        private void btnAddTreatment_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<AddTreatment>();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                if (!procedureTreatments.ContainsKey(window.Id))
+                {
+                    procedureTreatments.Add(window.Id, (window.TreatmentName, window.TreatmentCount));
+                }
+
+            }
+            LoadData();
+        }
+
+
+
+        private void btnDeleteTreatment_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridTreatments.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    TreatmentViewModel treatment = (TreatmentViewModel)DataGridTreatments.SelectedCells[0].Item;
+                    try
+                    {
+                        procedureTreatments.Remove(treatment.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
     }
 }

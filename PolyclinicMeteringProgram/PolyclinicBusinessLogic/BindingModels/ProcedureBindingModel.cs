@@ -9,7 +9,7 @@ namespace PolyclinicBusinessLogic.BindingModels
         public string Name { get; set; }
         public int Cost { get; set; }
         public Dictionary<int, (string, int)> ProcedureMedicines { get; set; }
-        public Dictionary<int, string> ProcedureTreatments { get; set; }
+        public Dictionary<int, (string, int)> ProcedureTreatments { get; set; }
         public Dictionary<int, string> PatientProcedure { get; set; }
     }
 }

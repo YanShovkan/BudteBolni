@@ -132,7 +132,7 @@ namespace PolyclinicDatabase.Implements
                
                 ProcedureTreatments = procedure.ProcedureTreatments
                             .ToDictionary(recProcedureTreatments => recProcedureTreatments.TreatmentId,
-                            recProcedureTreatments => recProcedureTreatments.Treatment?.Name),
+                            recProcedureTreatments => (recProcedureTreatments.Treatment?.Name, recProcedureTreatments.Count)),
                 ProcedureMedicines = procedure.ProcedureMedicines
                             .ToDictionary(recMedicineProcedures => recMedicineProcedures.MedicineId,
                             recMedicineProcedures =>( recMedicineProcedures.Medicine?.Name, recMedicineProcedures.Count))
@@ -145,6 +145,7 @@ namespace PolyclinicDatabase.Implements
         {
             procedure.Name = model.Name;
             procedure.Cost = model.Cost;
+
             if (procedure.Id == 0)
             {
                 context.Procedures.Add(procedure);
@@ -153,62 +154,57 @@ namespace PolyclinicDatabase.Implements
 
             if (model.Id.HasValue)
             {
-                var procedureTreatments = context.ProcedureTreatments
-                    .Where(rec => rec.ProcedureId == model.Id.Value)
-                    .ToList();
-
-                if (procedureTreatments.Count > 0 && model.ProcedureTreatments.Count != 0)
-                {
-                    context.ProcedureTreatments.RemoveRange(procedureTreatments
-                    .Where(rec => !model.ProcedureTreatments.ContainsKey(rec.ProcedureId))
-                    .ToList());
-
-                    context.SaveChanges();
-
-                    foreach (var treatment in procedureTreatments)
-                    {
-                        model.ProcedureTreatments.Remove(treatment.TreatmentId);
-                    }
-                    context.SaveChanges();
-                }
-
                 var procedureMedicines = context.ProcedureMedicines
                     .Where(rec => rec.ProcedureId == model.Id.Value)
                     .ToList();
 
-                if (procedureMedicines.Count > 0 && model.ProcedureMedicines.Count != 0)
-                {
-                    context.ProcedureMedicines.RemoveRange(procedureMedicines
+                var procedureTreatments = context.ProcedureTreatments
+                   .Where(rec => rec.ProcedureId == model.Id.Value)
+                   .ToList();
+
+                context.ProcedureMedicines.RemoveRange(procedureMedicines
                     .Where(rec => !model.ProcedureMedicines.ContainsKey(rec.ProcedureId))
                     .ToList());
+                context.SaveChanges();
 
-                    context.SaveChanges();
+                context.ProcedureTreatments.RemoveRange(procedureTreatments
+                   .Where(rec => !model.ProcedureTreatments.ContainsKey(rec.ProcedureId))
+                   .ToList());
+                context.SaveChanges();
 
-                    foreach (var medicine in procedureMedicines)
-                    {
-                        model.ProcedureMedicines.Remove(medicine.MedicineId);
-                    }
-                    context.SaveChanges();
-                }
-            }
-
-            foreach (var procedureTreatment in model.ProcedureTreatments)
-            {
-                context.ProcedureTreatments.Add(new ProcedureTreatment
+                foreach (var updateMedicine in procedureMedicines)
                 {
-                    ProcedureId = procedure.Id,
-                    TreatmentId = procedureTreatment.Key
-                });
+                    updateMedicine.Count = model.ProcedureMedicines[updateMedicine.MedicineId].Item2;
+                    model.ProcedureMedicines.Remove(updateMedicine.ProcedureId);
+                }
+                
+                foreach (var updateTreatment in procedureTreatments)
+                {
+                    updateTreatment.Count = model.ProcedureTreatments[updateTreatment.TreatmentId].Item2;
+                    model.ProcedureTreatments.Remove(updateTreatment.ProcedureId);
+                }
+
                 context.SaveChanges();
             }
 
-            foreach (var procedureMedicines in model.ProcedureMedicines)
+            foreach (var procrdureMedicine in model.ProcedureMedicines)
             {
                 context.ProcedureMedicines.Add(new ProcedureMedicine
                 {
                     ProcedureId = procedure.Id,
-                    MedicineId = procedureMedicines.Key,
-                    Count = procedureMedicines.Value.Item2
+                    MedicineId = procrdureMedicine.Key,
+                    Count = procrdureMedicine.Value.Item2
+                });
+                context.SaveChanges();
+            }
+
+            foreach (var procedureTreatments in model.ProcedureTreatments)
+            {
+                context.ProcedureTreatments.Add(new ProcedureTreatment
+                {
+                    ProcedureId = procedure.Id,
+                    TreatmentId = procedureTreatments.Key,
+                    Count = procedureTreatments.Value.Item2
                 });
                 context.SaveChanges();
             }

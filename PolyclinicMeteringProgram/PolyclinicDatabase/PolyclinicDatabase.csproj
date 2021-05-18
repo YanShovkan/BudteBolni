@@ -164,9 +164,9 @@
     <Compile Include="Implements\ProcedureStorage.cs" />
     <Compile Include="Implements\ReceiptStorage.cs" />
     <Compile Include="Implements\TreatmentStorage.cs" />
-    <Compile Include="Migrations\20210408203301_InitialCreate.cs" />
-    <Compile Include="Migrations\20210408203301_InitialCreate.designer.cs">
-      <DependentUpon>20210408203301_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20210518180823_InitialCreate.cs" />
+    <Compile Include="Migrations\20210518180823_InitialCreate.designer.cs">
+      <DependentUpon>20210518180823_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\PolyclinicDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Doctor.cs" />

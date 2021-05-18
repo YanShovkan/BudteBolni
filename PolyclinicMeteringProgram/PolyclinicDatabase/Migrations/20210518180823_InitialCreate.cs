@@ -171,7 +171,8 @@ namespace PolyclinicDatabase.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TreatmentId = table.Column<int>(nullable: false),
-                    ProcedureId = table.Column<int>(nullable: false)
+                    ProcedureId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
