@@ -30,7 +30,6 @@
         <DatePicker Name="tbBirthday" Grid.Column="1" Grid.Row="2"  Margin="5"  BorderBrush="Black" BorderThickness="2"/>
         <Button Name="btnAddProcedure" Content="Добавить процедуру" Grid.Column="0"  Grid.Row="3" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16"  Click="btnAddProcedure_Click"/>
         <Button Name="btnDeleteProcedure" Content="Удалить процедуру" Grid.Column="0"  Grid.Row="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" Click="btnDeleteProcedure_Click"  />
-        <Button Name="btnEditProcedure" Content="Изменить процедуру" Grid.Column="0"  Grid.Row="3" Margin="5" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="16" Click="btnEditProcedure_Click" />
         <DataGrid Name="DataGridView" Grid.Column="1"  Grid.Row="3" Margin="5"  BorderBrush="Black" BorderThickness="2" />
 
         <Button Name="btnAdd" Grid.Column="0" Grid.Row="4" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click" />

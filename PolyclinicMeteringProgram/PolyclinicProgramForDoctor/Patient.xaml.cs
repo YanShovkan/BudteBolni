@@ -16,15 +16,17 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         PatientLogic _logic;
+        ProcedureLogic procedureLogic;
         public int _doctorId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
         private Dictionary<int, string> patientProsedures;
 
-        public Patient(PatientLogic logic)
+        public Patient(PatientLogic logic, ProcedureLogic procedureLogic)
         {
             InitializeComponent();
             _logic = logic;
+            this.procedureLogic = procedureLogic;
         }
 
         private void Window_loaded(object sender, RoutedEventArgs e)
@@ -63,8 +65,14 @@ namespace PolyclinicMeteringProgram
             try
             {
                 if (patientProsedures != null)
-                {          
-                    DataGridView.ItemsSource = patientProsedures;
+                {
+                    List<ProcedureViewModel> list = new List<ProcedureViewModel>();
+                    foreach (var procedure in patientProsedures)
+                    {
+                        list.Add(procedureLogic.Read(new ProcedureBindingModel { Id = procedure.Key })?[0]);
+
+                    }
+                    DataGridView.ItemsSource = list;
                 }
             }
             catch (Exception ex)
@@ -126,7 +134,7 @@ namespace PolyclinicMeteringProgram
                 {
                     patientProsedures.Add(window.Id, window.ProcedureName);
                 }
-                   
+
             }
             LoadData();
         }
@@ -141,10 +149,10 @@ namespace PolyclinicMeteringProgram
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    KeyValuePair<int, string> procedure = (KeyValuePair<int, string>) DataGridView.SelectedCells[0].Item;
+                    ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
                     try
                     {
-                       patientProsedures.Remove(procedure.Key);
+                        patientProsedures.Remove(procedure.Id);
                     }
                     catch (Exception ex)
                     {
@@ -154,21 +162,7 @@ namespace PolyclinicMeteringProgram
                     LoadData();
                 }
             }
-        }
 
-        private void btnEditProcedure_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataGridView.SelectedIndex != -1)
-            {
-                var window = Container.Resolve<AddProcedure>();
-                KeyValuePair<int, string> procedure = (KeyValuePair<int, string>)DataGridView.SelectedCells[0].Item;
-                window.Id = procedure.Key;
-                if (window.DialogResult == true)
-                {
-                    patientProsedures[procedure.Key] = (window.ProcedureName);
-                    LoadData();
-                }
-            }
         }
     }
 }
