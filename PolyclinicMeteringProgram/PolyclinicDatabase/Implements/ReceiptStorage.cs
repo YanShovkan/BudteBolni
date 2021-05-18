@@ -56,7 +56,7 @@ namespace PolyclinicDatabase.Implements
         {
             using (var context = new PolyclinicDatabase())
             {
-                context.Doctors.Add(CreateModel(model, new Receipt()));
+                context.Receipts.Add(CreateModel(model, new Receipt()));
                 context.SaveChanges();
             }
         }
