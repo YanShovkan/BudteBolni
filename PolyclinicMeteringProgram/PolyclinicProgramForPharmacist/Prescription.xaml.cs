@@ -72,7 +72,7 @@ namespace PolyclinicProgramForPharmacist
             }
         }
 
-        private void Window_loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (id.HasValue)
             {

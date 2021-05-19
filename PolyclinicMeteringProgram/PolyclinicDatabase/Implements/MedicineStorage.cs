@@ -117,6 +117,7 @@ namespace PolyclinicDatabase.Implements
                 Name = medicine.Name,
                 ActiveSubstance = medicine.ActiveSubstance,
                 Classification = medicine.Classification,
+                PharmacistId = medicine.PharmacistId,
             };
 
         }
@@ -126,6 +127,7 @@ namespace PolyclinicDatabase.Implements
             medicine.Name = model.Name;
             medicine.ActiveSubstance = model.ActiveSubstance;
             medicine.Classification = model.Classification;
+            medicine.PharmacistId = model.PharmacistId;
 
             return medicine;
         }

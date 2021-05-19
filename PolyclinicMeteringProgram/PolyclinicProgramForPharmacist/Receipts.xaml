@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
         Title="Список поступлений" Height="400" Width="350"
-    Loaded="Window_loaded">
+    Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

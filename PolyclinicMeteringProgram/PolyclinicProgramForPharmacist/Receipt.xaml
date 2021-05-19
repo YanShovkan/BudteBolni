@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid Name="dgReceiptMedicine" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" SelectionChanged="Medicines_SelectionChanged" />
+        <DataGrid Name="dgReceiptMedicine" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True" />
 
         <Button Name="Save" Grid.Row="2" Grid.Column="2" Margin="64,0,224,10" Content="Сохранить" FontSize="16"/>
         <Button Name="Cancel" Grid.Row="2" Grid.Column="2" Margin="226,0,62,10" Content="Отменить" FontSize="16"/>
