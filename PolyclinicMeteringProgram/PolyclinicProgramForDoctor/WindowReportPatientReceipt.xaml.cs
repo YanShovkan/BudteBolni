@@ -7,6 +7,7 @@ using Unity;
 using Microsoft.Reporting.WinForms;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
+using System.Net.Mail;
 
 namespace PolyclinicMeteringProgram
 {
@@ -48,27 +49,66 @@ namespace PolyclinicMeteringProgram
                "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            MailMessage msg = new MailMessage();
+            SmtpClient client = new SmtpClient();
+            try
+            {
+                string basis = "Отчет по пациентам";
+                msg.Subject = basis;
+                msg.Body = basis + " c " + dpFrom.SelectedDate.Value.ToShortDateString() +
+                " по " + dpTo.SelectedDate.Value.ToShortDateString();
+
+                msg.From = new MailAddress("shovkanyanforlab@gmail.com");
+                msg.To.Add(TextBoxEmail.Text);
+                msg.IsBodyHtml = true;
+
+                _logic.SaveToPdfFile(new ReportPatientReceiptBindingModel
+                {
+                    DoctorId = _doctorId,
+                    FileName = "D:\\Otchet.pdf",
+                    DateFrom = dpFrom.SelectedDate,
+                    DateTo = dpTo.SelectedDate
+                });
+
+                Attachment attach = new Attachment("D:\\Otchet.pdf", MediaTypeNames.Application.Octet);
+                ContentDisposition disposition = attach.ContentDisposition;
+
+                //meta inf for mail
+                disposition.CreationDate = System.IO.File.GetCreationTime("D:\\Otchet.pdf");
+                disposition.ModificationDate = System.IO.File.GetLastWriteTime("D:\\Otchet.pdf");
+                disposition.ReadDate = System.IO.File.GetLastAccessTime("D:\\Otchet.pdf");
+
+                //conn
+                msg.Attachments.Add(attach);
+                client.Host = "smtp.gmail.com";
+                NetworkCredential basicauthenticationinfo = new NetworkCredential("iamthewisdom8@gmail.com", "password");
+                client.Port = int.Parse("587");
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.Credentials = basicauthenticationinfo;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Send(msg);
+
+                //success
+                MessageBox.Show("Сообщение отправлено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+            }
+
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
             {
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     try
                     {
-                        _logic.SaveToPdfFile(new ReportPatientReceiptBindingModel
-                        {
-                            DoctorId = _doctorId,
-                            FileName = dialog.FileName,
-                            DateFrom = dpFrom.SelectedDate,
-                            DateTo = dpTo.SelectedDate
-                        });
+                        
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
                         MessageBoxImage.Information);
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                    }
+                    
                 }
             }
         }
