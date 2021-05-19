@@ -66,7 +66,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                                         record.PatientName = patient.FullName;
                                         list.Add(record);
                                     }
-                                }   
+                                }
                             }
                         }
                     }

@@ -5,6 +5,8 @@ using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.ViewModels;
 using Unity;
 using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace PolyclinicMeteringProgram
 {
@@ -28,7 +30,47 @@ namespace PolyclinicMeteringProgram
         }
         private void btnMail_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dpFrom.SelectedDate == null)
+            {
+                MessageBox.Show("Выберите дату начала",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (dpTo.SelectedDate == null)
+            {
+                MessageBox.Show("Выберите дату окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (dpFrom.SelectedDate >= dpTo.SelectedDate)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
+            {
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    try
+                    {
+                        _logic.SaveToPdfFile(new ReportPatientReceiptBindingModel
+                        {
+                            DoctorId = _doctorId,
+                            FileName = dialog.FileName,
+                            DateFrom = dpFrom.SelectedDate,
+                            DateTo = dpTo.SelectedDate
+                        });
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    }
+                }
+            }
         }
 
         private void btnShow_Click(object sender, RoutedEventArgs e)
@@ -61,7 +103,6 @@ namespace PolyclinicMeteringProgram
                 });
                 ReportDataSource source = new ReportDataSource("DataSetReportByDate", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
-               
                 reportViewer.RefreshReport();
             }
             catch (Exception ex)
