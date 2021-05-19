@@ -118,7 +118,7 @@ namespace PolyclinicDatabase.Migrations
 
                     b.HasIndex("ProcedureId");
 
-                    b.ToTable("ProcedurePatients");
+                    b.ToTable("PatientProcedures");
                 });
 
             modelBuilder.Entity("PolyclinicDatabase.Models.Pharmacist", b =>

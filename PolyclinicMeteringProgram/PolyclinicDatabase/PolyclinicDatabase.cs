@@ -28,7 +28,7 @@ namespace PolyclinicDatabase
         public virtual DbSet<Pharmacist> Pharmacists { set; get; }
         public virtual DbSet<Prescription> Prescriptions { set; get; }
         public virtual DbSet<PrescriptionTreatment> PrescriptionTreatments { set; get; }
-        public virtual DbSet<PatientProcedure> ProcedurePatients { set; get; }
+        public virtual DbSet<PatientProcedure> PatientProcedures { set; get; }
         public virtual DbSet<ProcedureTreatment> ProcedureTreatments { set; get; }
         public virtual DbSet<Procedure> Procedures { set; get; }
         public virtual DbSet<Receipt> Receipts { set; get; }
