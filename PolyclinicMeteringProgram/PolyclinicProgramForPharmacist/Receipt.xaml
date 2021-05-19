@@ -24,12 +24,12 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid Name="dgReceiptMedicine" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" />
+        <DataGrid Name="dgReceiptMedicine" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True" />
 
         <Button Name="Save" Grid.Row="2" Grid.Column="2" Margin="64,0,224,10" Content="Сохранить" FontSize="16"/>
         <Button Name="Cancel" Grid.Row="2" Grid.Column="2" Margin="226,0,62,10" Content="Отменить" FontSize="16"/>
 
-        <Button Name="AddMedicine" Grid.Row="0" Grid.Column="2" Margin="114,50,94,10" Content="Добавить лекарство" FontSize="16" Click="btnAddMedicine_Click"/>
+        <Button Name="AddMedicine" Grid.Row="0" Grid.Column="2" Margin="114,50,94,10" Content="Добавить лекарство" FontSize="16" Click="AddMedicine_Click"/>
 
         <Label Content="Доставщик: " Grid.Column="0" Grid.Row="1" Margin="0,90,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" Height="30" Width="182" RenderTransformOrigin="0.405,1.899"/>
         <TextBox Name="tbDeliverymanName" Grid.Column="1" Grid.Row="1" Margin="0,90,10,0" Height="30" BorderBrush="Black" VerticalAlignment="Top" BorderThickness="2"/>
