@@ -22,7 +22,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "3cm", "6cm", "3cm", "2cm", "3cm"
+            List<string> columns = new List<string> { "4cm", "3cm", "3cm", "4cm", "3cm"
 };
             foreach (var elem in columns)
             {
@@ -31,8 +31,8 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Имя пациента", "Название процедуры", "Название лекарства",
-            "Дата поступления", "Имя доставщика" },
+                Texts = new List<string> { "ФИО пациента", "Название процедуры", "Название лекарства",
+            "ФИО доставщика", "Дата поступления" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
@@ -42,7 +42,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 {
                     Table = table,
                     Texts = new List<string> { receipt.PatientName,
-                        receipt.ProcedureName, receipt.MedecineName, receipt.Date.ToShortDateString() , receipt.DeliverymanName
+                        receipt.ProcedureName, receipt.MedecineName, receipt.DeliverymanName, receipt.Date.ToShortDateString()
                     },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
