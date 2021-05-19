@@ -63,7 +63,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 						ShareStringPart = shareStringPart,
 						ColumnName = "A",
 						RowIndex = rowIndex,
-						Text = "Процедура " + receipt.ProcedureName,
+						Text = "На процедуру " + receipt.ProcedureName,  
 						StyleIndex = 0U
 					});
 					InsertCellInWorksheet(new ExcelCellParameters
@@ -72,7 +72,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 						ShareStringPart = shareStringPart,
 						ColumnName = "B",
 						RowIndex = rowIndex,
-						Text = " была доставлена" +  receipt.Date +" числа",
+						Text = " человеком по имени " + receipt.DeliverymanName,
 						StyleIndex = 0U
 					});
 					InsertCellInWorksheet(new ExcelCellParameters
@@ -81,7 +81,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 						ShareStringPart = shareStringPart,
 						ColumnName = "С",
 						RowIndex = rowIndex,
-						Text = " человеком по имени " + receipt.DeliverymanName,
+						Text = " были доставлены лекарства " + receipt.Date + " числа.",
 						StyleIndex = 0U
 					});
 					rowIndex++;

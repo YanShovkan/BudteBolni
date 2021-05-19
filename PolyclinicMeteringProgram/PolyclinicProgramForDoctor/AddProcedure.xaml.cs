@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows;
 using PolyclinicBusinessLogic.BusinessLogics;
-using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.ViewModels;
 using Unity;
-using System.Collections.Generic;
-
 
 namespace PolyclinicMeteringProgram
 {

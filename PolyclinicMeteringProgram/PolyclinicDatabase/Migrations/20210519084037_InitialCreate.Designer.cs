@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210408203301_InitialCreate")]
+    [Migration("20210519084037_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,7 +120,7 @@ namespace PolyclinicDatabase.Migrations
 
                     b.HasIndex("ProcedureId");
 
-                    b.ToTable("ProcedurePatients");
+                    b.ToTable("PatientProcedures");
                 });
 
             modelBuilder.Entity("PolyclinicDatabase.Models.Pharmacist", b =>
@@ -263,6 +263,9 @@ namespace PolyclinicDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProcedureId")
                         .HasColumnType("int");

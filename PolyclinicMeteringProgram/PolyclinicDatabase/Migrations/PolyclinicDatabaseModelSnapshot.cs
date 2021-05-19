@@ -118,7 +118,7 @@ namespace PolyclinicDatabase.Migrations
 
                     b.HasIndex("ProcedureId");
 
-                    b.ToTable("ProcedurePatients");
+                    b.ToTable("PatientProcedures");
                 });
 
             modelBuilder.Entity("PolyclinicDatabase.Models.Pharmacist", b =>
@@ -261,6 +261,9 @@ namespace PolyclinicDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProcedureId")
                         .HasColumnType("int");

@@ -1,10 +1,14 @@
-﻿using System;
-using System.Windows;
+﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
-using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.ViewModels;
-using Unity;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+using Unity;
+
 
 namespace PolyclinicMeteringProgram
 {
@@ -16,17 +20,15 @@ namespace PolyclinicMeteringProgram
         [Dependency]
         public new IUnityContainer Container { get; set; }
         PatientLogic _logic;
-        ProcedureLogic procedureLogic;
         public int _doctorId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
         private Dictionary<int, string> patientProsedures;
 
-        public Patient(PatientLogic logic, ProcedureLogic procedureLogic)
+        public Patient(PatientLogic logic)
         {
             InitializeComponent();
             _logic = logic;
-            this.procedureLogic = procedureLogic;
         }
 
         private void Window_loaded(object sender, RoutedEventArgs e)
@@ -66,13 +68,13 @@ namespace PolyclinicMeteringProgram
             {
                 if (patientProsedures != null)
                 {
-                    List<ProcedureViewModel> list = new List<ProcedureViewModel>();
+                    List<PatientProcedureViewModel> list = new List<PatientProcedureViewModel>();
                     foreach (var procedure in patientProsedures)
                     {
-                        list.Add(procedureLogic.Read(new ProcedureBindingModel { Id = procedure.Key })?[0]);
-
+                        list.Add(new PatientProcedureViewModel { Id = procedure.Key, ProcedureName = procedure.Value });
                     }
                     DataGridView.ItemsSource = list;
+                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -149,7 +151,7 @@ namespace PolyclinicMeteringProgram
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
+                    PatientProcedureViewModel procedure = (PatientProcedureViewModel)DataGridView.SelectedCells[0].Item;
                     try
                     {
                         patientProsedures.Remove(procedure.Id);
@@ -162,7 +164,45 @@ namespace PolyclinicMeteringProgram
                     LoadData();
                 }
             }
+        }
 
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            string displayName = GetPropertyDisplayName(e.PropertyDescriptor);
+            if (!string.IsNullOrEmpty(displayName))
+            {
+                e.Column.Header = displayName;
+            }
+        }
+
+        public static string GetPropertyDisplayName(object descriptor)
+        {
+            PropertyDescriptor pd = descriptor as PropertyDescriptor;
+            if (pd != null)
+            {
+                DisplayNameAttribute displayName = pd.Attributes[typeof(DisplayNameAttribute)] as DisplayNameAttribute;
+                if (displayName != null && displayName != DisplayNameAttribute.Default)
+                {
+                    return displayName.DisplayName;
+                }
+            }
+            else
+            {
+                PropertyInfo pi = descriptor as PropertyInfo;
+                if (pi != null)
+                {
+                    Object[] attributes = pi.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                    for (int i = 0; i < attributes.Length; ++i)
+                    {
+                        DisplayNameAttribute displayName = attributes[i] as DisplayNameAttribute;
+                        if (displayName != null && displayName != DisplayNameAttribute.Default)
+                        {
+                            return displayName.DisplayName;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

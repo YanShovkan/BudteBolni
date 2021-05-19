@@ -19,6 +19,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .Select(CreateModel)
                     .ToList();
@@ -35,6 +36,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .Where(rec => rec.DoctorId == model.DoctorId)
                     .Select(CreateModel)
@@ -52,6 +54,7 @@ namespace PolyclinicDatabase.Implements
             {
                 var patient = context.Patients
                     .Include(rec => rec.PatientProcedures)
+                    .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
@@ -155,21 +158,21 @@ namespace PolyclinicDatabase.Implements
 
             if (model.Id.HasValue)
             {
-                var patientProcedure = context.ProcedurePatients
+                var patientProcedures = context.PatientProcedures
                      .Where(rec => rec.PatientId == model.Id.Value)
                      .ToList();
 
-                context.ProcedurePatients.RemoveRange(patientProcedure
-                    .Where(rec => !model.PatientProcedures.ContainsKey(rec.PatientId))
-                    .ToList());
-                context.SaveChanges();
+                foreach (var procedure in patientProcedures)
+                {
+                    model.PatientProcedures.Remove(procedure.ProcedureId);
+                }
 
                 context.SaveChanges();
             }
 
             foreach (var patientProcedure in model.PatientProcedures)
             {
-                context.ProcedurePatients.Add(new PatientProcedure
+                context.PatientProcedures.Add(new PatientProcedure
                 {
                     PatientId = patient.Id,
                     ProcedureId = patientProcedure.Key

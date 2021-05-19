@@ -35,7 +35,6 @@ namespace PolyclinicMeteringProgram
         {
             var window = Container.Resolve<Patients>();
             window._doctorId = _doctorId;
-            window.LoadData();
             window.Show();
         }
 

@@ -28,7 +28,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<(string, WordTextProperties)> { ($"Процедура {receipt.ProcedureName} была доставлена {receipt.Date} числа человеком по имени {receipt.DeliverymanName} ", new WordTextProperties { Size = "24", Bold = false }) },
+                        Texts = new List<(string, WordTextProperties)> { ($"На процедуру \"{receipt.ProcedureName}\" человеком по имени {receipt.DeliverymanName} были доставлены лекарства {receipt.Date} числа.", new WordTextProperties { Size = "24", Bold = false }) },
                         TextProperties = new WordTextProperties
                         {
                             Size = "24",

@@ -106,9 +106,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
     <Compile Include="ViewModels\MedicineViewModel.cs" />
+    <Compile Include="ViewModels\PatientProcedureViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
     <Compile Include="ViewModels\PrescriptionViewModel.cs" />
+    <Compile Include="ViewModels\ProcedureMedicineViewModel.cs" />
+    <Compile Include="ViewModels\ProcedureTreatmentViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="BusinessLogics\ReportProcedureReceiptLogic.cs" />

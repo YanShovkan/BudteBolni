@@ -18,6 +18,7 @@ namespace PolyclinicDatabase.Implements
             {
                 return context.Receipts
                     .Include(rec => rec.ReceiptMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Select(CreateModel)
                     .ToList();
             }
@@ -32,6 +33,8 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 return context.Receipts
+                    .Include(rec => rec.ReceiptMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Where(rec => rec.Date >= model.DateFrom && rec.Date <= model.DateTo)
                     .Select(CreateModel).ToList();
             }
@@ -46,7 +49,9 @@ namespace PolyclinicDatabase.Implements
             using (var context = new PolyclinicDatabase())
             {
                 var receipt = context.Receipts
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                    .Include(rec => rec.ReceiptMedicines)
+                    .ThenInclude(rec => rec.Medicine)
+                    .FirstOrDefault(rec => rec.Id == model.Id);
                 return receipt != null ?
                 CreateModel(receipt) : null;
             }
@@ -105,7 +110,10 @@ namespace PolyclinicDatabase.Implements
             {
                 Id = receipt.Id,
                 Date = receipt.Date,
-                DeliverymanName = receipt.DeliverymanName
+                DeliverymanName = receipt.DeliverymanName,
+                ReceiptMedicines =  receipt.ReceiptMedicines
+                            .ToDictionary(recReceiptMedicines => recReceiptMedicines.MedicineId,
+                            recReceiptMedicines => (recReceiptMedicines.Medicine?.Name, recReceiptMedicines.Count)),
             };
         }
 
