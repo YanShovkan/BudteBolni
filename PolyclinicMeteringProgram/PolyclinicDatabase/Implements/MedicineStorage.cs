@@ -59,20 +59,8 @@ namespace PolyclinicDatabase.Implements
         {
             using (var context = new PolyclinicDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        CreateModel(model, new Medicine());
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
+                context.Medicines.Add(CreateModel(model, new Medicine()));
+                context.SaveChanges();
             }
         }
         public void Update(MedicineBindingModel model)
@@ -126,7 +114,7 @@ namespace PolyclinicDatabase.Implements
             medicine.Name = model.Name;
             medicine.ActiveSubstance = model.ActiveSubstance;
             medicine.Classification = model.Classification;
-
+            medicine.PharmacistId = 1;
             return medicine;
         }
     }
