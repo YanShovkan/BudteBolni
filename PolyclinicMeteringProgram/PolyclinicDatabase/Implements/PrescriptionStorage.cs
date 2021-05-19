@@ -132,7 +132,7 @@ namespace PolyclinicDatabase.Implements
 
                 PrescriptionTreatment = prescription.PrescriptionTreatments
                             .ToDictionary(recPrescriptionTreatments => recPrescriptionTreatments.TreatmentId,
-                            recPrescriptionTreatments => recPrescriptionTreatments.Treatment?.Name),
+                            recPrescriptionTreatments => (recPrescriptionTreatments.Treatment?.Name, recPrescriptionTreatments.Count)),
                 PrescriptionMedicines = prescription.PrescriptionMedicines
                             .ToDictionary(recPrescriptionMedicines => recPrescriptionMedicines.MedicineId,
                             recPrescriptionMedicines => (recPrescriptionMedicines.Medicine?.Name, recPrescriptionMedicines.Count))
@@ -198,7 +198,8 @@ namespace PolyclinicDatabase.Implements
                 context.PrescriptionTreatments.Add(new PrescriptionTreatment
                 {
                     PrescriptionId = prescription.Id,
-                    TreatmentId = prescriptionTreatment.Key
+                    TreatmentId = prescriptionTreatment.Key,
+                    Count = prescriptionTreatment.Value.Item2
                 });
                 context.SaveChanges();
             }

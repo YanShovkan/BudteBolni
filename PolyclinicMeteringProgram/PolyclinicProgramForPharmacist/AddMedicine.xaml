@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-         Title="Добавление лекарства" Height="113.702" Width="500">
-    <Grid>
+        Title="Добавление лекарства" Height="180" Width="500">
+    <Grid Margin="4,0,0,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="56*"/>
         </Grid.RowDefinitions>
-        <Label Content="Название лекарства: " Grid.Column="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <ComboBox Name="cbMedicineName" Grid.Column="1" Margin="5" />
-
-        <Button Name="btnAdd" Grid.Column="0" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click"/>
-        <Button Name="btnCancel"  Grid.Column="1" Grid.Row="1" Margin="5" Content="Отмена" FontSize="16" Click="btnCancel_Click"/>
+        <Label Content="Название лекарства: " Grid.Row="0" Grid.Column="0" Margin="0,8,5,8" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center" Height="32" Width="165"/>
+        <ComboBox Name="cbMedicineName" Grid.Row="0" Grid.Column="1" Margin="5" />
+        <Label Content="Количество лекарств: " Grid.Row="1" Grid.Column="0" Margin="0,6,5,3" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center" Height="32" Width="173"/>
+        <TextBox Name="tbCount" Grid.Row="1" Grid.Column="1" Margin="5" />
+        <Button Name="Add" Grid.Row="2" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16"/>
+        <Button Name="Cancel" Grid.Row="2" Grid.Column="1" Margin="5" Content="Отменить" FontSize="16"/>
     </Grid>
 </Window>

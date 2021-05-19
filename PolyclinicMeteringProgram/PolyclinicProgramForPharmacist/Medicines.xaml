@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-       Title="Список лекарств" Height="400" Width="350">
+       Title="Список лекарств" Height="400" Width="350"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,7 +16,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Margin="5" AutoGenerateColumns="True" BorderBrush="Black"/>
+        <DataGrid Name="DataGridView" Grid.Row="0" Margin="5" AutoGenerateColumns="True" BorderBrush="Black"/>
         <Button Name="Add" Grid.Row="1" Margin="5" Content="Добавить" FontSize="16" Click="Add_Click"/>
         <Button Name="Delete" Grid.Row="2" Margin="5" Content="Удалить" FontSize="16" Click="Delete_Click"/>
         <Button Name="Change" Grid.Row="3" Margin="5" Content="Изменить" FontSize="16" Click="Change_Click"/>

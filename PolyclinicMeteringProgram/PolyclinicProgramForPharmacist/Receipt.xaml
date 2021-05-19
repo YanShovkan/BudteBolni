@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-         Title="Формирование поступления" Height="450" Width="857.203">
+         Title="Формирование поступления" Height="450" Width="857.203"
+        Loaded="Window_loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="104" />
@@ -23,16 +24,16 @@
         </Grid.ColumnDefinitions>
 
 
-        <DataGrid Name="Medicines" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" />
+        <DataGrid Name="dgReceiptMedicine" Grid.Column="2" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" SelectionChanged="Medicines_SelectionChanged" />
 
         <Button Name="Save" Grid.Row="2" Grid.Column="2" Margin="64,0,224,10" Content="Сохранить" FontSize="16"/>
         <Button Name="Cancel" Grid.Row="2" Grid.Column="2" Margin="226,0,62,10" Content="Отменить" FontSize="16"/>
 
         <Button Name="AddMedicine" Grid.Row="0" Grid.Column="2" Margin="114,50,94,10" Content="Добавить лекарство" FontSize="16" Click="AddMedicine_Click"/>
 
-        <Label Content="Количество упаковок: " Grid.Column="0" Grid.Row="1" Margin="0,23,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" Height="30" Width="182" RenderTransformOrigin="0.405,1.899"/>
-        <TextBox Name="NumberOfPackages" Grid.Column="1" Grid.Row="1" Margin="0,23,10,0" Height="30" BorderBrush="Black" VerticalAlignment="Top" BorderThickness="2"/>
+        <Label Content="Доставщик: " Grid.Column="0" Grid.Row="1" Margin="0,90,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16" Height="30" Width="182" RenderTransformOrigin="0.405,1.899"/>
+        <TextBox Name="tbDeliverymanName" Grid.Column="1" Grid.Row="1" Margin="0,90,10,0" Height="30" BorderBrush="Black" VerticalAlignment="Top" BorderThickness="2"/>
         <Label Content="Дата поступления: " Grid.Column="0" Grid.Row="1" Margin="0,162,10,0" HorizontalAlignment="Right"  VerticalAlignment="Top" FontSize="16" Height="31" Width="177" />
-        <DatePicker Name="Birthday" Grid.Column="1" Grid.Row="1"  Margin="0,166,10,54"  BorderBrush="Black" BorderThickness="2"/>
+        <DatePicker Name="tbDate" Grid.Column="1" Grid.Row="1"  Margin="0,166,10,54"  BorderBrush="Black" BorderThickness="2"/>
     </Grid>
 </Window>

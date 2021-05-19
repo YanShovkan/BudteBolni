@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-        Title="Создание лекарства" Height="251.271" Width="600">
+        Title="Создание лекарства" Height="251.271" Width="600"
+        Loaded="Window_loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -18,11 +19,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Название: " Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <TextBox Name="Name" Grid.Column="1" Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="2"/>
+        <TextBox Name="tbName" Grid.Column="1" Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="2"/>
         <Label Content="Действующее вещество: " Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <TextBox Name="ActiveSubstance" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
+        <TextBox Name="tbActiveSubstance" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
         <Label Content="Классификация: " Grid.Column="0"  Grid.Row="2"  Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <TextBox Name="Classification" Grid.Column="1" Grid.Row="2" Margin="5" BorderBrush="Black" BorderThickness="2"/>
+        <TextBox Name="tbClassification" Grid.Column="1" Grid.Row="2" Margin="5" BorderBrush="Black" BorderThickness="2"/>
         <Button  Name="btnAdd" Grid.Column="0" Grid.Row="3" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click"/>
         <Button  Name="btnCancel" Grid.Column="1" Grid.Row="3" Margin="5" Content="Отмена" FontSize="16" Click="btnCancel_Click" />
     </Grid>

@@ -109,6 +109,8 @@
     <Compile Include="ViewModels\PatientProcedureViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\PharmacistViewModel.cs" />
+    <Compile Include="ViewModels\PrescriptionMedicineViewModel.cs" />
+    <Compile Include="ViewModels\PrescriptionTreatmentViewModel.cs" />
     <Compile Include="ViewModels\PrescriptionViewModel.cs" />
     <Compile Include="ViewModels\ProcedureMedicineViewModel.cs" />
     <Compile Include="ViewModels\ProcedureTreatmentViewModel.cs" />
