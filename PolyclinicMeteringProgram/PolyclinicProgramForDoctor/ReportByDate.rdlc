@@ -9,20 +9,22 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Отчет за период</Value>
+                <Value>Отчет по пациентам и поступлениям</Value>
                 <Style>
                   <FontSize>18pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.05516cm</Top>
-        <Left>6.61141cm</Left>
+        <Top>2.06058cm</Top>
+        <Left>0.47497cm</Left>
         <Height>0.81167cm</Height>
-        <Width>5.04001cm</Width>
+        <Width>17.42cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -383,7 +385,7 @@
         <Top>3.33216cm</Top>
         <Left>0.47497cm</Left>
         <Height>1.2cm</Height>
-        <Width>17.41999cm</Width>
+        <Width>17.42cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>

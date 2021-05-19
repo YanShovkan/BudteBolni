@@ -80,7 +80,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfoForDoctor
             {
                 FileName = model.FileName,
-                Title = "Список пациентов и поступлений",
+                Title = "Отчет по пациентам и поступлениям",
                 DateFrom = model.DateFrom.Value,
                 DateTo = model.DateTo.Value,
                 Receipts = GetPatientReceipt(model)
