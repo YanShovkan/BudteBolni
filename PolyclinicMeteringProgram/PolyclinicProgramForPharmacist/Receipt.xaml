@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-         Title="Формирование поступления" Height="450" Width="857.203">
+         Title="Формирование поступления" Height="450" Width="857.203"
+        Loaded="Window_loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="104" />

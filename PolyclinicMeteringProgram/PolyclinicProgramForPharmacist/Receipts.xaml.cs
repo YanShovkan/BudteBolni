@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PolyclinicBusinessLogic.BindingModels;
+using PolyclinicBusinessLogic.BusinessLogics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +23,8 @@ namespace PolyclinicProgramForPharmacist
     public partial class Receipts : Window
     {
         [Dependency]
-        public IUnityContainer Container { get; set; }
+        public new IUnityContainer Container { get; set; }
+        ReceiptLogic _logic;
         public Receipts()
         {
             InitializeComponent();
@@ -31,6 +34,31 @@ namespace PolyclinicProgramForPharmacist
         {
             var window = Container.Resolve<Receipt>();
             window.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            try
+            {
+                var list = _logic.Read(null);
+                if (list != null)
+                {
+                    DataGridView.ItemsSource = list;
+                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[3].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

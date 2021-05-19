@@ -39,7 +39,7 @@ namespace PolyclinicProgramForPharmacist
         }
 
         public string MedicineName { get { return cbMedicineName.Text; } }
-        public string Count { get { return tbCount.Text; } }
+        public int Count { get { return Convert.ToInt32(tbCount.Text); } }
 
         public AddMedicine(MedicineLogic logic)
         {

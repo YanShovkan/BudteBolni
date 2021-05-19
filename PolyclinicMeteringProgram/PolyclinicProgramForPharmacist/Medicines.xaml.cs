@@ -33,6 +33,11 @@ namespace PolyclinicProgramForPharmacist
             LoadData();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
         private void LoadData()
         {
             try

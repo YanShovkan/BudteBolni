@@ -52,7 +52,7 @@ namespace PolyclinicProgramForPharmacist
                     {
                         tbDeliverymanName.Text = view.DeliverymanName;
                         tbDate.SelectedDate = view.Date;
-                        receiptMedicine = view.ReceptMedecines;
+                        receiptMedicine = view.ReceiptMedicines;
                         LoadData();
                     }
                 }
@@ -132,7 +132,7 @@ namespace PolyclinicProgramForPharmacist
             {
                 if (!receiptMedicine.ContainsKey(window.Id))
                 {
-                    receiptMedicine.Add(window.Id, window.MedicineName, window.Count);
+                    receiptMedicine.Add(window.Id, (window.MedicineName, window.Count));
                 }
 
             }

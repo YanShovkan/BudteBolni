@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PolyclinicBusinessLogic.BusinessLogics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace PolyclinicProgramForPharmacist
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
+        PrescriptionLogic _logic;
         public Prescriptions()
         {
             InitializeComponent();
@@ -31,6 +33,32 @@ namespace PolyclinicProgramForPharmacist
         {
             var window = Container.Resolve<Prescription>();
             window.Show();
+        }
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            try
+            {
+                var list = _logic.Read(null);
+                if (list != null)
+                {
+                    DataGridView.ItemsSource = list;
+                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[3].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
