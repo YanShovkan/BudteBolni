@@ -51,7 +51,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 };
                 foreach (var medicine in medicines)
                 {
-                    if (receipt.ReceptMedecines.ContainsKey(medicine.Id))
+                    if (receipt.ReceiptMedicines.ContainsKey(medicine.Id))
                     {
                         record.MedecineName = medicine.Name;
                         foreach (var procedure in procedures)

@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Forms;
+﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
 using PolyclinicBusinessLogic.ViewModels;
-using PolyclinicBusinessLogic.BindingModels;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using Unity;
 
 namespace PolyclinicMeteringProgram
@@ -16,12 +19,17 @@ namespace PolyclinicMeteringProgram
 
         ProcedureLogic logicP;
         ReceiptReportLogic logicR;
+
         List<ProcedureViewModel> list = new List<ProcedureViewModel>();
         public WindowReceiptReport(ReceiptReportLogic _logicR, ProcedureLogic _logicP)
         {
             InitializeComponent();
             logicR = _logicR;
             logicP = _logicP;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             LoadData();
         }
 
@@ -30,8 +38,12 @@ namespace PolyclinicMeteringProgram
             try
             {
                 if (list != null)
-                {
+                { 
                     DataGridView.ItemsSource = list;
+                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[3].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
+                    DataGridView.Items.Refresh();
                 }
             }
             catch (Exception ex)
@@ -50,14 +62,33 @@ namespace PolyclinicMeteringProgram
                 if (!list.Contains(logicP.Read(new ProcedureBindingModel { Id = window.Id })[0]))
                 {
                     list.Add(logicP.Read(new ProcedureBindingModel { Id = window.Id })[0]);
+                    LoadData();
                 }
             }
-            LoadData();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    ProcedureViewModel procedure = (ProcedureViewModel)DataGridView.SelectedCells[0].Item;
+                    try
+                    {
+                        list.Remove(procedure);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
 
         private void SaveToWord_Click(object sender, RoutedEventArgs e)
@@ -107,9 +138,43 @@ namespace PolyclinicMeteringProgram
             Close();
         }
 
-        private void Change_Click(object sender, RoutedEventArgs e)
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
+            string displayName = GetPropertyDisplayName(e.PropertyDescriptor);
+            if (!string.IsNullOrEmpty(displayName))
+            {
+                e.Column.Header = displayName;
+            }
+        }
 
+        public static string GetPropertyDisplayName(object descriptor)
+        {
+            PropertyDescriptor pd = descriptor as PropertyDescriptor;
+            if (pd != null)
+            {
+                DisplayNameAttribute displayName = pd.Attributes[typeof(DisplayNameAttribute)] as DisplayNameAttribute;
+                if (displayName != null && displayName != DisplayNameAttribute.Default)
+                {
+                    return displayName.DisplayName;
+                }
+            }
+            else
+            {
+                PropertyInfo pi = descriptor as PropertyInfo;
+                if (pi != null)
+                {
+                    Object[] attributes = pi.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                    for (int i = 0; i < attributes.Length; ++i)
+                    {
+                        DisplayNameAttribute displayName = attributes[i] as DisplayNameAttribute;
+                        if (displayName != null && displayName != DisplayNameAttribute.Default)
+                        {
+                            return displayName.DisplayName;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

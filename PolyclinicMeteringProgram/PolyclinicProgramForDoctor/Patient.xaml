@@ -8,7 +8,7 @@
         Title="Формирование пациента" Height="350" Width="600"
         Loaded="Window_loaded">
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -16,7 +16,6 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

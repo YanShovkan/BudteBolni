@@ -21,7 +21,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             _medicineStorage = medicineStorage;
             _receiptStorage = receiptStorage;
         }
-       
+
         public List<ReportReceiptViewModel> GetProcedureRecepts(List<ProcedureViewModel> procedures)
         {
             var medicines = _medicineStorage.GetFullList();
@@ -30,17 +30,18 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
             foreach (var procedure in procedures)
             {
-                var record = new ReportReceiptViewModel
-                {
-                    ProcedureName = procedure.Name
-                };
                 foreach (var medicine in medicines)
                 {
+                    
                     if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
                     {
+                        var record = new ReportReceiptViewModel
+                        {
+                            ProcedureName = procedure.Name
+                        };
                         foreach (var receipt in receipts)
                         {
-                            if (receipt.ReceptMedecines.ContainsKey(medicine.Id))
+                            if (receipt.ReceiptMedicines.ContainsKey(medicine.Id))
                             {
                                 record.Date = receipt.Date;
                                 record.DeliverymanName = receipt.DeliverymanName;
@@ -49,11 +50,11 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                         }
                     }
                 }
-                
+
             }
             return list;
         }
-       
+
         public void SaveToWordFile(string fileName, List<ProcedureViewModel> procedures)
         {
             SaveToWord.CreateDoc(new ExcelWordInfoForDoctor
@@ -63,7 +64,7 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                 Receipts = GetProcedureRecepts(procedures)
             });
         }
-       
+
         public void SaveToExcelFile(string fileName, List<ProcedureViewModel> procedures)
         {
             SaveToExcel.CreateDoc(new ExcelWordInfoForDoctor
