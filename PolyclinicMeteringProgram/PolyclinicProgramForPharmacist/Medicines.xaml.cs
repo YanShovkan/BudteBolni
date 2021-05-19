@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PolyclinicBusinessLogic.BindingModels;
+using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,26 +24,81 @@ namespace PolyclinicProgramForPharmacist
     public partial class Medicines : Window
     {
         [Dependency]
-        public IUnityContainer Container { get; set; }
-        public Medicines()
+        public new IUnityContainer Container { get; set; }
+        MedicineLogic _logic;
+        public Medicines(MedicineLogic logic)
         {
             InitializeComponent();
+            _logic = logic;
+            LoadData();
         }
 
+        private void LoadData()
+        {
+            try
+            {
+                var list = _logic.Read(null);
+
+                if (list != null)
+                {
+                    DataGridView.ItemsSource = list;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+               MessageBoxImage.Error);
+            }
+        }
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Medicine>();
-            window.Show();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                LoadData();
+            }
+
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    MedicineViewModel treatment = (MedicineViewModel)DataGridView.SelectedCells[0].Item;
+                    int id = Convert.ToInt32(treatment.Id);
+                    try
+                    {
+                        _logic.Delete(new MedicineBindingModel { Id = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
 
         private void Change_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DataGridView.SelectedIndex != -1)
+            {
+                var window = Container.Resolve<Medicine>();
+                MedicineViewModel medicine = (MedicineViewModel)DataGridView.SelectedCells[0].Item;
+                window.Id = Convert.ToInt32(medicine.Id);
+                window.ShowDialog();
+                if (window.DialogResult == true)
+                {
+                    LoadData();
+                }
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

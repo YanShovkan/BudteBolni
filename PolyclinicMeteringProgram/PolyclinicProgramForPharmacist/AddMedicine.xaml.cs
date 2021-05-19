@@ -39,6 +39,7 @@ namespace PolyclinicProgramForPharmacist
         }
 
         public string MedicineName { get { return cbMedicineName.Text; } }
+        public string Count { get { return tbCount.Text; } }
 
         public AddMedicine(MedicineLogic logic)
         {
@@ -72,6 +73,12 @@ namespace PolyclinicProgramForPharmacist
                 if (cbMedicineName.SelectedValue == null)
                 {
                     MessageBox.Show("Выберите лекарство", "Ошибка", MessageBoxButton.OK,
+                   MessageBoxImage.Error);
+                    return;
+                }
+                if (tbCount.Text == "")
+                {
+                    MessageBox.Show("Введите количество", "Ошибка", MessageBoxButton.OK,
                    MessageBoxImage.Error);
                     return;
                 }
