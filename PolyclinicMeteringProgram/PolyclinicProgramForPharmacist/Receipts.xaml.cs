@@ -25,9 +25,10 @@ namespace PolyclinicProgramForPharmacist
         [Dependency]
         public new IUnityContainer Container { get; set; }
         ReceiptLogic _logic;
-        public Receipts()
+        public Receipts(ReceiptLogic logic)
         {
             InitializeComponent();
+            _logic = logic;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

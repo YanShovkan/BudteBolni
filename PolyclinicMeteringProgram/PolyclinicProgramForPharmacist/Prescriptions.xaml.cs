@@ -24,9 +24,10 @@ namespace PolyclinicProgramForPharmacist
         [Dependency]
         public IUnityContainer Container { get; set; }
         PrescriptionLogic _logic;
-        public Prescriptions()
+        public Prescriptions(PrescriptionLogic logic)
         {
             InitializeComponent();
+            _logic = logic;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

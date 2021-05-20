@@ -2,18 +2,10 @@
 using PolyclinicBusinessLogic.BusinessLogics;
 using PolyclinicBusinessLogic.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity;
 
 namespace PolyclinicProgramForPharmacist
@@ -32,7 +24,6 @@ namespace PolyclinicProgramForPharmacist
         {
             InitializeComponent();
             _logic = logic;
-            LoadData();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,10 +36,11 @@ namespace PolyclinicProgramForPharmacist
             try
             {
                 var list = _logic.Read(null);
-
                 if (list != null)
                 {
                     DataGridView.ItemsSource = list;
+                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
+                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -113,6 +105,45 @@ namespace PolyclinicProgramForPharmacist
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            string displayName = GetPropertyDisplayName(e.PropertyDescriptor);
+            if (!string.IsNullOrEmpty(displayName))
+            {
+                e.Column.Header = displayName;
+            }
+        }
+
+        public static string GetPropertyDisplayName(object descriptor)
+        {
+            PropertyDescriptor pd = descriptor as PropertyDescriptor;
+            if (pd != null)
+            {
+                DisplayNameAttribute displayName = pd.Attributes[typeof(DisplayNameAttribute)] as DisplayNameAttribute;
+                if (displayName != null && displayName != DisplayNameAttribute.Default)
+                {
+                    return displayName.DisplayName;
+                }
+            }
+            else
+            {
+                PropertyInfo pi = descriptor as PropertyInfo;
+                if (pi != null)
+                {
+                    Object[] attributes = pi.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                    for (int i = 0; i < attributes.Length; ++i)
+                    {
+                        DisplayNameAttribute displayName = attributes[i] as DisplayNameAttribute;
+                        if (displayName != null && displayName != DisplayNameAttribute.Default)
+                        {
+                            return displayName.DisplayName;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }
