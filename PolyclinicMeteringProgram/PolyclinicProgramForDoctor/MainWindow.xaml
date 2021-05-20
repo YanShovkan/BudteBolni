@@ -18,6 +18,7 @@
             <MenuItem Name="miPatients" Header="Пациенты" Click="miPatients_Click"/>
             <MenuItem Name="miGetList" Header="Получение списка" Click="miGetList_Click"/>
             <MenuItem Name="miGetReport" Header="Отчет" Click="miGetReport_Click"/>
+            <MenuItem Name="miGraph" Header="График" Click="miGraph_Click" />
             <Separator />
         </Menu>
 

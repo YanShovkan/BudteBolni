@@ -50,5 +50,11 @@ namespace PolyclinicMeteringProgram
             window._doctorId = _doctorId;
             window.Show();
         }
+
+        private void miGraph_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Statistic>();
+            window.Show();
+        }
     }
 }

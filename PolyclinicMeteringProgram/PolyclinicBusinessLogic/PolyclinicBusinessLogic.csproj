@@ -121,6 +121,7 @@
     <Compile Include="ViewModels\ReportPatientViewModel.cs" />
     <Compile Include="ViewModels\ReportProcedureReceiptViewModel.cs" />
     <Compile Include="ViewModels\ReportReceiptViewModel.cs" />
+    <Compile Include="ViewModels\StatisticByProcedureViewModel.cs" />
     <Compile Include="ViewModels\TreatmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
