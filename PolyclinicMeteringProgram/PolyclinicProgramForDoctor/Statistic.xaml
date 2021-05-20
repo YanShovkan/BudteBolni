@@ -1,0 +1,27 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PolyclinicMeteringProgram"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" x:Class="PolyclinicMeteringProgram.Statistic"
+        mc:Ignorable="d"
+        Title="Статистика процедур" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="BuildGraph" Content="Построить график" Grid.Column="0" Grid.Row="0" Margin="5"  FontSize="16" Click="BuildGraph_Click" />
+        <DataGrid x:Name="DataGridView" Grid.Column="0" Grid.Row="1" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+
+        <Wpf:CartesianChart Name="Graph" Grid.Column="1" Grid.Row="1" Margin="5"   />
+
+    </Grid>
+</Window>
