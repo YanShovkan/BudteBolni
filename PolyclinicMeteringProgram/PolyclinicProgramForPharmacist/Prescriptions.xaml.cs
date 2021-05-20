@@ -1,4 +1,6 @@
-﻿using PolyclinicBusinessLogic.BusinessLogics;
+﻿using PolyclinicBusinessLogic.BindingModels;
+using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +73,46 @@ namespace PolyclinicProgramForPharmacist
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    PrescriptionViewModel prescription = (PrescriptionViewModel)DataGridView.SelectedCells[0].Item;
+                    int id = Convert.ToInt32(prescription.Id);
+                    try
+                    {
+                        _logic.Delete(new PrescriptionBindingModel { Id = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
+        }
+
+        private void Change_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                var window = Container.Resolve<Prescription>();
+                PrescriptionViewModel prescription = (PrescriptionViewModel)DataGridView.SelectedCells[0].Item;
+                window.Id = Convert.ToInt32(prescription.Id);
+                window.ShowDialog();
+                if (window.DialogResult == true)
+                {
+                    LoadData();
+                }
+            }
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

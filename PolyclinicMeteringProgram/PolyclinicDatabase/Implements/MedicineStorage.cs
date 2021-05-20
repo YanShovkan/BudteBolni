@@ -68,19 +68,14 @@ namespace PolyclinicDatabase.Implements
         {
             using (var context = new PolyclinicDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                var medicine = context.Medicines.FirstOrDefault(rec => rec.Id ==
+               model.Id);
+                if (medicine == null)
                 {
-
-                    var medicine = context.Medicines.FirstOrDefault(rec => rec.Id == model.Id);
-
-                    if (medicine == null)
-                    {
-                        throw new Exception("Лекарство не найдено");
-                    }
-
-                    CreateModel(model, medicine);
-                    context.SaveChanges();
+                    throw new Exception("Лекарство не найдено");
                 }
+                CreateModel(model, medicine);
+                context.SaveChanges();
             }
         }
         public void Delete(MedicineBindingModel model)

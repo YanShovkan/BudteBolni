@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-       Title="WindowPatientReport" Height="800" Width="350"
+       Title="Отчет по лекарствам пациентов" Height="800" Width="350"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-
-            <RowDefinition Height="60"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="60"/>
             <RowDefinition/>
@@ -19,12 +17,11 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Name="DataGridView" Grid.Row="3" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
-        <Button Name="Add" Grid.Row="0" Margin="5" Content="Добавить лекарство" FontSize="16" Grid.ColumnSpan="2" Click="Add_Click"/>
-        <Button Name="Delete" Grid.Row="1" Margin="5" Content="Удалить лекарство" FontSize="16" Grid.ColumnSpan="2" Click="Delete_Click"/>
-        <Button Name="Change" Grid.Row="2" Margin="5" Content="Изменить лекарство" FontSize="16" Grid.ColumnSpan="2" Click="Change_Click"/>
-        <Button Name="SaveToWord"  Grid.Row="4" Margin="5" Content="Сохранить в Word" FontSize="16" Grid.ColumnSpan="2" Click="SaveToWord_Click"/>
-        <Button Name="SaveToExcel"  Grid.Row="5" Margin="5" Content="Сохранить в Excel" FontSize="16" Grid.ColumnSpan="2" Click="SaveToExcel_Click"/>
-        <Button Name="Cancel"  Grid.Row="6" Margin="5" Content="Отмена" FontSize="16" Grid.ColumnSpan="2" Click="Cancel_Click"/>
+        <DataGrid Name="DataGridView" Grid.Row="2" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
+        <Button Name="Add" Grid.Row="0" Content="Добавить лекарство"  Grid.ColumnSpan="2" Click="Add_Click"/>
+        <Button Name="Delete" Grid.Row="1"  Content="Удалить лекарство"  Grid.ColumnSpan="2" Click="Delete_Click"/>
+        <Button Name="SaveToWord"  Grid.Row="3"  Content="Сохранить в Word"  Grid.ColumnSpan="2" Click="SaveToWord_Click"  />
+        <Button Name="SaveToExcel"  Grid.Row="4"  Content="Сохранить в Excel"  Grid.ColumnSpan="2" Click="SaveToExcel_Click"  />
+        <Button Name="Cancel"  Grid.Row="5" Content="Отмена"  Grid.ColumnSpan="2" Click="Cancel_Click" />
     </Grid>
 </Window>

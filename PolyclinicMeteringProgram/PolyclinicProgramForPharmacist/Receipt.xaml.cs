@@ -111,6 +111,7 @@ namespace PolyclinicProgramForPharmacist
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
+                this.DialogResult = true;
                 Close();
             }
             catch (Exception ex)
@@ -150,7 +151,7 @@ namespace PolyclinicProgramForPharmacist
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    MedicineViewModel medicine = (MedicineViewModel)dgReceiptMedicine.SelectedCells[0].Item;
+                    ReceiptMedicineViewModel medicine = (ReceiptMedicineViewModel)dgReceiptMedicine.SelectedCells[0].Item;
                     try
                     {
                         receiptMedicine.Remove(medicine.Id);

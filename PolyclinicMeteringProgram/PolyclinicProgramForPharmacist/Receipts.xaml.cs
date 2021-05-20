@@ -1,5 +1,6 @@
 ﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,11 @@ namespace PolyclinicProgramForPharmacist
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Receipt>();
-            window.Show();
+            window.ShowDialog();
+            if (window.DialogResult == true)
+            {
+                LoadData();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -55,6 +60,7 @@ namespace PolyclinicProgramForPharmacist
                     DataGridView.Columns[0].Visibility = Visibility.Hidden;
                     DataGridView.Columns[3].Visibility = Visibility.Hidden;
                 }
+                DataGridView.Items.Refresh();
             }
             catch (Exception ex)
             {
@@ -105,6 +111,46 @@ namespace PolyclinicProgramForPharmacist
                 }
             }
             return null;
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    ReceiptViewModel receipt = (ReceiptViewModel)DataGridView.SelectedCells[0].Item;
+                    int id = Convert.ToInt32(receipt.Id);
+                    try
+                    {
+                        _logic.Delete(new ReceiptBindingModel { Id = id });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
+        }
+
+        private void Change_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                var window = Container.Resolve<Receipt>();
+                ReceiptViewModel receipt = (ReceiptViewModel)DataGridView.SelectedCells[0].Item;
+                window.Id = Convert.ToInt32(receipt.Id);
+                window.ShowDialog();
+                if (window.DialogResult == true)
+                {
+                    LoadData();
+                }
+            }
         }
     }
 }

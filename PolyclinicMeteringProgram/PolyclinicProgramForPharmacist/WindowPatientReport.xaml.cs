@@ -79,7 +79,26 @@ namespace PolyclinicProgramForPharmacist
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.SelectedIndex != -1)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo,
+               MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    MedicineViewModel medicine = (MedicineViewModel)DataGridView.SelectedCells[0].Item;
+                    try
+                    {
+                        list.Remove(medicine);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                    }
+                    LoadData();
+                }
+            }
         }
 
         private void SaveToWord_Click(object sender, RoutedEventArgs e)
@@ -129,10 +148,6 @@ namespace PolyclinicProgramForPharmacist
             Close();
         }
 
-        private void Change_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {

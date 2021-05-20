@@ -51,7 +51,9 @@ namespace PolyclinicDatabase.Implements
             {
                 var prescription = context.Prescriptions
                     .Include(rec => rec.PrescriptionMedicines)
+                    .ThenInclude(rec => rec.Medicine)
                     .Include(rec => rec.PrescriptionTreatments)
+                    .ThenInclude(rec => rec.Treatment)
                     .FirstOrDefault(rec => rec.Id == model.Id);
 
                 return prescription != null ?
