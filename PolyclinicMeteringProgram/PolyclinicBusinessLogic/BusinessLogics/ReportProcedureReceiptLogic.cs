@@ -42,22 +42,22 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
             foreach (var receipt in receipts)
             {
-                var record = new ReportProcedureReceiptViewModel
-                {
-                    DeliverymanName = receipt.DeliverymanName,
-                    Date = receipt.Date
-                };
+               
                 foreach (var medicine in medicines)
                 {
                     if (receipt.ReceiptMedicines.ContainsKey(medicine.Id))
                     {
-                        record.MedecineName = medicine.Name;
                         foreach (var procedure in procedures)
                         {
                             if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
                             {
-                                record.ProcedureName = procedure.Name;
-                                list.Add(record);
+                                list.Add(new ReportProcedureReceiptViewModel
+                                {
+                                    DeliverymanName = receipt.DeliverymanName,
+                                    Date = receipt.Date,
+                                    MedecineName = medicine.Name,
+                                    ProcedureName = procedure.Name
+                                });
                             }
                         }
                     }

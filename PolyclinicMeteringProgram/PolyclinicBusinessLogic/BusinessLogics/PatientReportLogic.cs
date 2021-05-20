@@ -32,10 +32,6 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
             foreach (var medicine in medicines)
             {
-                var record = new ReportPatientViewModel
-                {
-                    MedicineName = medicine.Name
-                };
                 foreach (var procedure in procedures)
                 {
                     if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
@@ -43,11 +39,14 @@ namespace PolyclinicBusinessLogic.BusinessLogics
                         foreach (var patient in patients)
                         {
                             if (patient.PatientProcedures.ContainsKey(procedure.Id))
-                            {
-                                record.PatientName = patient.FullName;
-                                record.PhoneNumber = patient.PhoneNumber;
-                                record.DateOfBirth = patient.DateOfBirth;
-                                list.Add(record);
+                            { 
+                                list.Add(new ReportPatientViewModel
+                                {
+                                    MedicineName = medicine.Name,
+                                    PatientName = patient.FullName,
+                                    PhoneNumber = patient.PhoneNumber,
+                                    DateOfBirth = patient.DateOfBirth
+                                });
                             }
                         }
                     }
