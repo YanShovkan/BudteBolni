@@ -22,7 +22,7 @@ namespace PolyclinicMeteringProgram
         public new IUnityContainer Container { get; set; }
         ProcedureLogic _logic;
 
-        private List<StatisticByProcedureViewModel> statistic = new List<StatisticByProcedureViewModel>();
+        private List<StatisticByProcedureViewModel> _procedures = new List<StatisticByProcedureViewModel>();
 
         public Statistic(ProcedureLogic logic)
         {
@@ -39,14 +39,26 @@ namespace PolyclinicMeteringProgram
             List<ProcedureViewModel> procedures = _logic.Read(null);
             foreach(var procedure in procedures)
             {
-                statistic.Add(new StatisticByProcedureViewModel { ProcedureName = procedure.Name, ProcedureCost = procedure.Cost });
+                _procedures.Add(new StatisticByProcedureViewModel { ProcedureName = procedure.Name, ProcedureCost = procedure.Cost });
             }
-            DataGridView.ItemsSource = statistic;
+            DataGridView.ItemsSource = _procedures;
         }
 
         private void BuildGraph_Click(object sender, RoutedEventArgs e)
         {
-            Build(statistic);
+            List<StatisticByProcedureViewModel> selection = new List<StatisticByProcedureViewModel>();
+            if (DataGridView.SelectedItems.Count != 0)
+            {
+                foreach(var procedure in DataGridView.SelectedItems)
+                {
+                    selection.Add((StatisticByProcedureViewModel)procedure);
+                }
+            }
+            else
+            {
+                selection = _procedures;
+            }
+            Build(selection);
         }
 
         private void Build(List<StatisticByProcedureViewModel> statistic)

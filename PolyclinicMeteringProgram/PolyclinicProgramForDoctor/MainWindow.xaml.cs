@@ -56,5 +56,18 @@ namespace PolyclinicMeteringProgram
             var window = Container.Resolve<Statistic>();
             window.Show();
         }
+
+        private void miExit_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<WelcomeWindow>();
+            MessageBoxResult result = MessageBox.Show("Выйти из учетной записи?", "Вопрос", MessageBoxButton.YesNo,
+              MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                window.Show();
+                Close();
+            }
+        }
     }
 }

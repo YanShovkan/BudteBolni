@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Окно приветствия" Height="100" Width="500">
+        Title="Приложение для доктора" Height="300" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <Button Name="btnRegister" Grid.Column="0" Margin="5" Content="Зарегестрироваться" FontSize="16" Click="btnRegister_Click"/>
-        <Button Name="btnEnter" Grid.Column="1" Margin="5" Content="Войти" FontSize="16" Click="btnEnter_Click" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="resources\DoctorIcon.png"/>
+        <Button Name="btnRegister" Grid.Row="1" Grid.Column="0" Margin="5" Content="Зарегестрироваться" FontSize="16" Click="btnRegister_Click"/>
+        <Button Name="btnEnter" Grid.Row="1" Grid.Column="1" Margin="5" Content="Войти" FontSize="16" Click="btnEnter_Click" />
     </Grid>
 </Window>

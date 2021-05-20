@@ -19,7 +19,7 @@
         <Label Content="Имя пользователя: " Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
         <TextBox Name="tbUserName" Grid.Column="1" Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="2"/>
         <Label Content="Пароль: " Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
-        <TextBox Name="tbPassword" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
+        <PasswordBox PasswordChar="♥" Name="tbPassword" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
 
         <Button Name="btnEnter"  Grid.Column="0" Grid.Row="2" Margin="10" Content="Войти" FontSize="16" Click="btnEnter_Click"/>
         <Button Name="btnCancel"  Grid.Column="1" Grid.Row="2" Margin="10" Content="Отмена" FontSize="16" Click="btnCancel_Click"/>

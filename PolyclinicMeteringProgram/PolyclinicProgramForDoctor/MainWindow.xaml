@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Главное окно" Height="450" Width="600">
+        Title="Главное окно" Height="450" Width="650">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -19,6 +19,7 @@
             <MenuItem Name="miGetList" Header="Получение списка" Click="miGetList_Click"/>
             <MenuItem Name="miGetReport" Header="Отчет" Click="miGetReport_Click"/>
             <MenuItem Name="miGraph" Header="График" Click="miGraph_Click" />
+            <MenuItem Name="miExit" Header="Выход" Click="miExit_Click" />
             <Separator />
         </Menu>
 

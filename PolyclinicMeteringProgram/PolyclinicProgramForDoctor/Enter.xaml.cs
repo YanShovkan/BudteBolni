@@ -27,7 +27,7 @@ namespace PolyclinicMeteringProgram
                MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(tbPassword.Text))
+            if (string.IsNullOrEmpty(tbPassword.Password))
             {
                 MessageBox.Show("Выберите пароль", "Ошибка", MessageBoxButton.OK,
                MessageBoxImage.Error);
@@ -35,7 +35,7 @@ namespace PolyclinicMeteringProgram
             }
             try
             {
-                int doctorId = logic.CheckPassword(tbUserName.Text, tbPassword.Text);
+                int doctorId = logic.CheckPassword(tbUserName.Text, tbPassword.Password);
                 var window = Container.Resolve<MainWindow>();
                 window._doctorId = doctorId;
                 window.Show();
