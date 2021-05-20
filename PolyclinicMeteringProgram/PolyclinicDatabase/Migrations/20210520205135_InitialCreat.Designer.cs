@@ -10,7 +10,7 @@ using PolyclinicDatabase;
 namespace PolyclinicDatabase.Migrations
 {
     [DbContext(typeof(PolyclinicDatabase))]
-    [Migration("20210520185946_InitialCreat")]
+    [Migration("20210520205135_InitialCreat")]
     partial class InitialCreat
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -153,13 +153,12 @@ namespace PolyclinicDatabase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FullNameDoctor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PharmacyAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

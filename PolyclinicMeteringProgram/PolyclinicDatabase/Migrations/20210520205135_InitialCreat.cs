@@ -43,7 +43,7 @@ namespace PolyclinicDatabase.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FullNameDoctor = table.Column<string>(nullable: false),
+                    Price = table.Column<int>(nullable: false),
                     PharmacyAddress = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

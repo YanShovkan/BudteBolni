@@ -84,7 +84,7 @@ namespace PolyclinicProgramForPharmacist
                     })?[0];
                     if (view != null)
                     {
-                        tbFullNameDoctor.Text = view.FullNameDoctor;
+                        tbPrice.Text = view.Price.ToString();
                         tbPharmacyAddress.Text = view.PharmacyAddress;
                         prescriptionMedicines = view.PrescriptionMedicines;
                         prescriptionTreatments = view.PrescriptionTreatment;
@@ -106,9 +106,9 @@ namespace PolyclinicProgramForPharmacist
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbFullNameDoctor.Text))
+            if (string.IsNullOrEmpty(tbPrice.Text))
             {
-                MessageBox.Show("Заполните имя", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButton.OK,
                MessageBoxImage.Error);
                 return;
             }
@@ -123,7 +123,7 @@ namespace PolyclinicProgramForPharmacist
                 _logic.CreateOrUpdate(new PrescriptionBindingModel
                 {
                     Id = id,
-                    FullNameDoctor = tbFullNameDoctor.Text,
+                    Price = Convert.ToInt32(tbPrice.Text),
                     PharmacyAddress = tbPharmacyAddress.Text,
                     PrescriptionTreatment = prescriptionTreatments,
                     PrescriptionMedicines = prescriptionMedicines
