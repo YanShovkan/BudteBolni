@@ -75,3 +75,4 @@ D:\Study\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\
 D:\Study\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.dll
 D:\Study\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.pdb
 C:\Users\shovk\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache
+D:\Study\BudteBolni\PolyclinicMeteringProgram\PolyclinicBusinessLogic\obj\Debug\PolyclinicBusinessLogic.csprojAssemblyReference.cache

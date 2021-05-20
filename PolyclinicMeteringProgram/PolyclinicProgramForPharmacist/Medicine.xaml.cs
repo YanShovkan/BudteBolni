@@ -14,6 +14,7 @@ namespace PolyclinicProgramForPharmacist
         [Dependency]
         public new IUnityContainer Container { get; set; }
         MedicineLogic _logic;
+        public int _pharmacistId { get; set; }
         public int Id { set { id = value; } }
         private int? id;
 
@@ -75,7 +76,9 @@ namespace PolyclinicProgramForPharmacist
                     Id = id,
                     Name = tbName.Text,
                     ActiveSubstance = tbActiveSubstance.Text,
-                    Classification = tbClassification.Text
+                    Classification = tbClassification.Text,
+                    PharmacistId = _pharmacistId
+                    
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
