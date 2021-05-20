@@ -32,20 +32,20 @@ namespace PolyclinicBusinessLogic.BusinessLogics
             {
                 foreach (var medicine in medicines)
                 {
-                    
+
                     if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
                     {
-                        var record = new ReportReceiptViewModel
-                        {
-                            ProcedureName = procedure.Name
-                        };
                         foreach (var receipt in receipts)
                         {
                             if (receipt.ReceiptMedicines.ContainsKey(medicine.Id))
                             {
-                                record.Date = receipt.Date;
-                                record.DeliverymanName = receipt.DeliverymanName;
-                                list.Add(record);
+
+                                list.Add(new ReportReceiptViewModel
+                                {
+                                    ProcedureName = procedure.Name,
+                                    Date = receipt.Date,
+                                    DeliverymanName = receipt.DeliverymanName
+                                });
                             }
                         }
                     }

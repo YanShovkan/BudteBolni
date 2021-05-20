@@ -44,27 +44,27 @@ namespace PolyclinicBusinessLogic.BusinessLogics
 
             foreach (var receipt in receipts)
             {
-                var record = new ReportPatientReceiptViewModel
-                {
-                    DeliverymanName = receipt.DeliverymanName,
-                    Date = receipt.Date
-                };
+
                 foreach (var medicine in medicines)
                 {
                     if (receipt.ReceiptMedicines.ContainsKey(medicine.Id))
                     {
-                        record.MedecineName = medicine.Name;
                         foreach (var procedure in procedures)
                         {
                             if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
                             {
-                                record.ProcedureName = procedure.Name;
                                 foreach (var patient in patients)
                                 {
                                     if (procedure.ProcedureMedicines.ContainsKey(medicine.Id))
                                     {
-                                        record.PatientName = patient.FullName;
-                                        list.Add(record);
+                                        list.Add(new ReportPatientReceiptViewModel
+                                        {
+                                            DeliverymanName = receipt.DeliverymanName,
+                                            Date = receipt.Date,
+                                            PatientName = patient.FullName,
+                                            MedecineName = medicine.Name,
+                                            ProcedureName = procedure.Name
+                                        });
                                     }
                                 }
                             }
