@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-      Title="Добавление лечения" Height="150.702" Width="500">
+      Title="Добавление лечения" Height="150.702" Width="500"
+        Loaded="Window_loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicProgramForPharmacist"
         mc:Ignorable="d"
-        Title="Добавление лекарства" Height="180" Width="500">
+        Title="Добавление лекарства" Height="180" Width="500"
+        Loaded="Window_loaded">
     <Grid Margin="4,0,0,4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,7 +21,7 @@
         <ComboBox Name="cbMedicineName" Grid.Row="0" Grid.Column="1" Margin="5" />
         <Label Content="Количество лекарств: " Grid.Row="1" Grid.Column="0" Margin="0,6,5,3" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center" Height="32" Width="173"/>
         <TextBox Name="tbCount" Grid.Row="1" Grid.Column="1" Margin="5" />
-        <Button Name="Add" Grid.Row="2" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16"/>
+        <Button Name="Add" Grid.Row="2" Grid.Column="0" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click"/>
         <Button Name="Cancel" Grid.Row="2" Grid.Column="1" Margin="5" Content="Отменить" FontSize="16"/>
     </Grid>
 </Window>

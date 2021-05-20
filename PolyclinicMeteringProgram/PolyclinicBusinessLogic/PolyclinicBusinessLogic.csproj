@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\ProcedureMedicineViewModel.cs" />
     <Compile Include="ViewModels\ProcedureTreatmentViewModel.cs" />
     <Compile Include="ViewModels\ProcedureViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptMedicineViewModel.cs" />
     <Compile Include="ViewModels\ReceiptViewModel.cs" />
     <Compile Include="BusinessLogics\ReportProcedureReceiptLogic.cs" />
     <Compile Include="ViewModels\ReportPatientReceiptViewModel.cs" />

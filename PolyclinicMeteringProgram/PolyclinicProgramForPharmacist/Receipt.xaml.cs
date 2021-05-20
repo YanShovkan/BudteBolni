@@ -76,13 +76,13 @@ namespace PolyclinicProgramForPharmacist
             {
                 if (receiptMedicine != null)
                 {
-                    List<MedicineViewModel> list = new List<MedicineViewModel>();
+                    List<ReceiptMedicineViewModel> list = new List<ReceiptMedicineViewModel>();
                     foreach (var medicine in receiptMedicine)
                     {
-                        list.Add(medicineLogic.Read(new MedicineBindingModel { Id = medicine.Key })?[0]);
-
+                        list.Add(new ReceiptMedicineViewModel { Id = medicine.Key, MedicineName = medicine.Value.Item1, MedicineCount = medicine.Value.Item2 });
                     }
                     dgReceiptMedicine.ItemsSource = list;
+                    dgReceiptMedicine.Columns[0].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)
@@ -92,9 +92,9 @@ namespace PolyclinicProgramForPharmacist
             }
         }
 
-        private void AddMedicine_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (tbDate.SelectedDate == null || tbDate.SelectedDate > DateTime.Now)
+            if (tbDate.SelectedDate == null || tbDate.SelectedDate < DateTime.Now)
             {
                 MessageBox.Show("Выберите дату", "Ошибка", MessageBoxButton.OK,
                MessageBoxImage.Error);
@@ -107,11 +107,10 @@ namespace PolyclinicProgramForPharmacist
                     Id = id,
                     Date = tbDate.SelectedDate.Value,
                     DeliverymanName = tbDeliverymanName.Text,
-                    ReceiptMedecines = receiptMedicine,
+                    ReceiptMedecines = receiptMedicine
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true;
                 Close();
             }
             catch (Exception ex)
@@ -126,7 +125,7 @@ namespace PolyclinicProgramForPharmacist
             Close();
         }
 
-        private void btnAddMedicine_Click(object sender, RoutedEventArgs e)
+        private void AddMedicine_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<AddMedicine>();
             window.ShowDialog();

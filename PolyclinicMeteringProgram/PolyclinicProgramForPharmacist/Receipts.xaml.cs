@@ -52,7 +52,6 @@ namespace PolyclinicProgramForPharmacist
                     DataGridView.ItemsSource = list;
                     DataGridView.Columns[0].Visibility = Visibility.Hidden;
                     DataGridView.Columns[3].Visibility = Visibility.Hidden;
-                    DataGridView.Columns[4].Visibility = Visibility.Hidden;
                 }
             }
             catch (Exception ex)

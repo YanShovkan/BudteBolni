@@ -61,8 +61,20 @@ namespace PolyclinicDatabase.Implements
         {
             using (var context = new PolyclinicDatabase())
             {
-                context.Receipts.Add(CreateModel(model, new Receipt()));
-                context.SaveChanges();
+                using (var transaction = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        CreateModel(model, new Receipt(), context);
+                        context.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
 
@@ -70,13 +82,28 @@ namespace PolyclinicDatabase.Implements
         {
             using (var context = new PolyclinicDatabase())
             {
-                var element = context.Receipts.FirstOrDefault(rec => rec.Id == model.Id);
-                if (element == null)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    throw new Exception("Поступление не найдено");
+                    try
+                    {
+                        var receipt = context.Receipts.FirstOrDefault(rec => rec.Id == model.Id);
+
+                        if (receipt == null)
+                        {
+                            throw new Exception("Поставка не найдена");
+                        }
+
+                        CreateModel(model, receipt, context);
+                        context.SaveChanges();
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
-                CreateModel(model, element);
-                context.SaveChanges();
             }
         }
 
@@ -97,10 +124,41 @@ namespace PolyclinicDatabase.Implements
             }
         }
 
-        private Receipt CreateModel(ReceiptBindingModel model, Receipt receipt)
+        private Receipt CreateModel(ReceiptBindingModel model, Receipt receipt, PolyclinicDatabase context)
         {
             receipt.Date = model.Date;
             receipt.DeliverymanName = model.DeliverymanName;
+
+            if (receipt.Id == 0)
+            {
+                context.Receipts.Add(receipt);
+                context.SaveChanges();
+            }
+
+            if (model.Id.HasValue)
+            {
+                var receiptMedicines = context.ReceiptMedicines
+                     .Where(rec => rec.ReceiptId == model.Id.Value)
+                     .ToList();
+
+                foreach (var medicine in receiptMedicines)
+                {
+                    model.ReceiptMedecines.Remove(medicine.MedicineId);
+                }
+
+                context.SaveChanges();
+            }
+
+            foreach (var receiptMedicine in model.ReceiptMedecines)
+            {
+                context.ReceiptMedicines.Add(new ReceiptMedicine
+                {
+                    ReceiptId = receipt.Id,
+                    MedicineId = receiptMedicine.Key,
+                    Count = receiptMedicine.Value.Item2
+                });
+                context.SaveChanges();
+            }
             return receipt;
         }
 
@@ -116,7 +174,6 @@ namespace PolyclinicDatabase.Implements
                             recReceiptMedicines => (recReceiptMedicines.Medicine?.Name, recReceiptMedicines.Count)),
             };
         }
-
 
     }
 }
