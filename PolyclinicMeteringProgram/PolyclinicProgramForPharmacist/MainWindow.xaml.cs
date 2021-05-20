@@ -59,5 +59,11 @@ namespace PolyclinicProgramForPharmacist
             window._pharmacistId = _pharmacistId;
             window.Show();
         }
+
+        private void miGetGraph_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Statistic>();
+            window.Show();
+        }
     }
 }

@@ -141,7 +141,7 @@ namespace PolyclinicProgramForPharmacist
                     DateFrom = dpFrom.SelectedDate,
                     DateTo = dpTo.SelectedDate
                 });
-                ReportDataSource source = new ReportDataSource("DataSetReportByDate", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetProcedureReceipt", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }

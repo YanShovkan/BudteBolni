@@ -141,10 +141,7 @@ namespace PolyclinicDatabase.Implements
                      .Where(rec => rec.ReceiptId == model.Id.Value)
                      .ToList();
 
-                foreach (var medicine in receiptMedicines)
-                {
-                    model.ReceiptMedecines.Remove(medicine.MedicineId);
-                }
+                context.ReceiptMedicines.RemoveRange(receiptMedicines.ToList());
 
                 context.SaveChanges();
             }

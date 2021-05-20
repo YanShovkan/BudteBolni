@@ -127,7 +127,7 @@ namespace PolyclinicDatabase.Implements
             return new PrescriptionViewModel
             {
                 Id = prescription.Id,
-                FullNameDoctor = prescription.FullNameDoctor,
+                Price = prescription.Price,
                 PharmacyAddress = prescription.PharmacyAddress,
 
                 PrescriptionTreatment = prescription.PrescriptionTreatments
@@ -143,7 +143,7 @@ namespace PolyclinicDatabase.Implements
 
         private Prescription CreateModel(PrescriptionBindingModel model, Prescription prescription, PolyclinicDatabase context)
         {
-            prescription.FullNameDoctor = model.FullNameDoctor;
+            prescription.Price = model.Price;
             prescription.PharmacyAddress = model.PharmacyAddress;
 
             if (prescription.Id == 0)
@@ -158,39 +158,15 @@ namespace PolyclinicDatabase.Implements
                     .Where(rec => rec.PrescriptionId == model.Id.Value)
                     .ToList();
 
-                if (prescriptionTreatments.Count > 0 && model.PrescriptionTreatment.Count != 0)
-                {
-                    context.PrescriptionTreatments.RemoveRange(prescriptionTreatments
-                    .Where(rec => !model.PrescriptionTreatment.ContainsKey(rec.PrescriptionId))
-                    .ToList());
-
-                    context.SaveChanges();
-
-                    foreach (var treatment in prescriptionTreatments)
-                    {
-                        model.PrescriptionTreatment.Remove(treatment.TreatmentId);
-                    }
-                    context.SaveChanges();
-                }
+                context.PrescriptionTreatments.RemoveRange(prescriptionTreatments.ToList());
 
                 var prescriptionMedicines = context.PrescriptionMedicines
                     .Where(rec => rec.PrescriptionId == model.Id.Value)
                     .ToList();
 
-                if (prescriptionMedicines.Count > 0 && model.PrescriptionMedicines.Count != 0)
-                {
-                    context.PrescriptionMedicines.RemoveRange(prescriptionMedicines
-                    .Where(rec => !model.PrescriptionMedicines.ContainsKey(rec.PrescriptionId))
-                    .ToList());
+                context.PrescriptionMedicines.RemoveRange(prescriptionMedicines.ToList());
 
-                    context.SaveChanges();
-
-                    foreach (var medicine in prescriptionMedicines)
-                    {
-                        model.PrescriptionMedicines.Remove(medicine.MedicineId);
-                    }
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
 
             foreach (var prescriptionTreatment in model.PrescriptionTreatment)

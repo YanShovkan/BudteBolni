@@ -1,71 +1,94 @@
 ﻿using PolyclinicBusinessLogic.BindingModels;
 using PolyclinicBusinessLogic.BusinessLogics;
+using PolyclinicBusinessLogic.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Unity;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System.Collections.Generic;
 
 namespace PolyclinicProgramForPharmacist
 {
     /// <summary>
-    /// Логика взаимодействия для Receipts.xaml
+    /// Логика взаимодействия для Statistic.xaml
     /// </summary>
-    public partial class Receipts : Window
+    public partial class Statistic : Window
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        ReceiptLogic _logic;
-        public Receipts(ReceiptLogic logic)
+        PrescriptionLogic _logic;
+
+        private List<StatisticByPrescriptionViewModel> _prescription = new List<StatisticByPrescriptionViewModel>();
+
+        public Statistic(PrescriptionLogic logic)
         {
             InitializeComponent();
             _logic = logic;
-        }
-
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            var window = Container.Resolve<Receipt>();
-            window.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
-
-        public void LoadData()
+        private void LoadData()
         {
-            try
+            List<PrescriptionViewModel> prescriptions = _logic.Read(null);
+            foreach (var prescription in prescriptions)
             {
-                var list = _logic.Read(null);
-                if (list != null)
-                {
-                    DataGridView.ItemsSource = list;
-                    DataGridView.Columns[0].Visibility = Visibility.Hidden;
-                    DataGridView.Columns[3].Visibility = Visibility.Hidden;
-                }
+                _prescription.Add(new StatisticByPrescriptionViewModel { Price = prescription.Price, PharmacyAddress = prescription.PharmacyAddress });
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
-               MessageBoxImage.Error);
-            }
+            DataGridView.ItemsSource = _prescription;
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void BuildGraph_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            List<StatisticByPrescriptionViewModel> selection = new List<StatisticByPrescriptionViewModel>();
+            if (DataGridView.SelectedItems.Count != 0)
+            {
+                foreach (var prescription in DataGridView.SelectedItems)
+                {
+                    selection.Add((StatisticByPrescriptionViewModel)prescription);
+                }
+            }
+            else
+            {
+                selection = _prescription;
+            }
+            Build(selection);
+        }
+
+        private void Build(List<StatisticByPrescriptionViewModel> statistic)
+        {
+            SeriesCollection series = new SeriesCollection();
+            List<string> pharmacyAddress = new List<string>();
+            ChartValues<int> price = new ChartValues<int>();
+
+            foreach (var item in statistic)
+            {
+                pharmacyAddress.Add(item.PharmacyAddress);
+                price.Add(item.Price);
+            }
+
+            Graph.AxisX.Clear();
+            Graph.AxisX.Add(new Axis()
+
+            {
+                Title = "\nРецепты",
+                Labels = pharmacyAddress
+            });
+
+            LineSeries prescriptionLine = new LineSeries
+            {
+                Title = "Стоимость: ",
+                Values = price
+            };
+
+            series.Add(prescriptionLine);
+            Graph.Series = series;
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
