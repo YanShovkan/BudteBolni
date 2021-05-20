@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//DESKTOP-NSNKSRN
+// DESKTOP-NSNKSRN - сурс Яна
+// (localdb)\MSSQLLocalDB - cурс Влада
 namespace PolyclinicDatabase
 {
     public class PolyclinicDatabase : DbContext
