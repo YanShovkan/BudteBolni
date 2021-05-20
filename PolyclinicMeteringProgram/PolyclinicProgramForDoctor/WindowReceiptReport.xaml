@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Отчет по процедурам" Height="800" Width="350"
+        Title="Отчет по поступлениям" Height="800" Width="350"
         Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>

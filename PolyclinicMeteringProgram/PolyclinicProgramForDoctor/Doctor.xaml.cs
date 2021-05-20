@@ -7,16 +7,16 @@ using Unity;
 namespace PolyclinicMeteringProgram
 {
     /// <summary>
-    /// Логика взаимодействия для Treatment.xaml
+    /// Логика взаимодействия для Doctor.xaml
     /// </summary>
-    public partial class Treatment : Window
+    public partial class Doctor : Window
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        TreatmentLogic _logic;
+        DoctorLogic _logic;
         public int Id { set { id = value; } }
         private int? id;
-        public Treatment(TreatmentLogic logic)
+        public Doctor(DoctorLogic logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -28,12 +28,12 @@ namespace PolyclinicMeteringProgram
             {
                 try
                 {
-                    var view = _logic.Read(new TreatmentBindingModel { Id = id })?[0];
+                    var view = _logic.Read(new DoctorBindingModel { Id = id })?[0];
                     if (view != null)
                     {
-                        tbName.Text = view.Name;
-                        tbAreaOfAction.Text = view.AreaOfAction;
-                        tbUrgency.Text = view.Urgency;
+                        tbUserName.Text = view.FullName;
+                        tbPassword.Text = view.Password;
+                        tbPosition.Text = view.Position;
                     }
                 }
                 catch (Exception ex)
@@ -44,40 +44,37 @@ namespace PolyclinicMeteringProgram
             }
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbName.Text))
+            if (string.IsNullOrEmpty(tbUserName.Text))
             {
-                MessageBox.Show("Заполните название", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Введите имя пользователя", "Ошибка",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(tbPassword.Text))
+            {
+                MessageBox.Show("Выберите пароль", "Ошибка", MessageBoxButton.OK,
                MessageBoxImage.Error);
                 return;
             }
-
-            if (string.IsNullOrEmpty(tbAreaOfAction.Text))
+            if (string.IsNullOrEmpty(tbPosition.Text))
             {
-                MessageBox.Show("Заполните область действия", "Ошибка", MessageBoxButton.OK,
-               MessageBoxImage.Error);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(tbUrgency.Text))
-            {
-                MessageBox.Show("Заполните срочность", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Выберите должность", "Ошибка", MessageBoxButton.OK,
                MessageBoxImage.Error);
                 return;
             }
             try
             {
-                _logic.CreateOrUpdate(new TreatmentBindingModel
+                _logic.CreateOrUpdate(new DoctorBindingModel
                 {
                     Id = id,
-                    Name = tbName.Text,
-                    Urgency = tbUrgency.Text,
-                    AreaOfAction = tbAreaOfAction.Text
+                    FullName = tbUserName.Text,
+                    Password = tbPassword.Text,
+                    Position = tbPosition.Text
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true;
                 Close();
             }
             catch (Exception ex)
@@ -89,7 +86,6 @@ namespace PolyclinicMeteringProgram
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
             Close();
         }
     }

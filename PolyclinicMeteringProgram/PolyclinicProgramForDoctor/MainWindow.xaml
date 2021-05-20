@@ -8,22 +8,29 @@
         Title="Главное окно" Height="450" Width="650">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-  
-        <Menu Grid.Row="0" VerticalAlignment="Top" FontSize="16">
-            <MenuItem Name="miTreatments" Header="Лечения" Click="miTreatments_Click" />
-            <MenuItem Name="miProcedures" Header="Процедуры" Click="miProcedures_Click"/>
-            <MenuItem Name="miPatients" Header="Пациенты" Click="miPatients_Click"/>
-            <MenuItem Name="miGetList" Header="Получение списка" Click="miGetList_Click"/>
-            <MenuItem Name="miGetReport" Header="Отчет" Click="miGetReport_Click"/>
-            <MenuItem Name="miGraph" Header="График" Click="miGraph_Click" />
-            <MenuItem Name="miExit" Header="Выход" Click="miExit_Click" />
-            <Separator />
-        </Menu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="1" Source="resources\Logo.jpg"/>
+        <Button Name="btnTreatments" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="16" Content="Лечения" Click="btnTreatments_Click"/>
+        <Button Name="btnProcedures" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="16" Content="Процедуры" Click="btnProcedures_Click"/>
+        <Button Name="btnPatients" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="16" Content="Пациенты" Click="btnPatients_Click"/>
+        <Button Name="btnReceiptReport" Grid.Row="3" Grid.Column="1" Margin="5" FontSize="16" Content="Отчет по поступлениям" Click="btnReceiptReport_Click"/>
+        <Button Name="btnPatientReport" Grid.Row="4" Grid.Column="1" Margin="5" FontSize="16" Content="Отчет по пациентам" Click="btnPatientReport_Click"/>
+        <Button Name="btnGraph" Grid.Row="5" Grid.Column="1" Margin="5" FontSize="16" Content="График процедур" Click="btnGraph_Click"/>
+        <Button Name="btnAccount" Grid.Row="6" Grid.Column="1" Margin="5" FontSize="16" Content="Личные данные" Click="btnAccount_Click"/>
+        <Button Name="btnExit" Grid.Row="7" Grid.Column="1" Margin="5" FontSize="16" Content="Выход" Click="btnExit_Click"/>
     </Grid>
     
 </Window>

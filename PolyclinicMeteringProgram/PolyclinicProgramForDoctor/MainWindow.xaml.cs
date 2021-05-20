@@ -19,45 +19,52 @@ namespace PolyclinicMeteringProgram
             InitializeComponent();
         }
 
-        private void miTreatments_Click(object sender, RoutedEventArgs e)
+        private void btnTreatments_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Treatments>();
             window.Show();
         }
 
-        private void miProcedures_Click(object sender, RoutedEventArgs e)
+        private void btnProcedures_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Procedures>();
             window.Show();
         }
 
-        private void miPatients_Click(object sender, RoutedEventArgs e)
+        private void btnPatients_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Patients>();
             window._doctorId = _doctorId;
             window.Show();
         }
 
-        private void miGetList_Click(object sender, RoutedEventArgs e)
+        private void btnReceiptReport_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<WindowReceiptReport>();
-            window.Show();   
+            window.Show();
         }
 
-        private void miGetReport_Click(object sender, RoutedEventArgs e)
+        private void btnPatientReport_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<WindowReportPatientReceipt>();
             window._doctorId = _doctorId;
             window.Show();
         }
 
-        private void miGraph_Click(object sender, RoutedEventArgs e)
+        private void btnGraph_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Statistic>();
             window.Show();
         }
 
-        private void miExit_Click(object sender, RoutedEventArgs e)
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<Doctor>();
+            window.Id = _doctorId;
+            window.Show();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<WelcomeWindow>();
             MessageBoxResult result = MessageBox.Show("Выйти из учетной записи?", "Вопрос", MessageBoxButton.YesNo,
