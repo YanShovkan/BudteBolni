@@ -31,6 +31,7 @@ namespace PolyclinicProgramForPharmacist
         private void miMedicine_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Medicines>();
+            window._pharmacistId = _pharmacistId;
             window.Show();
         }
 
@@ -55,6 +56,7 @@ namespace PolyclinicProgramForPharmacist
         private void miGetReport_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<WindowReportProcedureReceipt>();
+            window._pharmacistId = _pharmacistId;
             window.Show();
         }
     }

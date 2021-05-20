@@ -26,6 +26,8 @@ namespace PolyclinicProgramForPharmacist
         [Dependency]
         public new IUnityContainer Container { get; set; }
         MedicineLogic _logic;
+        public int _pharmacistId { get; set; }
+
         public Medicines(MedicineLogic logic)
         {
             InitializeComponent();
@@ -58,6 +60,7 @@ namespace PolyclinicProgramForPharmacist
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<Medicine>();
+            window._pharmacistId = _pharmacistId;
             window.ShowDialog();
             if (window.DialogResult == true)
             {
@@ -98,6 +101,7 @@ namespace PolyclinicProgramForPharmacist
                 var window = Container.Resolve<Medicine>();
                 MedicineViewModel medicine = (MedicineViewModel)DataGridView.SelectedCells[0].Item;
                 window.Id = Convert.ToInt32(medicine.Id);
+                window._pharmacistId = _pharmacistId;
                 window.ShowDialog();
                 if (window.DialogResult == true)
                 {
