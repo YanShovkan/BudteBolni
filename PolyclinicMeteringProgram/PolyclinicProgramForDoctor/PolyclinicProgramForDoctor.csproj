@@ -243,6 +243,9 @@
     <Compile Include="AddTreatment.xaml.cs">
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Doctor.xaml.cs">
+      <DependentUpon>Doctor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enter.xaml.cs">
       <DependentUpon>Enter.xaml</DependentUpon>
     </Compile>
@@ -289,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTreatment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Doctor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

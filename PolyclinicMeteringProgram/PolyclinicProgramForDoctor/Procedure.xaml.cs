@@ -146,6 +146,10 @@ namespace PolyclinicMeteringProgram
                 {
                     procedureMedicines.Add(window.Id, (window.MediceineName, window.MediceineCount));
                 }
+                else
+                {
+                    procedureMedicines[window.Id] = (window.MediceineName, window.MediceineCount);
+                }
 
             }
             LoadData();
@@ -184,6 +188,10 @@ namespace PolyclinicMeteringProgram
                 if (!procedureTreatments.ContainsKey(window.Id))
                 {
                     procedureTreatments.Add(window.Id, (window.TreatmentName, window.TreatmentCount));
+                }
+                else
+                {
+                    procedureTreatments[window.Id] = (window.TreatmentName, window.TreatmentCount);
                 }
 
             }
