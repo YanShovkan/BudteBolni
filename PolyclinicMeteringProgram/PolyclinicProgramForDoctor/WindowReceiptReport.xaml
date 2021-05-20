@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
         Title="Отчет по поступлениям" Height="800" Width="350"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        Background="SaddleBrown">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -18,10 +28,10 @@
         </Grid.RowDefinitions>
 
         <DataGrid Name="DataGridView" Grid.Row="2" Margin="5" AutoGenerateColumns="True" BorderBrush="Black" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
-        <Button Name="Add" Grid.Row="0" Margin="5" Content="Добавить процедуру" FontSize="16" Grid.ColumnSpan="2" Click="Add_Click"/>
-        <Button Name="Delete" Grid.Row="1" Margin="5" Content="Удалить процедуру" FontSize="16" Grid.ColumnSpan="2" Click="Delete_Click"/>
-        <Button Name="SaveToWord"  Grid.Row="3" Margin="5" Content="Сохранить в Word" FontSize="16" Grid.ColumnSpan="2" Click="SaveToWord_Click"  />
-        <Button Name="SaveToExcel"  Grid.Row="4" Margin="5" Content="Сохранить в Excel" FontSize="16" Grid.ColumnSpan="2" Click="SaveToExcel_Click"  />
-        <Button Name="Cancel"  Grid.Row="5" Margin="5" Content="Отмена" FontSize="16" Grid.ColumnSpan="2" Click="Cancel_Click" />
+        <Button Name="Add" Grid.Row="0" Content="Добавить процедуру"  Grid.ColumnSpan="2" Click="Add_Click"/>
+        <Button Name="Delete" Grid.Row="1"  Content="Удалить процедуру"  Grid.ColumnSpan="2" Click="Delete_Click"/>
+        <Button Name="SaveToWord"  Grid.Row="3"  Content="Сохранить в Word"  Grid.ColumnSpan="2" Click="SaveToWord_Click"  />
+        <Button Name="SaveToExcel"  Grid.Row="4"  Content="Сохранить в Excel"  Grid.ColumnSpan="2" Click="SaveToExcel_Click"  />
+        <Button Name="Cancel"  Grid.Row="5" Content="Отмена"  Grid.ColumnSpan="2" Click="Cancel_Click" />
     </Grid>
 </Window>

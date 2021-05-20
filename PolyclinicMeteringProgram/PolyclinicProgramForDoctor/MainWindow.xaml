@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-        Title="Главное окно" Height="450" Width="650">
+        Title="Главное окно" Height="450" Width="650"
+         Background="SaddleBrown">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -23,14 +33,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Name="btnTreatments" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="16" Content="Лечения" Click="btnTreatments_Click"/>
-        <Button Name="btnProcedures" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="16" Content="Процедуры" Click="btnProcedures_Click"/>
-        <Button Name="btnPatients" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="16" Content="Пациенты" Click="btnPatients_Click"/>
-        <Button Name="btnReceiptReport" Grid.Row="3" Grid.Column="1" Margin="5" FontSize="16" Content="Отчет по поступлениям" Click="btnReceiptReport_Click"/>
-        <Button Name="btnPatientReport" Grid.Row="4" Grid.Column="1" Margin="5" FontSize="16" Content="Отчет по пациентам" Click="btnPatientReport_Click"/>
-        <Button Name="btnGraph" Grid.Row="5" Grid.Column="1" Margin="5" FontSize="16" Content="График процедур" Click="btnGraph_Click"/>
-        <Button Name="btnAccount" Grid.Row="6" Grid.Column="1" Margin="5" FontSize="16" Content="Личные данные" Click="btnAccount_Click"/>
-        <Button Name="btnExit" Grid.Row="7" Grid.Column="1" Margin="5" FontSize="16" Content="Выход" Click="btnExit_Click"/>
+        <Button Name="btnTreatments" Grid.Row="0" Grid.Column="1"  Content="Лечения" Click="btnTreatments_Click"/>
+        <Button Name="btnProcedures" Grid.Row="1" Grid.Column="1" Content="Процедуры" Click="btnProcedures_Click"/>
+        <Button Name="btnPatients" Grid.Row="2" Grid.Column="1"  Content="Пациенты" Click="btnPatients_Click"/>
+        <Button Name="btnReceiptReport" Grid.Row="3" Grid.Column="1"  Content="Отчет по поступлениям" Click="btnReceiptReport_Click"/>
+        <Button Name="btnPatientReport" Grid.Row="4" Grid.Column="1"  Content="Отчет по пациентам" Click="btnPatientReport_Click"/>
+        <Button Name="btnGraph" Grid.Row="5" Grid.Column="1"  Content="График процедур" Click="btnGraph_Click"/>
+        <Button Name="btnAccount" Grid.Row="6" Grid.Column="1" Content="Личные данные" Click="btnAccount_Click"/>
+        <Button Name="btnExit" Grid.Row="7" Grid.Column="1"  Content="Выход" Click="btnExit_Click"/>
+
+        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Source="resources\ShpricIcon.png"/>
+        <Image Grid.Row="0" Grid.Column="2"  Grid.RowSpan="8" Source="resources\FanendoscopIcon.png"/>
     </Grid>
-    
+
 </Window>

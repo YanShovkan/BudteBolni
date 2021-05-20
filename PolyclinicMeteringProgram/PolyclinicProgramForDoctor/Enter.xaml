@@ -5,7 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
-         Title="Вход в систему" Height="180" Width="500">
+         Title="Вход в систему" Height="180" Width="500"
+         Background="SaddleBrown">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,9 +32,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Имя пользователя: " Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="Имя пользователя: " Grid.Column="0" Grid.Row="0" />
         <TextBox Name="tbUserName" Grid.Column="1" Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="2"/>
-        <Label Content="Пароль: " Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="Пароль: " Grid.Column="0" Grid.Row="1" />
         <PasswordBox PasswordChar="♥" Name="tbPassword" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
 
         <Button Name="btnEnter"  Grid.Column="0" Grid.Row="2" Margin="10" Content="Войти" FontSize="16" Click="btnEnter_Click"/>

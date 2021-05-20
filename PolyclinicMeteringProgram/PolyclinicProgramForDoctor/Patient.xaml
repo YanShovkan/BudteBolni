@@ -6,9 +6,24 @@
         xmlns:local="clr-namespace:PolyclinicMeteringProgram"
         mc:Ignorable="d"
         Title="Формирование пациента" Height="350" Width="600"
-        Loaded="Window_loaded">
+        Loaded="Window_loaded"
+        Background="SaddleBrown">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -21,18 +36,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Label Content="ФИО: " Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="ФИО: " Grid.Column="0" Grid.Row="0"/>
         <TextBox Name="tbFIO" Grid.Column="1" Grid.Row="0" Margin="5" BorderBrush="Black" BorderThickness="2"/>
-        <Label Content="Номер телефона: " Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="Номер телефона: " Grid.Column="0" Grid.Row="1" />
         <TextBox Name="tbTelephoneNumber" Grid.Column="1" Grid.Row="1" Margin="5" BorderBrush="Black" BorderThickness="2"/>
-        <Label Content="Дата рождения: " Grid.Column="0" Grid.Row="2" Margin="5" HorizontalAlignment="Right" FontSize="16" VerticalAlignment="Center"/>
+        <Label Content="Дата рождения: " Grid.Column="0" Grid.Row="2" />
         <DatePicker Name="tbBirthday" Grid.Column="1" Grid.Row="2"  Margin="5"  BorderBrush="Black" BorderThickness="2"/>
-        <Button Name="btnAddProcedure" Content="Добавить процедуру" Grid.Column="0"  Grid.Row="3" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16"  Click="btnAddProcedure_Click"/>
-        <Button Name="btnDeleteProcedure" Content="Удалить процедуру" Grid.Column="0"  Grid.Row="3" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16" Click="btnDeleteProcedure_Click"  />
+        <Button Name="btnAddProcedure" Content="Добавить процедуру" Grid.Column="0"  Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnAddProcedure_Click"/>
+        <Button Name="btnDeleteProcedure" Content="Удалить процедуру" Grid.Column="0"  Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnDeleteProcedure_Click"  />
         <DataGrid Name="DataGridView" Grid.Column="1"  Grid.Row="3" Margin="5"  BorderBrush="Black" BorderThickness="2" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" ColumnWidth="*" IsReadOnly="True"/>
 
-        <Button Name="btnAdd" Grid.Column="0" Grid.Row="4" Margin="5" Content="Добавить" FontSize="16" Click="btnAdd_Click" />
-        <Button Name="btnCancel" Grid.Column="1" Grid.Row="4" Margin="5" Content="Отмена" FontSize="16" Click="btnCancel_Click" />
+        <Button Name="btnAdd" Grid.Column="0" Grid.Row="4"  Content="Добавить" Click="btnAdd_Click" />
+        <Button Name="btnCancel" Grid.Column="1" Grid.Row="4" Content="Отмена" Click="btnCancel_Click" />
         
     </Grid>
 </Window>
