@@ -11,6 +11,7 @@ namespace PolyclinicBusinessLogic.BindingModels
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Dictionary<int, string> PatientProcedures { get; set; }
-
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

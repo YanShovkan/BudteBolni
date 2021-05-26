@@ -38,7 +38,7 @@ namespace PolyclinicDatabase.Implements
                     .Include(rec => rec.PatientProcedures)
                     .ThenInclude(rec => rec.Procedure)
                     .Include(rec => rec.Doctor)
-                    .Where(rec => rec.DoctorId == model.DoctorId)
+                    .Where(rec => (rec.DoctorId == model.DoctorId || (rec.DateOfBirth >= model.DateFrom && rec.DateOfBirth <= model.DateTo))) 
                     .Select(CreateModel)
                     .ToList();
             }

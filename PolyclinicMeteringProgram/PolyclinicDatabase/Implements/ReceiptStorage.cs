@@ -171,6 +171,5 @@ namespace PolyclinicDatabase.Implements
                             recReceiptMedicines => (recReceiptMedicines.Medicine?.Name, recReceiptMedicines.Count)),
             };
         }
-
     }
 }

@@ -20,11 +20,11 @@ namespace PolyclinicProgramForPharmacist
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        PrescriptionLogic _logic;
+        ReceiptLogic _logic;
 
-        private List<StatisticByPrescriptionViewModel> _prescription = new List<StatisticByPrescriptionViewModel>();
+        private List<StatisticByReceiptViewModel> _receipts = new List<StatisticByReceiptViewModel>();
 
-        public Statistic(PrescriptionLogic logic)
+        public Statistic(ReceiptLogic logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -36,55 +36,69 @@ namespace PolyclinicProgramForPharmacist
         }
         private void LoadData()
         {
-            List<PrescriptionViewModel> prescriptions = _logic.Read(null);
-            foreach (var prescription in prescriptions)
+            _receipts.Clear();
+            List<ReceiptViewModel> receipts = _logic.Read(new ReceiptBindingModel { DateFrom = dpFrom.SelectedDate, DateTo = dpTo.SelectedDate});
+            foreach (var receipt in receipts)
             {
-                _prescription.Add(new StatisticByPrescriptionViewModel { Price = prescription.Price, PharmacyAddress = prescription.PharmacyAddress });
+                int medicineCount = 0;
+                foreach(var medicine in receipt.ReceiptMedicines)
+                {
+                    medicineCount += medicine.Value.Item2;
+                }
+                _receipts.Add(new StatisticByReceiptViewModel { DeliverymanName = receipt.DeliverymanName, MedicineCount = medicineCount });
             }
-            DataGridView.ItemsSource = _prescription;
+            DataGridView.ItemsSource = _receipts;
+            DataGridView.Items.Refresh();
         }
 
         private void BuildGraph_Click(object sender, RoutedEventArgs e)
         {
-            List<StatisticByPrescriptionViewModel> selection = new List<StatisticByPrescriptionViewModel>();
-            if (DataGridView.SelectedItems.Count != 0)
+            if (dpFrom.SelectedDate == null)
             {
-                foreach (var prescription in DataGridView.SelectedItems)
-                {
-                    selection.Add((StatisticByPrescriptionViewModel)prescription);
-                }
+                MessageBox.Show("Выберите дату начала",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+            if (dpTo.SelectedDate == null)
             {
-                selection = _prescription;
+                MessageBox.Show("Выберите дату окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            Build(selection);
+            if (dpFrom.SelectedDate >= dpTo.SelectedDate)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            LoadData();
+            Build(_receipts);
         }
 
-        private void Build(List<StatisticByPrescriptionViewModel> statistic)
+        private void Build(List<StatisticByReceiptViewModel> statistic)
         {
             SeriesCollection series = new SeriesCollection();
-            List<string> pharmacyAddress = new List<string>();
-            ChartValues<int> price = new ChartValues<int>();
+            List<string> deliverymanName = new List<string>();
+            ChartValues<int> medicineCount = new ChartValues<int>();
 
             foreach (var item in statistic)
             {
-                pharmacyAddress.Add(item.PharmacyAddress);
-                price.Add(item.Price);
+                deliverymanName.Add(item.DeliverymanName);
+                medicineCount.Add(item.MedicineCount);
             }
 
             Graph.AxisX.Clear();
             Graph.AxisX.Add(new Axis()
 
             {
-                Title = "\nРецепты",
-                Labels = pharmacyAddress
+                Title = "\nФамилии доставщиков",
+                Labels = deliverymanName
             });
 
             LineSeries prescriptionLine = new LineSeries
             {
-                Title = "Стоимость: ",
-                Values = price
+                Title = "Кол-во поступивших лекарств: ",
+                Values = medicineCount
             };
 
             series.Add(prescriptionLine);

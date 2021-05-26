@@ -22,6 +22,7 @@ namespace PolyclinicDatabase.Implements
                     .ToList();
             }
         }
+        
         public List<MedicineViewModel> GetFilteredList(MedicineBindingModel model)
         {
             if (model == null)
@@ -38,6 +39,7 @@ namespace PolyclinicDatabase.Implements
                     .ToList();
             }
         }
+       
         public MedicineViewModel GetElement(MedicineBindingModel model)
         {
             if (model == null)
@@ -56,6 +58,7 @@ namespace PolyclinicDatabase.Implements
                     null;
             }
         }
+        
         public void Insert(MedicineBindingModel model)
         {
             using (var context = new PolyclinicDatabase())
@@ -64,6 +67,7 @@ namespace PolyclinicDatabase.Implements
                 context.SaveChanges();
             }
         }
+       
         public void Update(MedicineBindingModel model)
         {
             using (var context = new PolyclinicDatabase())
@@ -78,6 +82,7 @@ namespace PolyclinicDatabase.Implements
                 context.SaveChanges();
             }
         }
+       
         public void Delete(MedicineBindingModel model)
         {
             using (var context = new PolyclinicDatabase())
@@ -93,6 +98,7 @@ namespace PolyclinicDatabase.Implements
                 context.SaveChanges();
             }
         }
+       
         private MedicineViewModel CreateModel(Medicine medicine)
         {
             return new MedicineViewModel
@@ -114,6 +120,17 @@ namespace PolyclinicDatabase.Implements
             medicine.Classification = model.Classification;
             medicine.PharmacistId = model.PharmacistId;
             return medicine;
+        }
+
+        public List<MedicineViewModel> GetProcedureMedicines(ProcedureViewModel procedure)
+        {
+            using (var context = new PolyclinicDatabase())
+            {
+                return context.Medicines
+                .Where(rec => procedure.ProcedureMedicines.ContainsKey(rec.Id))
+                .Select(CreateModel)
+                .ToList(); 
+            }
         }
     }
 }

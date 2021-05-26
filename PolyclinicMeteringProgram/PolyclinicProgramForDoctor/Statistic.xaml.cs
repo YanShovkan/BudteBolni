@@ -20,71 +20,75 @@ namespace PolyclinicMeteringProgram
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        ProcedureLogic _logic;
+        PatientLogic _logic;
 
-        private List<StatisticByProcedureViewModel> _procedures = new List<StatisticByProcedureViewModel>();
+        private List<StatisticByPatientViewModel> _patients = new List<StatisticByPatientViewModel>();
 
-        public Statistic(ProcedureLogic logic)
+        public Statistic(PatientLogic logic)
         {
             InitializeComponent();
             _logic = logic;
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            LoadData();
-        }
         private void LoadData()
         {
-            List<ProcedureViewModel> procedures = _logic.Read(null);
-            foreach(var procedure in procedures)
+            _patients.Clear();
+            List<PatientViewModel> patients = _logic.Read(new PatientBindingModel { DateTo = dpTo.SelectedDate , DateFrom = dpFrom.SelectedDate });
+            foreach(var patient in patients)
             {
-                _procedures.Add(new StatisticByProcedureViewModel { ProcedureName = procedure.Name, ProcedureCost = procedure.Cost });
+                _patients.Add(new StatisticByPatientViewModel { PatientName = patient.FullName, ProcedureCount = patient.PatientProcedures.Count });
             }
-            DataGridView.ItemsSource = _procedures;
+            DataGridView.ItemsSource = _patients;
+            DataGridView.Items.Refresh();
         }
 
         private void BuildGraph_Click(object sender, RoutedEventArgs e)
         {
-            List<StatisticByProcedureViewModel> selection = new List<StatisticByProcedureViewModel>();
-            if (DataGridView.SelectedItems.Count != 0)
+            if (dpFrom.SelectedDate == null)
             {
-                foreach(var procedure in DataGridView.SelectedItems)
-                {
-                    selection.Add((StatisticByProcedureViewModel)procedure);
-                }
+                MessageBox.Show("Выберите дату начала",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+            if (dpTo.SelectedDate == null)
             {
-                selection = _procedures;
+                MessageBox.Show("Выберите дату окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            Build(selection);
+            if (dpFrom.SelectedDate >= dpTo.SelectedDate)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания",
+               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            LoadData();
+            Build(_patients);
         }
 
-        private void Build(List<StatisticByProcedureViewModel> statistic)
+        private void Build(List<StatisticByPatientViewModel> statistic)
         {
             SeriesCollection series = new SeriesCollection();
-            List<string> proceduresName = new List<string>();
-            ChartValues<int> procedureCost = new ChartValues<int>();
+            List<string> patientName = new List<string>();
+            ChartValues<int> procedureCount = new ChartValues<int>();
 
             foreach (var item in statistic)
             {
-                proceduresName.Add(item.ProcedureName);
-                procedureCost.Add(item.ProcedureCost);
+                patientName.Add(item.PatientName);
+                procedureCount.Add(item.ProcedureCount);
             }
 
             Graph.AxisX.Clear();
             Graph.AxisX.Add(new Axis()
 
             {
-                Title = "\nПроцедуры",
-                Labels = proceduresName
+                Title = "\nПациенты",
+                Labels = patientName
             });
 
             LineSeries procedureLine = new LineSeries
             {
-                Title = "Стоимость: ",
-                Values = procedureCost
+                Title = "Кол-во процедур: ",
+                Values = procedureCount
             };
 
             series.Add(procedureLine);

@@ -2,12 +2,12 @@
 
 namespace PolyclinicBusinessLogic.ViewModels
 {
-    public class StatisticByProcedureViewModel
+    public class StatisticByPatientViewModel
     {
-        [DisplayName("Название")]
-        public string ProcedureName { get; set; }
+        [DisplayName("Имя пациента")]
+        public string PatientName { get; set; }
 
-        [DisplayName("Стоимость")]
-        public int ProcedureCost { get; set; }
+        [DisplayName("Количество процедур")]
+        public int ProcedureCount { get; set; }
     }
 }
